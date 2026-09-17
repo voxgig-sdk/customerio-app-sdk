@@ -1,0 +1,18 @@
+# Entity: attribute
+
+main: kit: entity: attribute: {
+
+  alias: field: {}
+
+  name: "attribute"
+  relations: {
+    ancestors: [
+      [
+        "object"
+      ]
+    ]
+  }
+
+
+
+}

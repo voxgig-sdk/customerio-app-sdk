@@ -1,0 +1,44 @@
+# BasicSubscriptionCenterFlow
+
+main: kit: flow: BasicSubscriptionCenterFlow:
+{
+  entity: "subscription_center",
+  kind: "basic",
+  name: "BasicSubscriptionCenterFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "subscription_center_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "subscription_center_ref01",
+        srcdatavar: "subscription_center_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "subscription_center01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-subscription_center_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSubscriptionCenterFlow"
+}

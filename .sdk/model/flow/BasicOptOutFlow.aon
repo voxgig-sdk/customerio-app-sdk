@@ -1,0 +1,45 @@
+# BasicOptOutFlow
+
+main: kit: flow: BasicOptOutFlow:
+{
+  entity: "opt_out",
+  kind: "basic",
+  name: "BasicOptOutFlow",
+  step: [
+    {
+      match: {
+        customer_id: "customer01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "opt_out_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "opt_out_ref01",
+        srcdatavar: "opt_out_ref01_data",
+        suffix: "_up0",
+        textfield: "channel"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-opt_out_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOptOutFlow"
+}

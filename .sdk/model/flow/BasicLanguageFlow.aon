@@ -1,0 +1,9 @@
+# BasicLanguageFlow
+
+main: kit: flow: BasicLanguageFlow:
+{
+  entity: "language",
+  kind: "basic",
+  name: "BasicLanguageFlow",
+  "key$": "BasicLanguageFlow"
+}

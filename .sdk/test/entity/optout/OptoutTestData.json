@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "optout": {
+      "OPTOUT00": {},
+      "OPTOUT01": {},
+      "OPTOUT02": {}
+    }
+  },
+  "new": {
+    "optout": {
+      "optout_ref01": {}
+    }
+  },
+  "requests": {}
+}

@@ -1,0 +1,9 @@
+# BasicLinkFlow
+
+main: kit: flow: BasicLinkFlow:
+{
+  entity: "link",
+  kind: "basic",
+  name: "BasicLinkFlow",
+  "key$": "BasicLinkFlow"
+}

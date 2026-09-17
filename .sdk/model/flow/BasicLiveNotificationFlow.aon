@@ -1,0 +1,40 @@
+# BasicLiveNotificationFlow
+
+main: kit: flow: BasicLiveNotificationFlow:
+{
+  entity: "live_notification",
+  kind: "basic",
+  name: "BasicLiveNotificationFlow",
+  step: [
+    {
+      input: {
+        ref: "live_notification_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "live_notification_ref01",
+        srcdatavar: "live_notification_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "live_notification01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-live_notification_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLiveNotificationFlow"
+}

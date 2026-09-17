@@ -1,0 +1,10 @@
+# Entity: delivery
+
+main: kit: entity: delivery: {
+
+  alias: field: {}
+
+  name: "delivery"
+
+
+}

@@ -1,0 +1,10 @@
+# Entity: object_type
+
+main: kit: entity: object_type: {
+
+  alias: field: {}
+
+  name: "object_type"
+
+
+}

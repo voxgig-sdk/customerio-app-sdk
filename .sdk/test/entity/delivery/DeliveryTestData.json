@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "delivery": {
+      "DELIVERY00": {},
+      "DELIVERY01": {},
+      "DELIVERY02": {}
+    }
+  },
+  "new": {
+    "delivery": {
+      "delivery_ref01": {}
+    }
+  },
+  "requests": {}
+}

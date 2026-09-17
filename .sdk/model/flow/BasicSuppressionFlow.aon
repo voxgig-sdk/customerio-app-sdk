@@ -1,0 +1,9 @@
+# BasicSuppressionFlow
+
+main: kit: flow: BasicSuppressionFlow:
+{
+  entity: "suppression",
+  kind: "basic",
+  name: "BasicSuppressionFlow",
+  "key$": "BasicSuppressionFlow"
+}

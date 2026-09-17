@@ -1,0 +1,10 @@
+# Entity: update
+
+main: kit: entity: update: {
+
+  alias: field: {}
+
+  name: "update"
+
+
+}

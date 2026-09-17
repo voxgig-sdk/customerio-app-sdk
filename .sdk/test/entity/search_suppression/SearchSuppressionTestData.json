@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "search_suppression": {
+      "SEARCH_SUPPRESSION00": {},
+      "SEARCH_SUPPRESSION01": {},
+      "SEARCH_SUPPRESSION02": {}
+    }
+  },
+  "new": {
+    "search_suppression": {
+      "search_suppression_ref01": {}
+    }
+  },
+  "requests": {}
+}

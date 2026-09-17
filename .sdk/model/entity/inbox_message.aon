@@ -1,0 +1,10 @@
+# Entity: inbox_message
+
+main: kit: entity: inbox_message: {
+
+  alias: field: {}
+
+  name: "inbox_message"
+
+
+}

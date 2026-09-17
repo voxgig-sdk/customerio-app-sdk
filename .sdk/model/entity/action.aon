@@ -1,0 +1,21 @@
+# Entity: action
+
+main: kit: entity: action: {
+
+  alias: field: {}
+
+  name: "action"
+  relations: {
+    ancestors: [
+      [
+        "broadcast"
+      ]
+      [
+        "campaign"
+      ]
+    ]
+  }
+
+
+
+}

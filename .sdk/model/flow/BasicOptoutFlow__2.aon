@@ -1,0 +1,9 @@
+# BasicOptoutFlow
+
+main: kit: flow: BasicOptoutFlow:
+{
+  entity: "optout",
+  kind: "basic",
+  name: "BasicOptoutFlow",
+  "key$": "BasicOptoutFlow"
+}

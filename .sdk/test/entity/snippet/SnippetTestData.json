@@ -1,0 +1,770 @@
+{
+  "existing": {
+    "snippet": {
+      "SNIPPET00": {
+        "id": "SNIPPET00",
+        "name": "s29",
+        "updated_at": 42,
+        "value": "s2b"
+      },
+      "SNIPPET01": {
+        "id": "SNIPPET01",
+        "name": "s51",
+        "updated_at": 82,
+        "value": "s53"
+      },
+      "SNIPPET02": {
+        "id": "SNIPPET02",
+        "name": "s79",
+        "updated_at": 122,
+        "value": "s7b"
+      }
+    }
+  },
+  "new": {
+    "snippet": {
+      "snippet_ref01": {
+        "name": "sa1",
+        "updated_at": 162,
+        "value": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/snippets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createSnippet",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Request body for creating or updating a snippet. Only `name` and `value` are accepted; `updated_at` is returned in responses only.",
+                "example": {
+                  "name": "address",
+                  "value": "<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111"
+                },
+                "properties": {
+                  "name": {
+                    "description": "The name of the snippet, must be unique. Trimmed of leading and trailing whitespace before storage.",
+                    "maxLength": 150,
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "The contents of the snippet (plain text or Liquid). Trimmed of leading and trailing whitespace before storage. Max length is environment-specific (default 16000).",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "snippet": {
+                      "description": "describes a piece of reusable content. You must provide a name for the snippet and the `value`—the content that appears in messages that use the snippet.",
+                      "example": {
+                        "name": "address",
+                        "updated_at": 1582500000,
+                        "value": "<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111"
+                      },
+                      "properties": {
+                        "name": {
+                          "description": "The name of the snippet, must be unique.",
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "description": "The last date-time the snippet was updated.",
+                          "format": "unix timestamp",
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "value": {
+                          "description": "The contents of the snippet.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns the created snippet."
+          },
+          "401": {
+            "description": "Unauthorized request. Make sure that you provided the right credentials."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "name_blank": {
+                    "summary": "Name empty or blank",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "name cannot be blank",
+                          "source": {
+                            "pointer": "/name"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  },
+                  "name_exists": {
+                    "summary": "Name already exists",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "A snippet with that name already exists",
+                          "source": {
+                            "pointer": "/name"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  },
+                  "name_too_long": {
+                    "summary": "Name longer than 150 characters",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "name cannot exceed 150 characters",
+                          "source": {
+                            "pointer": "/name"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  },
+                  "snippet_reference": {
+                    "summary": "Value contains snippet reference",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "Snippets cannot contain Liquid code referencing other snippets.",
+                          "source": {
+                            "pointer": "/value"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  },
+                  "value_blank": {
+                    "summary": "Value empty or blank",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "value cannot be blank",
+                          "source": {
+                            "pointer": "/value"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  },
+                  "value_too_long": {
+                    "summary": "Value exceeds max length",
+                    "value": {
+                      "errors": [
+                        {
+                          "detail": "value cannot exceed 16000 characters",
+                          "source": {
+                            "pointer": "/value"
+                          },
+                          "status": "422"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "description": "Contains an array of error objects.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "The reason for the response.",
+                            "type": "string"
+                          },
+                          "source": {
+                            "description": "The field or path that caused the error.",
+                            "properties": {
+                              "pointer": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code.",
+                            "example": "422",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation error or a snippet with that name already exists."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error (for example, render service failure when validating Liquid)."
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/snippets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listSnippets",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "snippets": {
+                      "items": {
+                        "description": "describes a piece of reusable content. You must provide a name for the snippet and the `value`—the content that appears in messages that use the snippet.",
+                        "example": {
+                          "name": "address",
+                          "updated_at": 1582500000,
+                          "value": "<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111"
+                        },
+                        "properties": {
+                          "name": {
+                            "description": "The name of the snippet, must be unique.",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The last date-time the snippet was updated.",
+                            "format": "unix timestamp",
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "value": {
+                            "description": "The contents of the snippet.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of `snippets`."
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/snippets/{snippet_name}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteSnippet",
+        "parameters": [
+          {
+            "description": "The name of a snippet.",
+            "in": "path",
+            "name": "snippet_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "A successful delete operation returns no content."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "description": "Contains an array of error objects.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Describes the error.",
+                            "example": "unable to delete snippet in use",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "The HTTP status code.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The snippet is in use. You can't delete a snippet until you remove it from messages, templates, etc."
+          },
+          "404": {
+            "description": "The snippet does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PUT /v1/snippets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateSnippets",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Request body for creating or updating a snippet. Only `name` and `value` are accepted; `updated_at` is returned in responses only.",
+                "example": {
+                  "name": "address",
+                  "value": "<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111"
+                },
+                "properties": {
+                  "name": {
+                    "description": "The name of the snippet, must be unique. Trimmed of leading and trailing whitespace before storage.",
+                    "maxLength": 150,
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "The contents of the snippet (plain text or Liquid). Trimmed of leading and trailing whitespace before storage. Max length is environment-specific (default 16000).",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "snippet": {
+                      "description": "describes a piece of reusable content. You must provide a name for the snippet and the `value`—the content that appears in messages that use the snippet.",
+                      "example": {
+                        "name": "address",
+                        "updated_at": 1582500000,
+                        "value": "<strong>My Company</strong></br>1234 Fake St<br/>Fake,NY<br/>10111"
+                      },
+                      "properties": {
+                        "name": {
+                          "description": "The name of the snippet, must be unique.",
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "description": "The last date-time the snippet was updated.",
+                          "format": "unix timestamp",
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "value": {
+                          "description": "The contents of the snippet.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "value"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of `snippets`."
+          },
+          "400": {
+            "description": "The request is malformed."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

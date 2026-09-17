@@ -1,0 +1,9 @@
+# BasicContentFlow
+
+main: kit: flow: BasicContentFlow:
+{
+  entity: "content",
+  kind: "basic",
+  name: "BasicContentFlow",
+  "key$": "BasicContentFlow"
+}

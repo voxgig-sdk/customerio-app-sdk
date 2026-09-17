@@ -1,0 +1,10 @@
+# Entity: ip_address
+
+main: kit: entity: ip_address: {
+
+  alias: field: {}
+
+  name: "ip_address"
+
+
+}

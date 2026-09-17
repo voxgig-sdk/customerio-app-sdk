@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "in_app": {
+      "IN_APP00": {},
+      "IN_APP01": {},
+      "IN_APP02": {}
+    }
+  },
+  "new": {
+    "in_app": {
+      "in_app_ref01": {}
+    }
+  },
+  "requests": {}
+}

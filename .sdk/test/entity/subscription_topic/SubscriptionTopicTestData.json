@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "subscription_topic": {
+      "SUBSCRIPTION_TOPIC00": {},
+      "SUBSCRIPTION_TOPIC01": {},
+      "SUBSCRIPTION_TOPIC02": {}
+    }
+  },
+  "new": {
+    "subscription_topic": {
+      "subscription_topic_ref01": {}
+    }
+  },
+  "requests": {}
+}

@@ -1,0 +1,9 @@
+# BasicUpdateFlow
+
+main: kit: flow: BasicUpdateFlow:
+{
+  entity: "update",
+  kind: "basic",
+  name: "BasicUpdateFlow",
+  "key$": "BasicUpdateFlow"
+}

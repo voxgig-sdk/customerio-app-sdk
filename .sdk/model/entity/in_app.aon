@@ -1,0 +1,10 @@
+# Entity: in_app
+
+main: kit: entity: in_app: {
+
+  alias: field: {}
+
+  name: "in_app"
+
+
+}

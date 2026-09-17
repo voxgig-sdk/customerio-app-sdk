@@ -1,0 +1,550 @@
+# Entity: asset
+
+main: kit: entity: asset: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      format: "int64"
+      name: "created"
+      req: false
+      short: "Unix timestamp when the asset was created."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier of the file asset."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "The display name of the file asset."
+      type: "`$STRING`"
+    }
+    {
+      name: "parent_folder_id"
+      req: false
+      short: "The ID of the parent folder, or null if the asset is at the root level."
+      type: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    {
+      name: "path"
+      req: false
+      short: "The storage URL or path where the file is hosted."
+      type: "`$STRING`"
+    }
+    {
+      name: "size"
+      req: false
+      short: "The file size in bytes."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "int64"
+      name: "updated"
+      req: false
+      short: "Unix timestamp when the asset was last updated."
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "asset"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          contract: {
+            id: "POST /v1/assets/files"
+            json: "{\"operationId\":\"createAsset\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"multipart/form-data\":{\"schema\":{\"properties\":{\"file\":{\"description\":\"The file to upload. Must be an accepted image or PDF type. Accepted file types: `image/bmp`, `image/jpeg`, `image/jpg`, `image/png`, `image/gif`, `application/pdf`. Maximum file size: 2 MB.  Maximum image dimensions: 4096px.\\n\",\"format\":\"binary\",\"type\":\"string\"},\"name\":{\"description\":\"Custom display name for the asset. If omitted, the uploaded file's original filename is used.\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder. Omit or set to \\\"0\\\" to place the asset at the root level.\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"file\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asset\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the asset was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the file asset.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the file asset.\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the asset is at the root level.\",\"type\":[\"integer\",\"null\"]},\"path\":{\"description\":\"The storage URL or path where the file is hosted.\",\"type\":\"string\"},\"size\":{\"description\":\"The file size in bytes.\",\"type\":\"integer\"},\"updated\":{\"description\":\"Unix timestamp when the asset was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"The newly created file asset.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"409\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"a constraint violation prevents this operation\",\"status\":\"409\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Conflict - linked resource or other constraint violation\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/assets/files"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "files"
+            }
+          ]
+          select: {
+            "$action": "file"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.asset`"
+          }
+        }
+        {
+          contract: {
+            id: "POST /v1/assets/folders"
+            json: "{\"operationId\":\"createAssetFolder\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"description\":\"Display name for the folder. Must be unique among siblings in the same parent folder.\",\"example\":\"Banners\",\"minLength\":1,\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder. Omit or set to \\\"0\\\" to create at the root level.\",\"type\":[\"integer\",\"null\"]}},\"required\":[\"name\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"folder\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the folder was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the folder.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the folder.\",\"example\":\"Banners\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the folder is at the root level.\",\"type\":[\"integer\",\"null\"]},\"updated\":{\"description\":\"Unix timestamp when the folder was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"The newly created folder.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"409\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"a constraint violation prevents this operation\",\"status\":\"409\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Conflict - linked resource or other constraint violation\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/v1/assets/folders"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "folders"
+            }
+          ]
+          select: {
+            "$action": "folder"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.folder`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "direct_descendants_only"
+                orig: "direct_descendants_only"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 1000
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "parent_folder_id"
+                orig: "parent_folder_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/assets"
+            json: "{\"operationId\":\"listAssets\",\"parameters\":[{\"description\":\"Filter results to a specific parent folder. Use 0 or omit to target the root level.\",\"in\":\"query\",\"name\":\"parent_folder_id\",\"schema\":{\"type\":\"integer\"}},{\"description\":\"If true, this returns only children of the parent folder.\",\"in\":\"query\",\"name\":\"direct_descendants_only\",\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"The page number of results you want to display. Use with `limit`.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Limit the number of results per page.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":1000,\"maximum\":10000,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"assets\":{\"description\":\"The list of file assets matching the query.\",\"items\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the asset was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the file asset.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the file asset.\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the asset is at the root level.\",\"type\":[\"integer\",\"null\"]},\"path\":{\"description\":\"The storage URL or path where the file is hosted.\",\"type\":\"string\"},\"size\":{\"description\":\"The file size in bytes.\",\"type\":\"integer\"},\"updated\":{\"description\":\"Unix timestamp when the asset was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"meta\":{\"description\":\"Metadata about the paginated response including pagination details and applied filters.\",\"properties\":{\"filters\":{\"description\":\"The filters that were applied to the query.\",\"properties\":{\"direct_descendants_only\":{\"description\":\"Whether the results were limited to direct descendants only.\",\"type\":\"boolean\"},\"parent_folder_id\":{\"description\":\"The parent folder ID filter that was applied, or null if not filtering by parent.\",\"type\":[\"integer\",\"null\"]}},\"type\":\"object\"},\"pagination\":{\"description\":\"Pagination details for the current result set.\",\"properties\":{\"limit\":{\"description\":\"The maximum number of results per page.\",\"type\":\"integer\"},\"page\":{\"description\":\"The current page number.\",\"type\":\"integer\"},\"total\":{\"description\":\"The total number of matching results across all pages.\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"A paginated list of file assets with metadata.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/assets"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+          ]
+          select: {
+            exist: [
+              "direct_descendants_only"
+              "limit"
+              "page"
+              "parent_folder_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "direct_descendants_only"
+                orig: "direct_descendants_only"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 1000
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "parent_folder_id"
+                orig: "parent_folder_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/assets/folders"
+            json: "{\"operationId\":\"listAssetFolders\",\"parameters\":[{\"description\":\"Filter results to a specific parent folder. Use 0 or omit to target the root level.\",\"in\":\"query\",\"name\":\"parent_folder_id\",\"schema\":{\"type\":\"integer\"}},{\"description\":\"If true, this returns only children of the parent folder.\",\"in\":\"query\",\"name\":\"direct_descendants_only\",\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"The page number of results you want to display. Use with `limit`.\",\"in\":\"query\",\"name\":\"page\",\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Limit the number of results per page.\",\"in\":\"query\",\"name\":\"limit\",\"schema\":{\"default\":1000,\"maximum\":10000,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"folders\":{\"description\":\"The list of folders matching the query.\",\"items\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the folder was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the folder.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the folder.\",\"example\":\"Banners\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the folder is at the root level.\",\"type\":[\"integer\",\"null\"]},\"updated\":{\"description\":\"Unix timestamp when the folder was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"meta\":{\"description\":\"Metadata about the paginated response including pagination details and applied filters.\",\"properties\":{\"filters\":{\"description\":\"The filters that were applied to the query.\",\"properties\":{\"direct_descendants_only\":{\"description\":\"Whether the results were limited to direct descendants only.\",\"type\":\"boolean\"},\"parent_folder_id\":{\"description\":\"The parent folder ID filter that was applied, or null if not filtering by parent.\",\"type\":[\"integer\",\"null\"]}},\"type\":\"object\"},\"pagination\":{\"description\":\"Pagination details for the current result set.\",\"properties\":{\"limit\":{\"description\":\"The maximum number of results per page.\",\"type\":\"integer\"},\"page\":{\"description\":\"The current page number.\",\"type\":\"integer\"},\"total\":{\"description\":\"The total number of matching results across all pages.\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"A paginated list of folders with metadata.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/assets/folders"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "folders"
+            }
+          ]
+          select: {
+            "$action": "folder"
+            exist: [
+              "direct_descendants_only"
+              "limit"
+              "page"
+              "parent_folder_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/assets/files/{id}"
+            json: "{\"operationId\":\"getAsset\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"asset\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the asset was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the file asset.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the file asset.\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the asset is at the root level.\",\"type\":[\"integer\",\"null\"]},\"path\":{\"description\":\"The storage URL or path where the file is hosted.\",\"type\":\"string\"},\"size\":{\"description\":\"The file size in bytes.\",\"type\":\"integer\"},\"updated\":{\"description\":\"Unix timestamp when the asset was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"The requested file asset.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/assets/files/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.asset`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /v1/assets/folders/{id}"
+            json: "{\"operationId\":\"getAssetFolder\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"folder\":{\"properties\":{\"created\":{\"description\":\"Unix timestamp when the folder was created.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier of the folder.\",\"type\":\"integer\"},\"name\":{\"description\":\"The display name of the folder.\",\"example\":\"Banners\",\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the parent folder, or null if the folder is at the root level.\",\"type\":[\"integer\",\"null\"]},\"updated\":{\"description\":\"Unix timestamp when the folder was last updated.\",\"example\":1773856017,\"format\":\"int64\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"The requested folder.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/v1/assets/folders/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "folders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.folder`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/assets/files/{id}"
+            json: "{\"operationId\":\"deleteAsset\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"File asset deleted successfully.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/assets/files/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /v1/assets/folders/{id}"
+            json: "{\"operationId\":\"deleteAssetFolder\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"204\":{\"description\":\"Folder deleted successfully.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/v1/assets/folders/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "folders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v1/assets/files/{id}"
+            json: "{\"operationId\":\"updateAsset\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"description\":\"New display name for the asset. Cannot be blank after trimming.\",\"minLength\":1,\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the new parent folder. Set to `null` to move the asset to the root level.\",\"type\":[\"integer\",\"null\"]}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"204\":{\"description\":\"File asset updated successfully.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"409\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"a constraint violation prevents this operation\",\"status\":\"409\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Conflict - linked resource or other constraint violation\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v1/assets/files/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "files"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /v1/assets/folders/{id}"
+            json: "{\"operationId\":\"updateAssetFolder\",\"parameters\":[{\"description\":\"The unique identifier of the resource.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"name\":{\"description\":\"New display name for the folder. Cannot be blank after trimming.\",\"minLength\":1,\"type\":\"string\"},\"parent_folder_id\":{\"description\":\"The ID of the new parent folder. Set to `null` to move the folder to the root level. Cannot be the folder itself or one of its descendants.\",\"type\":[\"integer\",\"null\"]}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"204\":{\"description\":\"Folder updated successfully.\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Bad request\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"unauthorized\",\"status\":\"401\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - missing or invalid API key\"},\"404\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"resource not found\",\"status\":\"404\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Resource not found\"},\"409\":{\"content\":{\"application/json\":{\"example\":{\"errors\":[{\"detail\":\"a constraint violation prevents this operation\",\"status\":\"409\"}]},\"schema\":{\"description\":\"An error response containing one or more error details.\",\"properties\":{\"errors\":{\"description\":\"A list of errors that occurred while processing the request.\",\"items\":{\"properties\":{\"detail\":{\"description\":\"Reason for error\",\"type\":\"string\"},\"meta\":{\"description\":\"Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.\",\"type\":\"object\"},\"status\":{\"description\":\"Response code\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Conflict - linked resource or other constraint violation\"}},\"securitySchemes\":{\"Bearer-Auth\":{\"description\":\"The App API uses a bearer authentication scheme.\\n\\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"ServiceAccount-Auth\":{\"bearerFormat\":\"sa_live_\",\"description\":\"Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\\n\\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\\n\\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\\n\",\"scheme\":\"bearer\",\"type\":\"http\"},\"bearerAuth\":{\"description\":\"API key passed as a Bearer token\",\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/v1/assets/folders/{id}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "folders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

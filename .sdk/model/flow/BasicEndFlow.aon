@@ -1,0 +1,9 @@
+# BasicEndFlow
+
+main: kit: flow: BasicEndFlow:
+{
+  entity: "end",
+  kind: "basic",
+  name: "BasicEndFlow",
+  "key$": "BasicEndFlow"
+}

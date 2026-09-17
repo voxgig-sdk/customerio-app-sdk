@@ -1,0 +1,33 @@
+# Entity: language
+
+main: kit: entity: language: {
+
+  alias: field: {}
+
+  name: "language"
+  relations: {
+    ancestors: [
+      [
+        "newsletter"
+      ]
+      [
+        "transactional"
+      ]
+      [
+        "broadcast"
+        "action"
+      ]
+      [
+        "campaign"
+        "action"
+      ]
+      [
+        "newsletter"
+        "test_group"
+      ]
+    ]
+  }
+
+
+
+}

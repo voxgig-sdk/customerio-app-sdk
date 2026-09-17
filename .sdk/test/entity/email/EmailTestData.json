@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {},
+      "EMAIL01": {},
+      "EMAIL02": {}
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {}
+    }
+  },
+  "requests": {}
+}

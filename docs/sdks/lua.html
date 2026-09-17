@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lua | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details open><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a aria-current="page" href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>SDKs</div><h1 id="lua">Lua</h1>
+<p>Lua</p>
+<h2 id="install">Install</h2>
+<p>Not published. Build from the lua directory.</p>
+<h2 id="package">Package</h2>
+<p><code>voxgig-sdk-customerio-app</code></p>
+<h2 id="api-reference">API reference</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Operations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../api/action.html">Action</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/activity.html">Activity</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/asset.html">Asset</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/attribute.html">Attribute</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/automation.html">Automation</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/broadcast.html">Broadcast</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/campaign.html">Campaign</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/collection.html">Collection</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/content.html">Content</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/customer.html">Customer</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/data_index.html">DataIndex</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/delivery.html">Delivery</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/design_studio.html">DesignStudio</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/design_studio_email.html">DesignStudioEmail</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/email.html">Email</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/end.html">End</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/esp_suppression.html">EspSuppression</a></td>
+<td><code>create</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/export.html">Export</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/import.html">Import</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/in_app.html">InApp</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/inbox_message.html">InboxMessage</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/info.html">Info</a></td>
+<td><code>list</code></td>
+</tr>
+<tr>
+<td><a href="../api/ip_address.html">IpAddress</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/language.html">Language</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/link.html">Link</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/live_notification.html">LiveNotification</a></td>
+<td><code>create</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/message.html">Message</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/newsletter.html">Newsletter</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/newsletter_metric.html">NewsletterMetric</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/newsletter_variant.html">NewsletterVariant</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/object.html">Object</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/object_type.html">ObjectType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/opt_out.html">OptOut</a></td>
+<td><code>list</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/push.html">Push</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/relationship.html">Relationship</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/reporting_webhook.html">ReportingWebhook</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/search_suppression.html">SearchSuppression</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/segment.html">Segment</a></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>remove</code></td>
+</tr>
+<tr>
+<td><a href="../api/send_message.html">SendMessage</a></td>
+<td><code>create</code></td>
+</tr>
+<tr>
+<td><a href="../api/sender_identity.html">SenderIdentity</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/sms.html">Sms</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/snippet.html">Snippet</a></td>
+<td><code>create</code>, <code>list</code>, <code>remove</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/start.html">Start</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/subscription_center.html">SubscriptionCenter</a></td>
+<td><code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/subscription_channel.html">SubscriptionChannel</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/subscription_topic.html">SubscriptionTopic</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/suppression.html">Suppression</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/test_group.html">TestGroup</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/transactional.html">Transactional</a></td>
+<td><code>list</code>, <code>load</code>, <code>update</code></td>
+</tr>
+<tr>
+<td><a href="../api/trigger.html">Trigger</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/update.html">Update</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/whatsapp.html">Whatsapp</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../api/workspace.html">Workspace</a></td>
+<td><code>list</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<p>Set the server URL and credentials for your environment. Enable only the features your application needs.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><a href="../features/debug.html">Request/response capture ring buffer for debugging</a></li>
+<li><a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a></li>
+<li><a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a></li>
+<li><a href="../features/paging.html">Pagination signals for list operations</a></li>
+<li><a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a></li>
+<li><a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a></li>
+<li><a href="../features/test.html">In-memory mock transport for testing without a live server</a></li>
+<li><a href="../features/timeout.html">Per-request timeout with transport abort</a></li>
+</ul>
+<h2 id="set-up-the-client">Set up the client</h2>
+<p>This setup fragment reads credentials from the environment. Use the API operation reference to supply input for each call.</p>
+<pre><code class="language-lua">local sdk = require(&quot;customerio-app_sdk&quot;)
+local client = sdk.new({apikey = os.getenv(&quot;CUSTOMERIO_APP_APIKEY&quot;)})
+</code></pre>
+<h2 id="client-defaults">Client defaults</h2>
+<pre><code class="language-json">{
+  &quot;base&quot;: &quot;https://api.customer.io&quot;,
+  &quot;auth&quot;: {
+    &quot;prefix&quot;: &quot;Bearer&quot;
+  },
+  &quot;headers&quot;: {
+    &quot;content-type&quot;: &quot;application/json&quot;
+  },
+  &quot;entity&quot;: {
+    &quot;action&quot;: {},
+    &quot;activity&quot;: {},
+    &quot;asset&quot;: {},
+    &quot;attribute&quot;: {},
+    &quot;automation&quot;: {},
+    &quot;broadcast&quot;: {},
+    &quot;campaign&quot;: {},
+    &quot;collection&quot;: {},
+    &quot;content&quot;: {},
+    &quot;customer&quot;: {},
+    &quot;data_index&quot;: {},
+    &quot;delivery&quot;: {},
+    &quot;design_studio&quot;: {},
+    &quot;design_studio_email&quot;: {},
+    &quot;email&quot;: {},
+    &quot;end&quot;: {},
+    &quot;esp_suppression&quot;: {},
+    &quot;export&quot;: {},
+    &quot;import&quot;: {},
+    &quot;in_app&quot;: {},
+    &quot;inbox_message&quot;: {},
+    &quot;info&quot;: {},
+    &quot;ip_address&quot;: {},
+    &quot;language&quot;: {},
+    &quot;link&quot;: {},
+    &quot;live_notification&quot;: {},
+    &quot;message&quot;: {},
+    &quot;newsletter&quot;: {},
+    &quot;newsletter_metric&quot;: {},
+    &quot;newsletter_variant&quot;: {},
+    &quot;object&quot;: {},
+    &quot;object_type&quot;: {},
+    &quot;opt_out&quot;: {},
+    &quot;push&quot;: {},
+    &quot;relationship&quot;: {},
+    &quot;reporting_webhook&quot;: {},
+    &quot;search_suppression&quot;: {},
+    &quot;segment&quot;: {},
+    &quot;send_message&quot;: {},
+    &quot;sender_identity&quot;: {},
+    &quot;sms&quot;: {},
+    &quot;snippet&quot;: {},
+    &quot;start&quot;: {},
+    &quot;subscription_center&quot;: {},
+    &quot;subscription_channel&quot;: {},
+    &quot;subscription_topic&quot;: {},
+    &quot;suppression&quot;: {},
+    &quot;test_group&quot;: {},
+    &quot;transactional&quot;: {},
+    &quot;trigger&quot;: {},
+    &quot;update&quot;: {},
+    &quot;whatsapp&quot;: {},
+    &quot;workspace&quot;: {}
+  }
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "language": {
+      "LANGUAGE00": {},
+      "LANGUAGE01": {},
+      "LANGUAGE02": {}
+    }
+  },
+  "new": {
+    "language": {
+      "language_ref01": {}
+    }
+  },
+  "requests": {}
+}

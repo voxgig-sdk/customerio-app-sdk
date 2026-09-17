@@ -1,0 +1,9 @@
+# BasicSearchSuppressionFlow
+
+main: kit: flow: BasicSearchSuppressionFlow:
+{
+  entity: "search_suppression",
+  kind: "basic",
+  name: "BasicSearchSuppressionFlow",
+  "key$": "BasicSearchSuppressionFlow"
+}

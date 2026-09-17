@@ -1,0 +1,100 @@
+# BasicDesignStudioFlow
+
+main: kit: flow: BasicDesignStudioFlow:
+{
+  entity: "design_studio",
+  kind: "basic",
+  name: "BasicDesignStudioFlow",
+  step: [
+    {
+      input: {
+        ref: "design_studio_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "design_studio_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_ref01",
+        srcdatavar: "design_studio_ref01_data",
+        suffix: "_up0",
+        textfield: "content"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-design_studio_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_ref01",
+        srcdatavar: "design_studio_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "design_studio01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-design_studio_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "design_studio01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "design_studio_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDesignStudioFlow"
+}

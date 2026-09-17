@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "ip_address": {
+      "IP_ADDRESS00": {},
+      "IP_ADDRESS01": {},
+      "IP_ADDRESS02": {}
+    }
+  },
+  "new": {
+    "ip_address": {
+      "ip_address_ref01": {}
+    }
+  },
+  "requests": {}
+}

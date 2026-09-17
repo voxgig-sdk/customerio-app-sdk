@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "suppression": {
+      "SUPPRESSION00": {},
+      "SUPPRESSION01": {},
+      "SUPPRESSION02": {}
+    }
+  },
+  "new": {
+    "suppression": {
+      "suppression_ref01": {}
+    }
+  },
+  "requests": {}
+}

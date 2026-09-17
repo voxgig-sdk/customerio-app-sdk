@@ -1,0 +1,9 @@
+# BasicSubscriptionChannelFlow
+
+main: kit: flow: BasicSubscriptionChannelFlow:
+{
+  entity: "subscription_channel",
+  kind: "basic",
+  name: "BasicSubscriptionChannelFlow",
+  "key$": "BasicSubscriptionChannelFlow"
+}

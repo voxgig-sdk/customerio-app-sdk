@@ -1,0 +1,462 @@
+{
+  "existing": {
+    "subscription_center": {
+      "SUBSCRIPTION_CENTER00": {
+        "description": "s3c",
+        "id": "SUBSCRIPTION_CENTER00",
+        "identifier": "s3e",
+        "name": "s3f",
+        "subscribed_by_default": true,
+        "type": "s41"
+      },
+      "SUBSCRIPTION_CENTER01": {
+        "description": "s78",
+        "id": "SUBSCRIPTION_CENTER01",
+        "identifier": "s7a",
+        "name": "s7b",
+        "subscribed_by_default": true,
+        "type": "s7d"
+      },
+      "SUBSCRIPTION_CENTER02": {
+        "description": "sb4",
+        "id": "SUBSCRIPTION_CENTER02",
+        "identifier": "sb6",
+        "name": "sb7",
+        "subscribed_by_default": true,
+        "type": "sb9"
+      }
+    }
+  },
+  "new": {
+    "subscription_center": {
+      "subscription_center_ref01": {
+        "description": "sf0",
+        "identifier": "sf2",
+        "name": "sf3",
+        "subscribed_by_default": true,
+        "type": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/subscription_channels": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getChannels",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "channels": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "description": "A description of the channel.",
+                            "example": "Email messages",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The system-generated ID for the subscription channel.",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "The display name of the subscription channel.",
+                            "example": "Email",
+                            "type": "string"
+                          },
+                          "subscribed_by_default": {
+                            "description": "If false, a person is opted-out by default. If true, a person is opted-in by default.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The type of delivery channel.",
+                            "enum": [
+                              "email",
+                              "twilio",
+                              "urban_airship",
+                              "slack",
+                              "push",
+                              "in_app",
+                              "line",
+                              "inbox",
+                              "whatsapp"
+                            ],
+                            "example": "email",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of `channels`."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/subscription_topics": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTopics",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "topics": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "description": "A description of the topic that you provided when you created the topic in the UI.",
+                            "example": "For people who want updates on product releases.",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The system-generated id for the subscription topic. Also located on the subscription center landing page. These increment up by 1, starting with 1.",
+                            "example": 4,
+                            "type": "integer"
+                          },
+                          "identifier": {
+                            "description": "The key associated with the subscription topic. The format is `topic_<id>`.",
+                            "example": "topic_4",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the subscription topic.",
+                            "example": "Product Updates",
+                            "type": "string"
+                          },
+                          "subscribed_by_default": {
+                            "description": "If false, a person is opted-out by default. If true, a person is opted-in by default.",
+                            "example": false,
+                            "type": "boolean"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of `topics`."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/subscription_center/{customer_id}/token": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSubscriptionCenterToken",
+        "parameters": [
+          {
+            "description": "The identifier for a person in your workspace—the same value you'd use as an `id` or `email` to identify a person in Customer.io.",
+            "in": "path",
+            "name": "customer_id",
+            "required": true,
+            "schema": {
+              "example": "person@example.com",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "token": {
+                      "description": "A signed token representing the person's subscription center session. The token expires after 24 hours.\n\nIf you want to use a custom link tracking domain, you can point your customers to `https://<your-tracking-domain>/u/i/<your-token>/<language-code (optional)>`.\n",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "A full URL to the person's standalone subscription center page. You can use this URL directly as a link.",
+                      "example": "https://track.customer.io/u/i/<your-token>/",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns a signed `token` and a subscription center `url` for the person."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "example": "bad request",
+                            "type": "string"
+                          },
+                          "status": {
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The `customer_id` is invalid or does not match a known person in your workspace."
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

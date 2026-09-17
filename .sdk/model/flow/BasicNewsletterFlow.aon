@@ -1,0 +1,81 @@
+# BasicNewsletterFlow
+
+main: kit: flow: BasicNewsletterFlow:
+{
+  entity: "newsletter",
+  kind: "basic",
+  name: "BasicNewsletterFlow",
+  step: [
+    {
+      input: {
+        ref: "newsletter_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "newsletter_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "newsletter_ref01",
+        srcdatavar: "newsletter_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "newsletter01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-newsletter_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "newsletter_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "newsletter01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "newsletter_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewsletterFlow"
+}

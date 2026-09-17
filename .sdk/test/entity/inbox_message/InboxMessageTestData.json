@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "inbox_message": {
+      "INBOX_MESSAGE00": {},
+      "INBOX_MESSAGE01": {},
+      "INBOX_MESSAGE02": {}
+    }
+  },
+  "new": {
+    "inbox_message": {
+      "inbox_message_ref01": {}
+    }
+  },
+  "requests": {}
+}

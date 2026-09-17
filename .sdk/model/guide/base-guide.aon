@@ -1,0 +1,1043 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 54
+  metrics: count: path: 140
+  metrics: count: method: 186
+
+  entity: action: {
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}": {
+      rename: param: "action_id": *"id"
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics": {
+      action: "metric": {}
+      rename: param: "action_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}": {
+      rename: param: "action_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/metrics": {
+      action: "metric": {}
+      rename: param: "action_id": *"id"
+    }
+  }
+
+  entity: activity: {
+    path: "/v1/activities": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.activities`")|top
+    }
+  }
+
+  entity: asset: {
+    path: "/v1/assets": {
+      op: list: method: *GET
+    }
+    path: "/v1/assets/files": {
+      action: "file": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.asset`")|top
+    }
+    path: "/v1/assets/files/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.asset`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v1/assets/folders": {
+      action: "folder": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.folder`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/assets/folders/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.folder`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: attribute: {
+    path: "/v1/customers/attributes": {
+    }
+    path: "/v1/data_index/attributes": {
+    }
+    path: "/v1/objects/{object_type_id}/{object_id}/attributes": {
+      rename: param: "object_type_id": *"object_id"
+    }
+  }
+
+  entity: automation: {
+    path: "/v1/campaigns": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.campaigns`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.campaign`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/actions": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.actions`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.action`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.action`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.action`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.action`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/metrics": {
+      op: load: method: *GET
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/metrics/links": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/journey_metrics": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.journey_metric`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/messages": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/metrics": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.metric`")|top
+    }
+    path: "/v1/campaigns/{campaign_id}/metrics/links": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+  }
+
+  entity: broadcast: {
+    path: "/v1/broadcasts": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.broadcasts`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}": {
+      rename: param: "broadcast_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.broadcast`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions": {
+      action: "action": {}
+      rename: param: "broadcast_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.actions`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}": {
+      rename: param: "broadcast_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.action`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.action`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}": {
+      rename: param: "broadcast_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.action`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.action`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics": {
+      rename: param: "broadcast_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links": {
+      rename: param: "broadcast_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/messages": {
+      action: "message": {}
+      rename: param: "broadcast_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/metrics": {
+      action: "metric": {}
+      rename: param: "broadcast_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.metric`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/metrics/links": {
+      action: "metric_link": {}
+      rename: param: "broadcast_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+    path: "/v1/broadcasts/{broadcast_id}/triggers": {
+      action: "trigger": {}
+      rename: param: "broadcast_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.triggers`")|top
+    }
+    path: "/v1/campaigns/{broadcast_id}/triggers/{trigger_id}": {
+      rename: param: "broadcast_id": *"campaign_id"
+      op: load: method: *GET
+    }
+    path: "/v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors": {
+      rename: param: "broadcast_id": *"campaign_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.errors`")|top
+    }
+  }
+
+  entity: campaign: {
+    path: "/v1/campaigns": {
+    }
+    path: "/v1/campaigns/{broadcast_id}/triggers": {
+      action: "trigger": {}
+      rename: param: "broadcast_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}": {
+      rename: param: "campaign_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/actions": {
+      action: "action": {}
+      rename: param: "campaign_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/journey_metrics": {
+      action: "journey_metric": {}
+      rename: param: "campaign_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/messages": {
+      action: "message": {}
+      rename: param: "campaign_id": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/metrics": {
+      action: "metric": {}
+      rename: param: "campaign_id": *"id"
+    }
+  }
+
+  entity: collection: {
+    path: "/v1/collections": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.collection`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.collections`")|top
+    }
+    path: "/v1/collections/{collection_id}": {
+      rename: param: "collection_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.collection`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.collection`")|top
+    }
+    path: "/v1/collections/{collection_id}/content": {
+      action: "content": {}
+      rename: param: "collection_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.collection`")|top
+    }
+  }
+
+  entity: content: {
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}": {
+      rename: param: "content_id": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}/metrics": {
+      action: "metric": {}
+      rename: param: "content_id": *"id"
+    }
+    path: "/v1/transactional/{transactional_id}/content/{content_id}": {
+      rename: param: "content_id": *"id"
+    }
+    path: "/v1/transactional/{transactional_id}/contents/{content_id}": {
+      rename: param: "content_id": *"id"
+    }
+  }
+
+  entity: customer: {
+    path: "/v1/customers": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
+    }
+    path: "/v1/customers/attributes": {
+      action: "attribute": {}
+      op: create: method: *POST
+    }
+    path: "/v1/customers/{customer_id}/activities": {
+      action: "activity": {}
+      rename: param: "customer_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.activities`")|top
+    }
+    path: "/v1/customers/{customer_id}/attributes": {
+      action: "attribute": {}
+      rename: param: "customer_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.customer`")|top
+    }
+    path: "/v1/customers/{customer_id}/messages": {
+      action: "message": {}
+      rename: param: "customer_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/customers/{customer_id}/optouts": {
+      action: "optout": {}
+      rename: param: "customer_id": *"id"
+    }
+    path: "/v1/customers/{customer_id}/relationships": {
+      action: "relationship": {}
+      rename: param: "customer_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.cio_relationships`")|top
+    }
+    path: "/v1/customers/{customer_id}/segments": {
+      action: "segment": {}
+      rename: param: "customer_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.segments`")|top
+    }
+    path: "/v1/customers/{customer_id}/subscription_preferences": {
+      action: "subscription_preference": {}
+      rename: param: "customer_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.customer`")|top
+    }
+    path: "/v1/exports/customers": {
+    }
+  }
+
+  entity: data_index: {
+    path: "/v1/data_index/attributes": {
+      action: "attribute": {}
+      op: create: method: *POST
+    }
+    path: "/v1/data_index/events": {
+      action: "event": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: delivery: {
+    path: "/v1/exports/deliveries": {
+    }
+  }
+
+  entity: design_studio: {
+    path: "/v1/design_studio/components": {
+      action: "component": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.component`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/design_studio/components/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.component`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v1/design_studio/folders": {
+      action: "folder": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.folder`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/design_studio/folders/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.folder`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: design_studio_email: {
+    path: "/v1/design_studio/emails": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.email`")|top
+      op: list: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.email`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v1/design_studio/emails/{id}/inbox_previews": {
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+    }
+    path: "/v1/design_studio/emails/{id}/inbox_previews/{run_id}": {
+      rename: param: "id": *"email_id"
+      op: load: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}/inbox_previews/{run_id}/captures/{client_id}": {
+      rename: param: "id": *"email_id"
+      rename: param: "run_id": *"inbox_preview_id"
+      op: load: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}/languages": {
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.email_translation`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.email_translations`")|top
+    }
+    path: "/v1/design_studio/emails/{id}/languages/{language}": {
+      rename: param: "id": *"email_id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.email_translation`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/v1/design_studio/emails/{id}/link": {
+      action: "link": {}
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.target`")|top
+    }
+    path: "/v1/design_studio/emails/{id}/preview": {
+      action: "preview": {}
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+    }
+    path: "/v1/design_studio/emails/{id}/publish": {
+      action: "publish": {}
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+    }
+    path: "/v1/design_studio/emails/{id}/publish_status": {
+      rename: param: "id": *"email_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.mappings`")|top
+    }
+    path: "/v1/design_studio/emails/{id}/render": {
+      rename: param: "id": *"email_id"
+      op: load: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}/review": {
+      rename: param: "id": *"email_id"
+      op: list: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}/unpublished_changes": {
+      rename: param: "id": *"email_id"
+      op: load: method: *GET
+    }
+    path: "/v1/design_studio/emails/{id}/versions": {
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.version`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.versions`")|top
+    }
+    path: "/v1/design_studio/emails/{id}/versions/{version_id}": {
+      rename: param: "id": *"email_id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/v1/design_studio/emails/{id}/versions/{version_id}/restore": {
+      action: "restore": {}
+      rename: param: "id": *"email_id"
+      op: create: method: *POST
+    }
+    path: "/v1/design_studio/inbox_previews/clients": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.clients`")|top
+    }
+    path: "/v1/design_studio/inbox_previews/credits": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.credits`")|top
+    }
+    path: "/v1/design_studio/inbox_previews/jobs": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: email: {
+    path: "/v1/send/email": {
+    }
+  }
+
+  entity: end: {
+    path: "/v1/live_notifications/end": {
+    }
+  }
+
+  entity: esp_suppression: {
+    path: "/v1/esp/domains/{domain_name}/suppression/{suppression_type}": {
+      rename: param: "domain_name": *"domain_id"
+      rename: param: "suppression_type": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/esp/search_suppression/{email_address}": {
+      op: load: method: *GET
+    }
+    path: "/v1/esp/suppression/{suppression_type}": {
+      rename: param: "suppression_type": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/esp/suppression/{suppression_type}/{email_address}": {
+      op: create: method: *POST
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: export: {
+    path: "/v1/exports": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.exports`")|top
+    }
+    path: "/v1/exports/customers": {
+      action: "customer": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.export`")|top
+    }
+    path: "/v1/exports/deliveries": {
+      action: "delivery": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.export`")|top
+    }
+    path: "/v1/exports/{export_id}": {
+      rename: param: "export_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.export`")|top
+    }
+    path: "/v1/exports/{export_id}/download": {
+      action: "download": {}
+      rename: param: "export_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: import: {
+    path: "/v1/imports": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.import`")|top
+      op: create: transform: req: "import": *("`reqdata`")|top
+    }
+    path: "/v1/imports/{import_id}": {
+      rename: param: "import_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.import`")|top
+    }
+  }
+
+  entity: in_app: {
+    path: "/v1/send/in_app": {
+    }
+  }
+
+  entity: inbox_message: {
+    path: "/v1/send/inbox_message": {
+    }
+  }
+
+  entity: info: {
+    path: "/v1/info/ip_addresses": {
+      action: "ip_address": {}
+      op: list: method: *GET
+      op: list: transform: res: *("`body.ip_addresses`")|top
+    }
+  }
+
+  entity: ip_address: {
+    path: "/v1/info/ip_addresses": {
+    }
+  }
+
+  entity: language: {
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}": {
+      rename: param: "language": *"id"
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/language/{language}": {
+      rename: param: "language": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/language/{language}": {
+      rename: param: "language": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}": {
+      rename: param: "language": *"id"
+    }
+    path: "/v1/transactional/{transactional_id}/language/{language}": {
+      rename: param: "language": *"id"
+    }
+  }
+
+  entity: link: {
+    path: "/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links": {
+    }
+    path: "/v1/broadcasts/{broadcast_id}/metrics/links": {
+    }
+    path: "/v1/campaigns/{campaign_id}/actions/{action_id}/metrics/links": {
+    }
+    path: "/v1/campaigns/{campaign_id}/metrics/links": {
+    }
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links": {
+    }
+    path: "/v1/newsletters/{newsletter_id}/metrics/links": {
+    }
+    path: "/v1/transactional/{transactional_id}/metrics/links": {
+    }
+  }
+
+  entity: live_notification: {
+    path: "/v1/live_notifications/end": {
+      action: "end": {}
+      op: create: method: *POST
+    }
+    path: "/v1/live_notifications/start": {
+      action: "start": {}
+      op: create: method: *POST
+    }
+    path: "/v1/live_notifications/update": {
+      action: "update": {}
+      op: create: method: *POST
+    }
+    path: "/v1/live_notifications/{instance_id}": {
+      rename: param: "instance_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.last_delivery`")|top
+    }
+  }
+
+  entity: message: {
+    path: "/v1/messages": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/messages/{message_id}": {
+      rename: param: "message_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.message`")|top
+    }
+    path: "/v1/messages/{message_id}/archived_message": {
+      action: "archived_message": {}
+      rename: param: "message_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.archived_message`")|top
+    }
+  }
+
+  entity: newsletter: {
+    path: "/v1/newsletters": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.newsletters`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}": {
+      rename: param: "newsletter_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.newsletter`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/newsletters/{newsletter_id}/contents": {
+      action: "content": {}
+      rename: param: "newsletter_id": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/language": {
+      action: "language": {}
+      rename: param: "newsletter_id": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/messages": {
+      action: "message": {}
+      rename: param: "newsletter_id": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/metrics": {
+      action: "metric": {}
+      rename: param: "newsletter_id": *"id"
+    }
+    path: "/v1/newsletters/{newsletter_id}/schedule": {
+      action: "schedule": {}
+      rename: param: "newsletter_id": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/send": {
+      action: "send": {}
+      rename: param: "newsletter_id": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/test_groups": {
+      action: "test_group": {}
+      rename: param: "newsletter_id": *"id"
+    }
+  }
+
+  entity: newsletter_metric: {
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}/metrics": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.metric`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}/metrics/links": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/messages": {
+      action: "messages": {}
+      rename: param: "newsletter_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/metrics": {
+      rename: param: "newsletter_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.metric`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/metrics/links": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+  }
+
+  entity: newsletter_variant: {
+    path: "/v1/newsletters/{newsletter_id}/contents": {
+      action: "contents": {}
+      rename: param: "newsletter_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.contents`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/contents/{content_id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.content`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.content`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/language": {
+      action: "language": {}
+      rename: param: "newsletter_id": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/language/{language}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.content`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.content`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.content`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.content`")|top
+    }
+    path: "/v1/newsletters/{newsletter_id}/test_groups": {
+      action: "test_groups": {}
+      rename: param: "newsletter_id": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.newsletter`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.test_groups`")|top
+    }
+  }
+
+  entity: object: {
+    path: "/v1/object_types": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.types`")|top
+    }
+    path: "/v1/objects": {
+      op: create: method: *POST
+    }
+    path: "/v1/objects/{object_type_id}/{object_id}/attributes": {
+      rename: param: "object_type_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.object`")|top
+    }
+    path: "/v1/objects/{object_type_id}/{object_id}/relationships": {
+      rename: param: "object_type_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.cio_relationships`")|top
+    }
+  }
+
+  entity: object_type: {
+    path: "/v1/object_types": {
+    }
+  }
+
+  entity: opt_out: {
+    path: "/v1/customers/{customer_id}/optouts": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.optouts`")|top
+      op: update: method: *PUT
+    }
+    path: "/v1/optouts": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.optouts`")|top
+    }
+  }
+
+  entity: optout: {
+    path: "/v1/optouts": {
+    }
+  }
+
+  entity: push: {
+    path: "/v1/send/push": {
+    }
+  }
+
+  entity: relationship: {
+    path: "/v1/objects/{object_type_id}/{object_id}/relationships": {
+      rename: param: "object_type_id": *"object_id"
+    }
+  }
+
+  entity: reporting_webhook: {
+    path: "/v1/reporting_webhooks": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.reporting_webhooks`")|top
+    }
+    path: "/v1/reporting_webhooks/{webhook_id}": {
+      rename: param: "webhook_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: search_suppression: {
+    path: "/v1/esp/search_suppression/{email_address}": {
+      rename: param: "email_address": *"id"
+    }
+  }
+
+  entity: segment: {
+    path: "/v1/segments": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.segment`")|top
+      op: create: transform: req: "segment": *("`reqdata`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.segments`")|top
+    }
+    path: "/v1/segments/{segment_id}": {
+      rename: param: "segment_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.segment`")|top
+      op: remove: method: *DELETE
+    }
+    path: "/v1/segments/{segment_id}/customer_count": {
+      action: "customer_count": {}
+      rename: param: "segment_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/segments/{segment_id}/membership": {
+      action: "membership": {}
+      rename: param: "segment_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/segments/{segment_id}/used_by": {
+      action: "used_by": {}
+      rename: param: "segment_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.used_by`")|top
+    }
+  }
+
+  entity: send_message: {
+    path: "/v1/campaigns/{broadcast_id}/triggers": {
+      rename: param: "broadcast_id": *"campaign_id"
+      op: create: method: *POST
+    }
+    path: "/v1/send/email": {
+      op: create: method: *POST
+    }
+    path: "/v1/send/in_app": {
+      op: create: method: *POST
+    }
+    path: "/v1/send/inbox_message": {
+      op: create: method: *POST
+    }
+    path: "/v1/send/push": {
+      op: create: method: *POST
+    }
+    path: "/v1/send/sms": {
+      op: create: method: *POST
+    }
+    path: "/v1/send/whatsapp": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: sender_identity: {
+    path: "/v1/sender_identities": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.sender_identities`")|top
+    }
+    path: "/v1/sender_identities/{sender_id}": {
+      rename: param: "sender_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.sender_identity`")|top
+    }
+    path: "/v1/sender_identities/{sender_id}/used_by": {
+      action: "used_by": {}
+      rename: param: "sender_id": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: sms: {
+    path: "/v1/send/sms": {
+    }
+  }
+
+  entity: snippet: {
+    path: "/v1/snippets": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.snippet`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.snippets`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.snippet`")|top
+    }
+    path: "/v1/snippets/{snippet_name}": {
+      rename: param: "snippet_name": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: start: {
+    path: "/v1/live_notifications/start": {
+    }
+  }
+
+  entity: subscription_center: {
+    path: "/v1/subscription_center/{customer_id}/token": {
+      action: "token": {}
+      rename: param: "customer_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/v1/subscription_channels": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.channels`")|top
+    }
+    path: "/v1/subscription_topics": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.topics`")|top
+    }
+  }
+
+  entity: subscription_channel: {
+    path: "/v1/subscription_channels": {
+    }
+  }
+
+  entity: subscription_topic: {
+    path: "/v1/subscription_topics": {
+    }
+  }
+
+  entity: suppression: {
+    path: "/v1/esp/domains/{domain_name}/suppression/{suppression_type}": {
+      rename: param: "domain_name": *"domain_id"
+      rename: param: "suppression_type": *"id"
+    }
+    path: "/v1/esp/suppression/{suppression_type}": {
+      rename: param: "suppression_type": *"id"
+    }
+    path: "/v1/esp/suppression/{suppression_type}/{email_address}": {
+    }
+  }
+
+  entity: test_group: {
+    path: "/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language": {
+      action: "language": {}
+      rename: param: "test_group_id": *"id"
+    }
+  }
+
+  entity: transactional: {
+    path: "/v1/transactional": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/transactional/{transactional_id}": {
+      rename: param: "transactional_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.message`")|top
+    }
+    path: "/v1/transactional/{transactional_id}/content/{content_id}": {
+      rename: param: "transactional_id": *"id"
+      op: update: method: *PUT
+    }
+    path: "/v1/transactional/{transactional_id}/contents": {
+      action: "content": {}
+      rename: param: "transactional_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.contents`")|top
+    }
+    path: "/v1/transactional/{transactional_id}/contents/{content_id}": {
+      rename: param: "transactional_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.content`")|top
+    }
+    path: "/v1/transactional/{transactional_id}/language/{language}": {
+      rename: param: "transactional_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/v1/transactional/{transactional_id}/messages": {
+      action: "message": {}
+      rename: param: "transactional_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.messages`")|top
+    }
+    path: "/v1/transactional/{transactional_id}/metrics": {
+      action: "metric": {}
+      rename: param: "transactional_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.metric`")|top
+    }
+    path: "/v1/transactional/{transactional_id}/metrics/links": {
+      action: "metric_link": {}
+      rename: param: "transactional_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.links`")|top
+    }
+  }
+
+  entity: trigger: {
+    path: "/v1/campaigns/{broadcast_id}/triggers/{trigger_id}": {
+      rename: param: "broadcast_id": *"campaign_id"
+      rename: param: "trigger_id": *"id"
+    }
+    path: "/v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors": {
+      action: "error": {}
+      rename: param: "broadcast_id": *"campaign_id"
+      rename: param: "trigger_id": *"id"
+    }
+  }
+
+  entity: update: {
+    path: "/v1/live_notifications/update": {
+    }
+  }
+
+  entity: whatsapp: {
+    path: "/v1/send/whatsapp": {
+    }
+  }
+
+  entity: workspace: {
+    path: "/v1/workspaces": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.workspaces`")|top
+    }
+  }
+
+}

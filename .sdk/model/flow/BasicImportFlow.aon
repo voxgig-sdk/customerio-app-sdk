@@ -1,0 +1,40 @@
+# BasicImportFlow
+
+main: kit: flow: BasicImportFlow:
+{
+  entity: "import",
+  kind: "basic",
+  name: "BasicImportFlow",
+  step: [
+    {
+      input: {
+        ref: "import_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "import_ref01",
+        srcdatavar: "import_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "import01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-import_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicImportFlow"
+}

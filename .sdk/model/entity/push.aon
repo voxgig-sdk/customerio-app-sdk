@@ -1,0 +1,10 @@
+# Entity: push
+
+main: kit: entity: push: {
+
+  alias: field: {}
+
+  name: "push"
+
+
+}

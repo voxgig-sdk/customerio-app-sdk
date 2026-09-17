@@ -1,0 +1,67 @@
+# BasicAutomationFlow
+
+main: kit: flow: BasicAutomationFlow:
+{
+  entity: "automation",
+  kind: "basic",
+  name: "BasicAutomationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "automation_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        campaign_id: "campaign01"
+      }
+
+      input: {
+        ref: "automation_ref01",
+        srcdatavar: "automation_ref01_data",
+        suffix: "_up0",
+        textfield: "broadcast_id"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-automation_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "automation_ref01",
+        srcdatavar: "automation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "automation01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-automation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAutomationFlow"
+}

@@ -1,0 +1,39 @@
+# Entity: link
+
+main: kit: entity: link: {
+
+  alias: field: {}
+
+  name: "link"
+  relations: {
+    ancestors: [
+      [
+        "broadcast"
+      ]
+      [
+        "campaign"
+      ]
+      [
+        "newsletter"
+      ]
+      [
+        "transactional"
+      ]
+      [
+        "broadcast"
+        "action"
+      ]
+      [
+        "campaign"
+        "action"
+      ]
+      [
+        "newsletter"
+        "content"
+      ]
+    ]
+  }
+
+
+
+}

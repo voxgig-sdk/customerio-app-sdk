@@ -1,0 +1,2722 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NewsletterVariant | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a aria-current="page" href="../api/newsletter_variant.html">NewsletterVariant</a><div class="nav-sections"><a class="nav-section" href="#post-v1newslettersnewsletter_idtest_grouptest_group_idlanguage">POST /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language</a>
+<a class="nav-section" href="#post-v1newslettersnewsletter_idlanguage">POST /v1/newsletters/{newsletter_id}/language</a>
+<a class="nav-section" href="#post-v1newslettersnewsletter_idtest_groups">POST /v1/newsletters/{newsletter_id}/test_groups</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_idcontents">GET /v1/newsletters/{newsletter_id}/contents</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_idtest_groups">GET /v1/newsletters/{newsletter_id}/test_groups</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage">GET /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_idcontentscontent_id">GET /v1/newsletters/{newsletter_id}/contents/{content_id}</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_idlanguagelanguage">GET /v1/newsletters/{newsletter_id}/language/{language}</a>
+<a class="nav-section" href="#delete-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage">DELETE /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</a>
+<a class="nav-section" href="#delete-v1newslettersnewsletter_idlanguagelanguage">DELETE /v1/newsletters/{newsletter_id}/language/{language}</a>
+<a class="nav-section" href="#put-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage">PUT /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</a>
+<a class="nav-section" href="#put-v1newslettersnewsletter_idcontentscontent_id">PUT /v1/newsletters/{newsletter_id}/contents/{content_id}</a>
+<a class="nav-section" href="#put-v1newslettersnewsletter_idlanguagelanguage">PUT /v1/newsletters/{newsletter_id}/language/{language}</a></div>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newslettervariant">NewsletterVariant</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newslettersnewsletter_idtest_grouptest_group_idlanguage"><code>/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language</code></a></td>
+<td><code>create</code></td>
+<td>Returns the updated one-time send, including new <code>content_ids</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newslettersnewsletter_idlanguage"><code>/v1/newsletters/{newsletter_id}/language</code></a></td>
+<td><code>create</code></td>
+<td>Returns the updated one-time send, including new <code>content_ids</code></td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newslettersnewsletter_idtest_groups"><code>/v1/newsletters/{newsletter_id}/test_groups</code></a></td>
+<td><code>create</code></td>
+<td>Returns the updated one-time send with the new test group's content IDs</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_idcontents"><code>/v1/newsletters/{newsletter_id}/contents</code></a></td>
+<td><code>list</code></td>
+<td>Returns one-time send <code>content_id</code>s. Each object represents an individual variant of this one-time send</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_idtest_groups"><code>/v1/newsletters/{newsletter_id}/test_groups</code></a></td>
+<td><code>list</code></td>
+<td>Returns metadata for each test group in a one-time send</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</code></a></td>
+<td><code>load</code></td>
+<td>Returns one-time send <code>content</code> for a language variant in a test group</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_idcontentscontent_id"><code>/v1/newsletters/{newsletter_id}/contents/{content_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns one-time send <code>content</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/language/{language}</code></a></td>
+<td><code>load</code></td>
+<td>Returns one-time send <code>content</code> for a language variant</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</code></a></td>
+<td><code>remove</code></td>
+<td>Success. No content</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1newslettersnewsletter_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/language/{language}</code></a></td>
+<td><code>remove</code></td>
+<td>Success. No content</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated one-time send variant</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1newslettersnewsletter_idcontentscontent_id"><code>/v1/newsletters/{newsletter_id}/contents/{content_id}</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated one-time send variant</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1newslettersnewsletter_idlanguagelanguage"><code>/v1/newsletters/{newsletter_id}/language/{language}</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated one-time send variant</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant.</td>
+</tr>
+<tr>
+<td><code>body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email.</td>
+</tr>
+<tr>
+<td><code>cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content_ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was update…</td>
+</tr>
+<tr>
+<td><code>fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message.</td>
+</tr>
+<tr>
+<td><code>layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>preprocessor</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>.</td>
+</tr>
+<tr>
+<td><code>recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>recipient_segment_ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>reply_to_id</code></td>
+<td><code>one,integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable.</td>
+</tr>
+<tr>
+<td><code>sent_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1newslettersnewsletter_idtest_grouptest_group_idlanguage" class="operation" data-method="post"><code>POST</code> /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language</h3>
+<p>Operation ID: <code>createNewsletterTestLanguageVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>test_group_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the A/B test group. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object</code>.</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-including-new-content_ids" class="status" data-status="2xx">200: Returns the updated one-time send, including new <code>content_ids</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-invalid-possible-reasons-include-the-one-time-send-has-already-been-sent-the-test-group-does-not-exist-or-the-one-time-send-uses-design-studio-or-drag-and-drop-editor" class="status" data-status="4xx">400: The request is invalid. Possible reasons include: the one-time send has already been sent, the test group does not exist, or the one-time send uses Design Studio or drag-and-drop editor.</h5>
+<h5 id="404-the-one-time-send-does-not-exist" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+<h5 id="422-validation-error-possible-reasons-language-is-missing-required-content-fields-are-missing-for-the-channel-type-or-the-language-variant-already-exists" class="status" data-status="4xx">422: Validation error. Possible reasons: <code>language</code> is missing, required content fields are missing for the channel type, or the language variant already exists.</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-v1newslettersnewsletter_idlanguage" class="operation" data-method="post"><code>POST</code> /v1/newsletters/{newsletter_id}/language</h3>
+<p>Operation ID: <code>createNewsletterLanguageVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object</code>.</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-including-new-content_ids-1" class="status" data-status="2xx">200: Returns the updated one-time send, including new <code>content_ids</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-invalid-possible-reasons-include-the-one-time-send-has-already-been-sent-the-one-time-send-has-multiple-test-groups-add-a-translation-to-a-test-groupintegrationsapiapptagnewsletter-variantscreatenewslettertestlanguagevariant-instead-or-the-one-time-send-uses-design-studio-or-drag-and-drop-editors" class="status" data-status="4xx">400: The request is invalid. Possible reasons include: the one-time send has already been sent, the one-time send has multiple test groups (<a href="/integrations/api/app/tag/newsletter-variants/createNewsletterTestLanguageVariant/">add a translation to a test group</a> instead), or the one-time send uses Design Studio or drag-and-drop editors.</h5>
+<h5 id="404-the-one-time-send-does-not-exist-1" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+<h5 id="422-validation-error-possible-reasons-language-is-missing-required-content-fields-are-missing-for-the-channel-type-or-the-language-variant-already-exists-1" class="status" data-status="4xx">422: Validation error. Possible reasons: <code>language</code> is missing, required content fields are missing for the channel type, or the language variant already exists.</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-v1newslettersnewsletter_idtest_groups" class="operation" data-method="post"><code>POST</code> /v1/newsletters/{newsletter_id}/test_groups</h3>
+<p>Operation ID: <code>createNewsletterTestGroup</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object</code>.</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-with-the-new-test-group39s-content-ids" class="status" data-status="2xx">200: Returns the updated one-time send with the new test group's content IDs</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-one-time-send-has-already-been-sent-you-cannot-add-test-groups-to-a-sent-one-time-send" class="status" data-status="4xx">400: The one-time send has already been sent. You cannot add test groups to a sent one-time send</h5>
+<h5 id="404-the-one-time-send-does-not-exist-2" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="list">list</h2>
+<h3 id="get-v1newslettersnewsletter_idcontents" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}/contents</h3>
+<p>Operation ID: <code>listNewsletterVariants</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-one-time-send-content_ids-each-object-represents-an-individual-variant-of-this-one-time-send" class="status" data-status="2xx">200: Returns one-time send <code>content_id</code>s. Each object represents an individual variant of this one-time send</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contents</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>contents[].bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>contents[].body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>contents[].body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>contents[].cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>contents[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>contents[].fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>contents[].from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>contents[].from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>contents[].headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>contents[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>contents[].language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>contents[].layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>contents[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>contents[].newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>contents[].preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>contents[].preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>contents[].recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>contents[].reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>contents[].reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>contents[].subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>contents[].type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-you-requested-does-not-exist" class="status" data-status="4xx">404: The one-time send you requested does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1newslettersnewsletter_idtest_groups" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}/test_groups</h3>
+<p>Operation ID: <code>getNewsletterTestGroups</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-metadata-for-each-test-group-in-a-one-time-send" class="status" data-status="2xx">200: Returns metadata for each test group in a one-time send</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_groups</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Each object represents one of the test groups.</td>
+</tr>
+<tr>
+<td><code>test_groups[].content_ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of content_ids for each variant in the test group.</td>
+</tr>
+<tr>
+<td><code>test_groups[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the A/B test group.</td>
+</tr>
+<tr>
+<td><code>test_groups[].label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant.</td>
+</tr>
+<tr>
+<td><code>test_groups[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the A/B test group.</td>
+</tr>
+<tr>
+<td><code>test_groups[].winner</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether this variant is the winner of the test.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-4" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</h3>
+<p>Operation ID: <code>getNewsletterVariantTranslationTest</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>test_group_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the A/B test group. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-one-time-send-content-for-a-language-variant-in-a-test-group" class="status" data-status="2xx">200: Returns one-time send <code>content</code> for a language variant in a test group</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-language-does-not-exist" class="status" data-status="4xx">400: The <code>language</code> does not exist</h5>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-1" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-5" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1newslettersnewsletter_idcontentscontent_id" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}/contents/{content_id}</h3>
+<p>Operation ID: <code>getNewsletterVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>content_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a message in a one-time send. If your one-time send has an A/B test group or includes multiple languages, each variant has its own <code>content_id</code>, separate from the <code>newsletter_id</code>. Use <a href="/integrations/api/app/tag/newsletter-variants/listNewsletterVariants/">List variants of a one-time send</a> to find the <code>content_id</code> associated with the right variant. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-returns-one-time-send-content" class="status" data-status="2xx">200: Returns one-time send <code>content</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-2" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-6" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1newslettersnewsletter_idlanguagelanguage" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}/language/{language}</h3>
+<p>Operation ID: <code>getNewsletterVariantTranslation</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-returns-one-time-send-content-for-a-language-variant" class="status" data-status="2xx">200: Returns one-time send <code>content</code> for a language variant</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-language-does-not-exist-1" class="status" data-status="4xx">400: The <code>language</code> does not exist</h5>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-3" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-7" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage" class="operation" data-method="delete"><code>DELETE</code> /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</h3>
+<p>Operation ID: <code>deleteNewsletterTestLanguageVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>test_group_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the A/B test group. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="204-success-no-content" class="status" data-status="2xx">204: Success. No content</h5>
+<h5 id="400-you-cannot-delete-the-default-language-variant-or-the-one-time-send-has-already-been-sent-it-may-also-mean-the-test_group_id-does-not-exist" class="status" data-status="4xx">400: You cannot delete the default language variant, or the one-time send has already been sent. It may also mean the <code>test_group_id</code> does not exist</h5>
+<h5 id="404-the-one-time-send-or-language-variant-does-not-exist" class="status" data-status="4xx">404: The one-time send or language variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-8" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="delete-v1newslettersnewsletter_idlanguagelanguage" class="operation" data-method="delete"><code>DELETE</code> /v1/newsletters/{newsletter_id}/language/{language}</h3>
+<p>Operation ID: <code>deleteNewsletterLanguageVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="204-success-no-content-1" class="status" data-status="2xx">204: Success. No content</h5>
+<h5 id="400-you-cannot-delete-the-default-language-variant-or-the-one-time-send-has-already-been-sent" class="status" data-status="4xx">400: You cannot delete the default language variant, or the one-time send has already been sent</h5>
+<h5 id="404-the-one-time-send-or-language-variant-does-not-exist-1" class="status" data-status="4xx">404: The one-time send or language variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-9" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="update">update</h2>
+<h3 id="put-v1newslettersnewsletter_idtest_grouptest_group_idlanguagelanguage" class="operation" data-method="put"><code>PUT</code> /v1/newsletters/{newsletter_id}/test_group/{test_group_id}/language/{language}</h3>
+<p>Operation ID: <code>updateNewsletterTestTranslation</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>test_group_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the A/B test group. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object or object</code>.</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-variant" class="status" data-status="2xx">200: Returns the updated one-time send variant</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-language-does-not-exist-2" class="status" data-status="4xx">400: The <code>language</code> does not exist</h5>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-4" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-10" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="put-v1newslettersnewsletter_idcontentscontent_id" class="operation" data-method="put"><code>PUT</code> /v1/newsletters/{newsletter_id}/contents/{content_id}</h3>
+<p>Operation ID: <code>updateNewsletterVariant</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>content_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a message in a one-time send. If your one-time send has an A/B test group or includes multiple languages, each variant has its own <code>content_id</code>, separate from the <code>newsletter_id</code>. Use <a href="/integrations/api/app/tag/newsletter-variants/listNewsletterVariants/">List variants of a one-time send</a> to find the <code>content_id</code> associated with the right variant. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object or object</code>.</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-variant-1" class="status" data-status="2xx">200: Returns the updated one-time send variant</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-malformed" class="status" data-status="4xx">400: The request is malformed</h5>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-5" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-11" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="put-v1newslettersnewsletter_idlanguagelanguage" class="operation" data-method="put"><code>PUT</code> /v1/newsletters/{newsletter_id}/language/{language}</h3>
+<p>Operation ID: <code>updateNewsletterVariantTranslation</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object or object</code>.</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-returns-the-updated-one-time-send-variant-2" class="status" data-status="2xx">200: Returns the updated one-time send variant</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>content.bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The blind-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.</td>
+</tr>
+<tr>
+<td><code>content.body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>content.cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The carbon-copy address(es) for this action.</td>
+</tr>
+<tr>
+<td><code>content.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>content.fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>content.from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that the message is from, relevant if the action <code>type</code> is <code>email</code>.</td>
+</tr>
+<tr>
+<td><code>content.from_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the <code>from</code> address, commonly known as the &quot;sender&quot;. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>content.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of a one-time send variant, a language in a multi-language one-time send or a test in an A/B test.</td>
+</tr>
+<tr>
+<td><code>content.language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language variant for your message. If you don't use our <a href="/journeys/channels/localization/getting-started">localization feature</a>, or this is the default message, this value is an empty string.</td>
+</tr>
+<tr>
+<td><code>content.layout</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The layout used for the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the variant, if it exists.</td>
+</tr>
+<tr>
+<td><code>content.newsletter_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>content.preheader_text</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/channels/email/headers/custom-preheader-text/">Also known as &quot;preview text&quot;</a>, this is the small block of text shown in an email inbox next to or underneath the subject line.</td>
+</tr>
+<tr>
+<td><code>content.preprocessor</code></td>
+<td><code>enum: premailer</code></td>
+<td>No</td>
+<td>If CSS pre-processing is enabled, this key is populated with <code>premailer</code>. Note, Juice replaced Premailer as the pre-processor, but you will only see <code>premailer</code> as the value.</td>
+</tr>
+<tr>
+<td><code>content.recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>content.reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that receives replies for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>content.reply_to_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The identifier for the <code>reply_to</code> address, if applicable. Use <a href="/integrations/api/app/tag/sender-identities/listSenders/">List sender identities</a> to find valid IDs.</td>
+</tr>
+<tr>
+<td><code>content.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>content.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-language-does-not-exist-3" class="status" data-status="4xx">400: The <code>language</code> does not exist</h5>
+<h5 id="404-the-one-time-send-or-variant-does-not-exist-6" class="status" data-status="4xx">404: The one-time send or variant does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-12" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,21 @@
+# Entity: suppression
+
+main: kit: entity: suppression: {
+
+  alias: field: {}
+
+  name: "suppression"
+  relations: {
+    ancestors: [
+      [
+        "domain"
+      ]
+      [
+        "suppression"
+      ]
+    ]
+  }
+
+
+
+}

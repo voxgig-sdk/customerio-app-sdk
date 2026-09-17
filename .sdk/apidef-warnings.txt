@@ -1,0 +1,12 @@
+{
+  point: "warning"
+  step: "flow"
+  note: "flow name BasicOptOutFlow collides with another when case is ignored: file written as BasicOptOutFlow__1.aon"
+}
+
+
+{
+  point: "warning"
+  step: "flow"
+  note: "flow name BasicOptoutFlow collides with another when case is ignored: file written as BasicOptoutFlow__2.aon"
+}

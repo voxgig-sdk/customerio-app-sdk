@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>EspSuppression | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a aria-current="page" href="../api/esp_suppression.html">EspSuppression</a><div class="nav-sections"><a class="nav-section" href="#post-v1espsuppressionsuppression_typeemail_address">POST /v1/esp/suppression/{suppression_type}/{email_address}</a>
+<a class="nav-section" href="#get-v1espdomainsdomain_namesuppressionsuppression_type">GET /v1/esp/domains/{domain_name}/suppression/{suppression_type}</a>
+<a class="nav-section" href="#get-v1espsuppressionsuppression_type">GET /v1/esp/suppression/{suppression_type}</a>
+<a class="nav-section" href="#get-v1espsearch_suppressionemail_address">GET /v1/esp/search_suppression/{email_address}</a>
+<a class="nav-section" href="#delete-v1espsuppressionsuppression_typeemail_address">DELETE /v1/esp/suppression/{suppression_type}/{email_address}</a></div>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="espsuppression">EspSuppression</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1espsuppressionsuppression_typeemail_address"><code>/v1/esp/suppression/{suppression_type}/{email_address}</code></a></td>
+<td><code>create</code></td>
+<td>A successful request produces an empty response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1espdomainsdomain_namesuppressionsuppression_type"><code>/v1/esp/domains/{domain_name}/suppression/{suppression_type}</code></a></td>
+<td><code>load</code></td>
+<td>Returns an array of suppressed email addresses for the domain</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1espsuppressionsuppression_type"><code>/v1/esp/suppression/{suppression_type}</code></a></td>
+<td><code>load</code></td>
+<td>Returns an array of suppressed email addresses</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1espsearch_suppressionemail_address"><code>/v1/esp/search_suppression/{email_address}</code></a></td>
+<td><code>load</code></td>
+<td>Returns an array of suppressed email addresses</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1espsuppressionsuppression_typeemail_address"><code>/v1/esp/suppression/{suppression_type}/{email_address}</code></a></td>
+<td><code>remove</code></td>
+<td>A successful request produces no content</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason the addresses are suppressed.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>start</code> value for the next page of results.</td>
+</tr>
+<tr>
+<td><code>suppressions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The addresses suppressed in this category.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1espsuppressionsuppression_typeemail_address" class="operation" data-method="post"><code>POST</code> /v1/esp/suppression/{suppression_type}/{email_address}</h3>
+<p>Operation ID: <code>postSuppression</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>suppression_type</code> | <code>path</code> | <code>enum: blocks, bounces, spam_reports, invalid_emails</code> | Yes | The reason a person's email address was suppressed by the email service provider (ESP). |
+| <code>email_address</code> | <code>path</code> | <code>string</code> | Yes | The email address of the person you want to look up. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-a-successful-request-produces-an-empty-response" class="status" data-status="2xx">200: A successful request produces an empty response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object</code>.</p>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1espdomainsdomain_namesuppressionsuppression_type" class="operation" data-method="get"><code>GET</code> /v1/esp/domains/{domain_name}/suppression/{suppression_type}</h3>
+<p>Operation ID: <code>getDomainSuppressionsByType</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>domain_name</code> | <code>path</code> | <code>string</code> | Yes | The sending domain you want to look up suppressions for. |
+| <code>suppression_type</code> | <code>path</code> | <code>enum: blocks, bounces, spam_reports, invalid_emails</code> | Yes | The reason a person's email address was suppressed by the email service provider (ESP). |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>email</code> | <code>query</code> | <code>string</code> | No | Filter results to a specific email address. When provided, returns at most one result and cursor-based pagination does not apply. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-array-of-suppressed-email-addresses-for-the-domain" class="status" data-status="2xx">200: Returns an array of suppressed email addresses for the domain</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td><code>enum: bounces, spam</code></td>
+<td>No</td>
+<td>The reason the addresses are suppressed.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>start</code> value for the next page of results.</td>
+</tr>
+<tr>
+<td><code>suppressions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The addresses suppressed in this category.</td>
+</tr>
+<tr>
+<td><code>suppressions[].created</code></td>
+<td><code>integer (Unix timestamp)</code></td>
+<td>No</td>
+<td>The timestamp (in seconds), when the ESP suppressed the address.</td>
+</tr>
+<tr>
+<td><code>suppressions[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email address that the ESP suppressed.</td>
+</tr>
+<tr>
+<td><code>suppressions[].reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by Mailgun</a>.</td>
+</tr>
+<tr>
+<td><code>suppressions[].status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The status code for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by mailgun</a>. This is normally <code>550</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1espsuppressionsuppression_type" class="operation" data-method="get"><code>GET</code> /v1/esp/suppression/{suppression_type}</h3>
+<p>Operation ID: <code>getSuppressionByType</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>suppression_type</code> | <code>path</code> | <code>enum: blocks, bounces, spam_reports, invalid_emails</code> | Yes | The reason a person's email address was suppressed by the email service provider (ESP). |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>offset</code> | <code>query</code> | <code>integer</code> | No | The number of records to skip before retrieving results. |
+| <code>domain</code> | <code>query</code> | <code>string</code> | No | Filter by sending domain. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-an-array-of-suppressed-email-addresses" class="status" data-status="2xx">200: Returns an array of suppressed email addresses</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td><code>enum: bounces, spam</code></td>
+<td>No</td>
+<td>The reason the addresses are suppressed.</td>
+</tr>
+<tr>
+<td><code>suppressions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The addresses suppressed in this category.</td>
+</tr>
+<tr>
+<td><code>suppressions[].created</code></td>
+<td><code>integer (Unix timestamp)</code></td>
+<td>No</td>
+<td>The timestamp (in seconds), when the ESP suppressed the address.</td>
+</tr>
+<tr>
+<td><code>suppressions[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email address that the ESP suppressed.</td>
+</tr>
+<tr>
+<td><code>suppressions[].reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by Mailgun</a>.</td>
+</tr>
+<tr>
+<td><code>suppressions[].status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The status code for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by mailgun</a>. This is normally <code>550</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1espsearch_suppressionemail_address" class="operation" data-method="get"><code>GET</code> /v1/esp/search_suppression/{email_address}</h3>
+<p>Operation ID: <code>getSuppression</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>email_address</code> | <code>path</code> | <code>string</code> | Yes | The email address of the person you want to look up. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-an-array-of-suppressed-email-addresses-1" class="status" data-status="2xx">200: Returns an array of suppressed email addresses</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>category</code></td>
+<td><code>enum: bounces, spam</code></td>
+<td>No</td>
+<td>The reason the addresses are suppressed.</td>
+</tr>
+<tr>
+<td><code>suppressions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The addresses suppressed in this category.</td>
+</tr>
+<tr>
+<td><code>suppressions[].created</code></td>
+<td><code>integer (Unix timestamp)</code></td>
+<td>No</td>
+<td>The timestamp (in seconds), when the ESP suppressed the address.</td>
+</tr>
+<tr>
+<td><code>suppressions[].email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email address that the ESP suppressed.</td>
+</tr>
+<tr>
+<td><code>suppressions[].reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by Mailgun</a>.</td>
+</tr>
+<tr>
+<td><code>suppressions[].status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The status code for the suppression, as <a href="https://documentation.mailgun.com/en/latest/api-suppressions.html">recorded by mailgun</a>. This is normally <code>550</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1espsuppressionsuppression_typeemail_address" class="operation" data-method="delete"><code>DELETE</code> /v1/esp/suppression/{suppression_type}/{email_address}</h3>
+<p>Operation ID: <code>deleteSuppression</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>suppression_type</code> | <code>path</code> | <code>enum: blocks, bounces, spam_reports, invalid_emails</code> | Yes | The reason a person's email address was suppressed by the email service provider (ESP). |
+| <code>email_address</code> | <code>path</code> | <code>string</code> | Yes | The email address of the person you want to look up. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="204-a-successful-request-produces-no-content" class="status" data-status="2xx">204: A successful request produces no content</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-4" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

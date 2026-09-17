@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "campaign": {
+      "CAMPAIGN00": {},
+      "CAMPAIGN01": {},
+      "CAMPAIGN02": {}
+    }
+  },
+  "new": {
+    "campaign": {
+      "campaign_ref01": {}
+    }
+  },
+  "requests": {}
+}

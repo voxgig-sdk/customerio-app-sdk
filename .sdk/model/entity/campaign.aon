@@ -1,0 +1,10 @@
+# Entity: campaign
+
+main: kit: entity: campaign: {
+
+  alias: field: {}
+
+  name: "campaign"
+
+
+}

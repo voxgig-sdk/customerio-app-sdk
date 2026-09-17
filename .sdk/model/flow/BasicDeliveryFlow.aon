@@ -1,0 +1,9 @@
+# BasicDeliveryFlow
+
+main: kit: flow: BasicDeliveryFlow:
+{
+  entity: "delivery",
+  kind: "basic",
+  name: "BasicDeliveryFlow",
+  "key$": "BasicDeliveryFlow"
+}

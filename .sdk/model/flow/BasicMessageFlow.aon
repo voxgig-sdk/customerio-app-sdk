@@ -1,0 +1,44 @@
+# BasicMessageFlow
+
+main: kit: flow: BasicMessageFlow:
+{
+  entity: "message",
+  kind: "basic",
+  name: "BasicMessageFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "message_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "message_ref01",
+        srcdatavar: "message_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "message01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-message_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMessageFlow"
+}

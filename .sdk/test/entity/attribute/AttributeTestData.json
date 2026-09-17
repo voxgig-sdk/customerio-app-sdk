@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "attribute": {
+      "ATTRIBUTE00": {},
+      "ATTRIBUTE01": {},
+      "ATTRIBUTE02": {}
+    }
+  },
+  "new": {
+    "attribute": {
+      "attribute_ref01": {}
+    }
+  },
+  "requests": {}
+}

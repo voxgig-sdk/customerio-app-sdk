@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "test_group": {
+      "TEST_GROUP00": {},
+      "TEST_GROUP01": {},
+      "TEST_GROUP02": {}
+    }
+  },
+  "new": {
+    "test_group": {
+      "test_group_ref01": {}
+    }
+  },
+  "requests": {}
+}

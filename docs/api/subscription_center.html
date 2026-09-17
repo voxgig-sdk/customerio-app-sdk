@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SubscriptionCenter | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a aria-current="page" href="../api/subscription_center.html">SubscriptionCenter</a><div class="nav-sections"><a class="nav-section" href="#get-v1subscription_channels">GET /v1/subscription_channels</a>
+<a class="nav-section" href="#get-v1subscription_topics">GET /v1/subscription_topics</a>
+<a class="nav-section" href="#get-v1subscription_centercustomer_idtoken">GET /v1/subscription_center/{customer_id}/token</a></div>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="subscriptioncenter">SubscriptionCenter</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1subscription_channels"><code>/v1/subscription_channels</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>channels</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1subscription_topics"><code>/v1/subscription_topics</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>topics</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1subscription_centercustomer_idtoken"><code>/v1/subscription_center/{customer_id}/token</code></a></td>
+<td><code>load</code></td>
+<td>Returns a signed <code>token</code> and a subscription center <code>url</code> for the person</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the channel.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The system-generated ID for the subscription channel.</td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The key associated with the subscription topic.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The display name of the subscription channel.</td>
+</tr>
+<tr>
+<td><code>subscribed_by_default</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, a person is opted-out by default.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of delivery channel.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-v1subscription_channels" class="operation" data-method="get"><code>GET</code> /v1/subscription_channels</h3>
+<p>Operation ID: <code>getChannels</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-an-array-of-channels" class="status" data-status="2xx">200: Returns an array of <code>channels</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channels</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>channels[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the channel.</td>
+</tr>
+<tr>
+<td><code>channels[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The system-generated ID for the subscription channel.</td>
+</tr>
+<tr>
+<td><code>channels[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The display name of the subscription channel.</td>
+</tr>
+<tr>
+<td><code>channels[].subscribed_by_default</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, a person is opted-out by default. If true, a person is opted-in by default.</td>
+</tr>
+<tr>
+<td><code>channels[].type</code></td>
+<td><code>enum: email, twilio, urban_airship, slack, push, in_app, ...</code></td>
+<td>No</td>
+<td>The type of delivery channel.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1subscription_topics" class="operation" data-method="get"><code>GET</code> /v1/subscription_topics</h3>
+<p>Operation ID: <code>getTopics</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-array-of-topics" class="status" data-status="2xx">200: Returns an array of <code>topics</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>topics</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>topics[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description of the topic that you provided when you created the topic in the UI.</td>
+</tr>
+<tr>
+<td><code>topics[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The system-generated id for the subscription topic. Also located on the subscription center landing page. These increment up by 1, starting with 1.</td>
+</tr>
+<tr>
+<td><code>topics[].identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The key associated with the subscription topic. The format is <code>topic_&amp;lt;id&amp;gt;</code>.</td>
+</tr>
+<tr>
+<td><code>topics[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the subscription topic.</td>
+</tr>
+<tr>
+<td><code>topics[].subscribed_by_default</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, a person is opted-out by default. If true, a person is opted-in by default.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1subscription_centercustomer_idtoken" class="operation" data-method="get"><code>GET</code> /v1/subscription_center/{customer_id}/token</h3>
+<p>Operation ID: <code>getSubscriptionCenterToken</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The identifier for a person in your workspace, the same value you'd use as an <code>id</code> or <code>email</code> to identify a person in Customer.io. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-a-signed-token-and-a-subscription-center-url-for-the-person" class="status" data-status="2xx">200: Returns a signed <code>token</code> and a subscription center <code>url</code> for the person</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>token</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A signed token representing the person's subscription center session. The token expires after 24 hours. If you want to use a custom link tracking domain, you can point your customers to <code>https://&amp;lt;your-tracking-domain&amp;gt;/u/i/&amp;lt;your-token&amp;gt;/&amp;lt;language-code (optional)&amp;gt;</code>.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A full URL to the person's standalone subscription center page. You can use this URL directly as a link.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-customer_id-is-invalid-or-does-not-match-a-known-person-in-your-workspace" class="status" data-status="4xx">400: The <code>customer_id</code> is invalid or does not match a known person in your workspace</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "link": {
+      "LINK00": {},
+      "LINK01": {},
+      "LINK02": {}
+    }
+  },
+  "new": {
+    "link": {
+      "link_ref01": {}
+    }
+  },
+  "requests": {}
+}

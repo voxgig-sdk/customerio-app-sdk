@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Customer.io App API | Customer.io App API</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details open><summary>Overview</summary><a aria-current="page" href="index.html">Customer.io App API</a></details>
+<details><summary>API</summary><a href="api/index.html">API overview</a>
+<a href="api/action.html">Action</a>
+<a href="api/activity.html">Activity</a>
+<a href="api/asset.html">Asset</a>
+<a href="api/attribute.html">Attribute</a>
+<a href="api/automation.html">Automation</a>
+<a href="api/broadcast.html">Broadcast</a>
+<a href="api/campaign.html">Campaign</a>
+<a href="api/collection.html">Collection</a>
+<a href="api/content.html">Content</a>
+<a href="api/customer.html">Customer</a>
+<a href="api/data_index.html">DataIndex</a>
+<a href="api/delivery.html">Delivery</a>
+<a href="api/design_studio.html">DesignStudio</a>
+<a href="api/design_studio_email.html">DesignStudioEmail</a>
+<a href="api/email.html">Email</a>
+<a href="api/end.html">End</a>
+<a href="api/esp_suppression.html">EspSuppression</a>
+<a href="api/export.html">Export</a>
+<a href="api/import.html">Import</a>
+<a href="api/in_app.html">InApp</a>
+<a href="api/inbox_message.html">InboxMessage</a>
+<a href="api/info.html">Info</a>
+<a href="api/ip_address.html">IpAddress</a>
+<a href="api/language.html">Language</a>
+<a href="api/link.html">Link</a>
+<a href="api/live_notification.html">LiveNotification</a>
+<a href="api/message.html">Message</a>
+<a href="api/newsletter.html">Newsletter</a>
+<a href="api/newsletter_metric.html">NewsletterMetric</a>
+<a href="api/newsletter_variant.html">NewsletterVariant</a>
+<a href="api/object.html">Object</a>
+<a href="api/object_type.html">ObjectType</a>
+<a href="api/opt_out.html">OptOut</a>
+<a href="api/push.html">Push</a>
+<a href="api/relationship.html">Relationship</a>
+<a href="api/reporting_webhook.html">ReportingWebhook</a>
+<a href="api/search_suppression.html">SearchSuppression</a>
+<a href="api/segment.html">Segment</a>
+<a href="api/send_message.html">SendMessage</a>
+<a href="api/sender_identity.html">SenderIdentity</a>
+<a href="api/sms.html">Sms</a>
+<a href="api/snippet.html">Snippet</a>
+<a href="api/start.html">Start</a>
+<a href="api/subscription_center.html">SubscriptionCenter</a>
+<a href="api/subscription_channel.html">SubscriptionChannel</a>
+<a href="api/subscription_topic.html">SubscriptionTopic</a>
+<a href="api/suppression.html">Suppression</a>
+<a href="api/test_group.html">TestGroup</a>
+<a href="api/transactional.html">Transactional</a>
+<a href="api/trigger.html">Trigger</a>
+<a href="api/update.html">Update</a>
+<a href="api/whatsapp.html">Whatsapp</a>
+<a href="api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="guides/authentication.html">Authentication</a>
+<a href="guides/first-call.html">Make your first API call</a>
+<a href="guides/errors.html">Handle errors</a>
+<a href="guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="sdks/go.html">Golang</a>
+<a href="sdks/js.html">JavaScript</a>
+<a href="sdks/lua.html">Lua</a>
+<a href="sdks/php.html">PHP</a>
+<a href="sdks/py.html">Python</a>
+<a href="sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="tools/go-cli.html">Go CLI</a>
+<a href="tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="features/paging.html">Pagination signals for list operations</a>
+<a href="features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>Overview</div><h1 id="customerio-app-api">Customer.io App API</h1>
+<p>Our App API provides ways to trigger messages and retrieve information about people, automations, broadcasts, and more. # Overview The App API provides methods to send newsletters, transactional messages, and API-triggered broadcasts. You can create newsletters from scratch and update transactional messages and API-triggered broadcasts. For transactional messages and API-triggered broadcasts, your payload acts as a message &quot;trigger&quot; and can contain <code>data</code> that you reference in your messages using liquid, <code>&amp;#123;&amp;#123;trigger.&amp;lt;data&amp;gt;&amp;#125;&amp;#125;</code>. The other endpoints help you retrieve information about people, segments, automations, broadcasts, etc; it also lets you update automation actions, messages, newsletter variants, etc. Aside from the <a href="/integrations/api/app/tag/send-messages/triggerBroadcast/">API-triggered broadcast</a> endpoint (1 per 10 seconds), requests are limited to 10 per second. <a href="/integrations/api/app/tag/send-messages/sendEmail/">Transactional</a> messages go through the same high-throughput ingress as our Track and Pipelines APIs and share their soft rate limit of 3000 requests per 3 seconds, which isn't strictly enforced. # We may add to these APIs As we release new features, we add endpoints and we may even add fields to existing endpoints. We don't announce these additions in advance. Fields we add will be backward compatible: existing fields keep their names and types. Build your integration to ignore fields it doesn't recognize. If you validate responses against a schema, make sure the schema accepts unknown keys. In JSON Schema, for example, don't set <code>additionalProperties: false</code>. # Use our Postman collection We've generated a Postman collection to help you get started with our APIs. If you fork this collection, you might want to disable the <em>Watch original collection</em> option. We automatically update our Postman collection whenever we release changes to our documentation, even if we don't change our APIs, which happens daily! Rather than being flooded with Postman notifications, you can check out our <a href="/release-notes/">Release Notes</a> for updates to our APIs. <strong>NOTE</strong>: Postman endpoints default to our US APIs. If you're in our European (EU) region, you'll need to add <code>-eu</code> to the server variables (<code>track_api_url</code> and <code>app_api_url</code>). <a href="https://god.gw.postman.com/run-collection/23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d?action=collection%2Ffork&amp;source=rip_markdown&amp;collection-url=entityId%3D23697545-2931c004-e63d-4cdc-bf4b-e685ba6da42d%26entityType%3Dcollection%26workspaceId%3Db886877f-fc09-475f-84fe-6221a98f4d18#?env%5BCustomer.io%20API%20Environment%5D=W3sia2V5IjoidHJhY2tfYXBpX3VybCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiJ0cmFjay5jdXN0b21lci5pbyIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYXBwX2FwaV91cmwiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiYXBpLmN1c3RvbWVyLmlvIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzaXRlX2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYXBpX2tleSIsInR5cGUiOiJzZWNyZXQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYmVhcmVyIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYnJvYWRjYXN0X2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiaW1wb3J0X2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiZW1haWxfYWRkcmVzcyIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InN1cHByZXNzaW9uX3R5cGUiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjb2xsZWN0aW9uX2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5Ijoic25pcHBldF9uYW1lIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5Ijoid2ViaG9va19pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InNlbmRlcl9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImV4cG9ydF9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6Im1lc3NhZ2VfaWQiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJzZWdtZW50X2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoibmV3c2xldHRlcl9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImNvbnRlbnRfaWQiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjYW1wYWlnbl9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImFjdGlvbl9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImN1c3RvbWVyX2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoidHJhbnNhY3Rpb25hbF9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InRyaWdnZXJfaWQiLCJ0eXBlIjoiZGVmYXVsdCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJmb3JtX2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiaWRlbnRpZmllciIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImRldmljZV9pZCIsInR5cGUiOiJkZWZhdWx0IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImRlbGl2ZXJ5X2lkIiwidHlwZSI6ImRlZmF1bHQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9XQ==">&lt;img src=&quot;https://run.pstmn.io/button.svg&quot; alt=&quot;Run In Postman&quot; style=&quot;width: 128px; height: 32px;&quot;&gt;</a> # Server addresses: US and EU Customer.io hosts services in the United States (US) and European Union. Select the appropriate server address for your region. | Region | Server Address | | :-- | :-- | | US | https://api.customer.io | | EU | https://api-eu.customer.io | # Authentication All requests to the Customer.io App API use an <a href="#authentication">App API Key</a>. To authenticate, provide your key as a Bearer token in a HTTP Authorization header. You can create and manage your API keys, including keys with different scopes, in <a href="https://fly.customer.io/settings/api_credentials?keyType=app">your account settings page</a>. Each operation on this page references the authorization header it requires. # Rate Limits Most endpoints on this page are limited to 10 requests per second. The exceptions are: * <a href="/integrations/api/app/tag/send-messages/sendEmail/">Transactional messages</a> use the same soft rate limit of our Track and Pipelines APIs (3000 requests per 3 seconds, not strictly enforced). * The <a href="/integrations/api/app/tag/send-messages/triggerBroadcast/">API-triggered broadcast endpoint</a> is limited to 1 request every 10 seconds. <strong>Rate limits are subject to change. We may adjust these thresholds to ensure stable performance for all customers.</strong></p>
+</main></div>
+<script src="assets/search.js" defer></script></body></html>

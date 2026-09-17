@@ -1,0 +1,10 @@
+# Entity: whatsapp
+
+main: kit: entity: whatsapp: {
+
+  alias: field: {}
+
+  name: "whatsapp"
+
+
+}

@@ -1,0 +1,10 @@
+# Entity: start
+
+main: kit: entity: start: {
+
+  alias: field: {}
+
+  name: "start"
+
+
+}

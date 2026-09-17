@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SendMessage | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a aria-current="page" href="../api/send_message.html">SendMessage</a><div class="nav-sections"><a class="nav-section" href="#post-v1campaignsbroadcast_idtriggers">POST /v1/campaigns/{broadcast_id}/triggers</a>
+<a class="nav-section" href="#post-v1sendemail">POST /v1/send/email</a>
+<a class="nav-section" href="#post-v1sendin_app">POST /v1/send/in_app</a>
+<a class="nav-section" href="#post-v1sendinbox_message">POST /v1/send/inbox_message</a>
+<a class="nav-section" href="#post-v1sendpush">POST /v1/send/push</a>
+<a class="nav-section" href="#post-v1sendsms">POST /v1/send/sms</a>
+<a class="nav-section" href="#post-v1sendwhatsapp">POST /v1/send/whatsapp</a></div>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="sendmessage">SendMessage</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1campaignsbroadcast_idtriggers"><code>/v1/campaigns/{broadcast_id}/triggers</code></a></td>
+<td><code>create</code></td>
+<td>A successful request returns the trigger ID</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendemail"><code>/v1/send/email</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendin_app"><code>/v1/send/in_app</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendinbox_message"><code>/v1/send/inbox_message</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendpush"><code>/v1/send/push</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendsms"><code>/v1/send/sms</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1sendwhatsapp"><code>/v1/send/whatsapp</code></a></td>
+<td><code>create</code></td>
+<td>Returns a unique ID for the delivery</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A dictionary of attachments where the filename is the key and the value is the base64-encoded contents.</td>
+</tr>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code> and your <code>transactional_message_id</code> doesn't match a record, Customer.io creates an empty record using that value as the <em>Trigger Name</em>.</td>
+</tr>
+<tr>
+<td><code>bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Blind copy message recipients.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The HTML body of your message.</td>
+</tr>
+<tr>
+<td><code>body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email.</td>
+</tr>
+<tr>
+<td><code>body_plain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The plaintext body of your message.</td>
+</tr>
+<tr>
+<td><code>cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Carbon copy message recipients, separated by commas.</td>
+</tr>
+<tr>
+<td><code>custom_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional key/value pairs you want to attach to the push payload.</td>
+</tr>
+<tr>
+<td><code>custom_device</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>A device to perform an upsert operation at the time of send.</td>
+</tr>
+<tr>
+<td><code>custom_payload</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional key/value pairs you want to attach to the push payload.</td>
+</tr>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>disable_css_preprocessing</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Set to <code>true</code> to disable CSS preprocessing.</td>
+</tr>
+<tr>
+<td><code>disable_message_retention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message body is not retained in delivery history.</td>
+</tr>
+<tr>
+<td><code>fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address your email is from.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The <code>trigger_id</code> for this operation.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>image_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An image URL to show in the push.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A deep link to open when the push is tapped.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message body for your notification.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in your message.</td>
+</tr>
+<tr>
+<td><code>preheader</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Also known as &quot;preview text&quot;, this is the block block of text that users see next to, or underneath, the subject line in their inbox.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request.</td>
+</tr>
+<tr>
+<td><code>reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that recipients can reply to, if different from the <code>from</code> address.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send.</td>
+</tr>
+<tr>
+<td><code>send_to_unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, your message is not sent to unsubscribed recipients.</td>
+</tr>
+<tr>
+<td><code>sound</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><strong>For iOS Only</strong>: your notification can alert users with the device's default notification sound or play no sound at all.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for your message.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title for your notification.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The recipients you want to send to, separated by commas.</td>
+</tr>
+<tr>
+<td><code>tracked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, Customer.io tracks opens and link clicks in your message.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The transactional message template you want to use.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1campaignsbroadcast_idtriggers" class="operation" data-method="post"><code>POST</code> /v1/campaigns/{broadcast_id}/triggers</h3>
+<p>Operation ID: <code>triggerBroadcast</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the broadcast that you want to trigger. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object or object or object</code>.</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-a-successful-request-returns-the-trigger-id" class="status" data-status="2xx">200: A successful request returns the trigger ID</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The <code>trigger_id</code> for this operation. You can use this ID to get the status of your broadcast or <a href="/integrations/api/app/tag/broadcasts/broadcastErrors/">check for errors</a>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="404-the-broadcast_id-does-not-exist" class="status" data-status="4xx">404: The <code>broadcast_id</code> does not exist</h5>
+<h5 id="422-the-broadcast-has-one-or-more-validation-errors-you-can-learn-more-by-checking-your-broadcast-for-errorsintegrationsapiapptagbroadcastsbroadcasterrors-using-the-trigger_id-found-in-the-error-detail" class="status" data-status="4xx">422: The broadcast has one or more validation errors. You can learn more by <a href="/integrations/api/app/tag/broadcasts/broadcastErrors/">checking your broadcast for errors</a> using the <code>trigger_id</code> found in the error <code>detail</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Contains one or more validation errors found in your request payload.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error and provides the trigger ID you can use to look up more information.</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Points to the key in your payload that contained validation errors.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>enum: 422</code></td>
+<td>No</td>
+<td>The error code.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendemail" class="operation" data-method="post"><code>POST</code> /v1/send/email</h3>
+<p>Operation ID: <code>sendEmail</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attachments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A dictionary of attachments where the filename is the key and the value is the base64-encoded contents. The filename must include the extension (that is <code>name.csv</code>). The total size of all attachments must be less than 2 MB.</td>
+</tr>
+<tr>
+<td><code>attachments.&lt;file-name&gt;</code></td>
+<td><code>string (base64)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code> and your <code>transactional_message_id</code> doesn't match a record, Customer.io creates an empty record using that value as the <em>Trigger Name</em>. The ID must be a string. If the name already belongs to another channel, the request fails with <code>400</code>, and numeric IDs ignore this setting. See <a href="/journeys/transactional-email/#auto-create-transactional-message-records">details</a>.</td>
+</tr>
+<tr>
+<td><code>bcc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Blind copy message recipients. Supports multiple addresses separated by commas. Your request can contain up to 15 total recipients between the <code>to</code>, <code>cc</code>, and <code>bcc</code> keys.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The HTML body of your message. If you provide a <code>transactional_message_id</code>, this overrides the template's body. It's also the fallback when you send AMP email (<code>body_amp</code>) to a client that doesn't support AMP.</td>
+</tr>
+<tr>
+<td><code>body_amp</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>AMP-enabled content for your email. If a recipient's email client doesn't support AMP, they receive your <code>body</code> content instead. Make sure you're <a href="/journeys/channels/email/layouts/amp-for-email/">set up to send AMP</a> first.</td>
+</tr>
+<tr>
+<td><code>body_plain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The plaintext body of your message. If you provide <code>transactional_message_id</code>, this overrides the template's plaintext body.</td>
+</tr>
+<tr>
+<td><code>cc</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Carbon copy message recipients, separated by commas. Unlike BCC recipients, CC recipients are visible to everyone who receives the message. Their opens, clicks, and bounces count toward your message metrics. CC recipients count toward the limit of 15 total recipients across the <code>to</code>, <code>cc</code>, and <code>bcc</code> keys.</td>
+</tr>
+<tr>
+<td><code>disable_css_preprocessing</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Set to <code>true</code> to disable CSS preprocessing. This setting overrides the CSS preprocessing setting on the <code>transactional_message_id</code> as set in the user interface. Transactional emails have CSS preprocessing enabled by default.</td>
+</tr>
+<tr>
+<td><code>disable_message_retention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message body is not retained in delivery history. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>fake_bcc</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address your email is from. It must be a <a href="/journeys/channels/email/deliverability/authentication/">verified sender</a>. Quote any display name, like <code>\&amp;quot;Person\&amp;quot; &amp;lt;person@example.com&amp;gt;</code>. This overrides the template's sender; omit it to use the template or your workspace default.</td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>string (json)</code></td>
+<td>No</td>
+<td>A JSON string containing header objects with <code>name</code> and <code>value</code>. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>No</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/journeys/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in your message.</td>
+</tr>
+<tr>
+<td><code>preheader</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Also known as &quot;preview text&quot;, this is the block block of text that users see next to, or underneath, the subject line in their inbox.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>reply_to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address that recipients can reply to, if different from the <code>from</code> address.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>send_to_unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, your message is not sent to unsubscribed recipients. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for your message. If you provide <code>transactional_message_id</code>, this overrides the template's subject.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The recipients you want to send to, separated by commas. You can include up to 15 total recipients across <code>to</code>, <code>cc</code>, and <code>bcc</code>, with optional display names in quotes.</td>
+</tr>
+<tr>
+<td><code>tracked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, Customer.io tracks opens and link clicks in your message.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>No</td>
+<td>The transactional message template you want to use. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-or-the-attachment-is-not-base64-encoded" class="status" data-status="4xx">400: The request was malformed or the attachment is not base64-encoded</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-your-attachment-is-not-in-a-recognized-format" class="status" data-status="4xx">403: Your attachment is not in a recognized format</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="413-this-typically-means-your-attachment-exceeds-the-size-limit" class="status" data-status="4xx">413: This typically means your attachment exceeds the size limit</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendin_app" class="operation" data-method="post"><code>POST</code> /v1/send/in_app</h3>
+<p>Operation ID: <code>sendInApp</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Accepted for in-app sends, but of limited use. An auto-created record has no content or layout until you populate it in the UI, so we recommend <a href="/journeys/send/transactional/in-app/">creating the in-app message in the UI</a> instead. Your <code>transactional_message_id</code> must be a new string.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/journeys/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in the format <code>&amp;#123;&amp;#123;trigger.&amp;lt;property_name&amp;gt;&amp;#125;&amp;#125;</code> in your in-app message. These values populate the <code>properties</code> field in the message that the SDK delivers to your application.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>Yes</td>
+<td>The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery-1" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed" class="status" data-status="4xx">400: The request was malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-your-workspace-is-not-authorized-for-transactional-messaging-or-in-app-messages" class="status" data-status="4xx">403: Your workspace is not authorized for transactional messaging or in-app messages</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendinbox_message" class="operation" data-method="post"><code>POST</code> /v1/send/inbox_message</h3>
+<p>Operation ID: <code>sendInboxMessage</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Accepted for inbox sends, but of limited use. An auto-created record has no content or layout until you populate it in the UI, so we recommend <a href="/journeys/channels/in-app/inbox/send-inbox-txnl/">creating the inbox message in the UI</a> instead. Your <code>transactional_message_id</code> must be a new string.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/journeys/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in the format <code>&amp;#123;&amp;#123;trigger.&amp;lt;property_name&amp;gt;&amp;#125;&amp;#125;</code> in your inbox message. These values will populate the <code>properties</code> field in the message received by your application.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional override for the recipient. This is typically not needed as the message is sent to the person identified by <code>identifiers</code>.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>Yes</td>
+<td>The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery-2" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-1" class="status" data-status="4xx">400: The request was malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-your-workspace-is-not-authorized-for-transactional-messaging-or-inbox-messages" class="status" data-status="4xx">403: Your workspace is not authorized for transactional messaging or inbox messages</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendpush" class="operation" data-method="post"><code>POST</code> /v1/send/push</h3>
+<p>Operation ID: <code>sendPush</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-4">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code> and your <code>transactional_message_id</code> doesn't match a record, Customer.io creates an empty record using that value as the <em>Trigger Name</em>. The ID must be a string. If the name already belongs to another channel, the request fails with <code>400</code>, and numeric IDs ignore this setting. See <a href="/journeys/transactional-email/#auto-create-transactional-message-records">details</a>.</td>
+</tr>
+<tr>
+<td><code>custom_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional key/value pairs you want to attach to the push payload. Firebase only supports string values. This overrides the Custom Data from your transactional template.</td>
+</tr>
+<tr>
+<td><code>custom_device</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A device to perform an upsert operation at the time of send. The device will be added/updated on the profile from the Identifiers block.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes that you can reference to segment your audience, like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes._last_status</code></td>
+<td><code>enum: , bounced, sent, suppressed</code></td>
+<td>No</td>
+<td>The delivery status of the last message sent to the device, sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.app_identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The app that the device belongs to, the <strong>Bundle ID / App identifier</strong> you entered with that app's push credentials. If you have more than one app, we use this attribute to send push notifications to the right app. A device without an app identifier receives push notifications you send to your <a href="/messaging/channels/push/getting-started/#the-default-app">default app</a>.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of your app that a customer uses. You might target app versions to let people know when they need to update, or expose them to new features when they do.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.cio_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Customer.io SDK in the app.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.device_locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The device's <a href="/journeys/channels/localization/getting-started/#supported-languages">IETF language code</a>, such as <code>en-MX</code> or <code>es-ES</code>.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.device_model</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The model of the device a person uses.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.device_os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system, including the version, on the device.</td>
+</tr>
+<tr>
+<td><code>custom_device.attributes.push_enabled</code></td>
+<td><code>enum: true, false</code></td>
+<td>No</td>
+<td>If <code>&amp;quot;true&amp;quot;</code>, the device is opted-in and can receive push notifications.</td>
+</tr>
+<tr>
+<td><code>custom_device.last_used</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The <code>timestamp</code> when you last identified this device. If you don't pass a timestamp when you add or update a device, we use the time of the request itself. Our SDKs identify a device when a person launches their app.</td>
+</tr>
+<tr>
+<td><code>custom_device.platform</code></td>
+<td><code>enum: ios, android</code></td>
+<td>Yes</td>
+<td>The device/messaging platform.</td>
+</tr>
+<tr>
+<td><code>custom_device.token</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The device token.</td>
+</tr>
+<tr>
+<td><code>custom_payload</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional key/value pairs you want to attach to the push payload. Firebase only supports string values. This overrides all other payload values, including the Custom Payload from your transactional template.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A custom push payload for Android devices.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The parent object for Android custom push payloads.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.android</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains custom push options for your notification.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.android.notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Properties supported specifically by Android on FCM.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains key-value pairs that your app interprets.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.notification</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains the push body and title.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.notification.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body of your push notification.</td>
+</tr>
+<tr>
+<td><code>custom_payload.android.message.notification.title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title of your push notification.</td>
+</tr>
+<tr>
+<td><code>custom_payload.ios</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td>Your payload changes depending on whether you send to iOS devices through Google's Firebase Cloud Messaging (FCM) or Apple's Push Notification service (APNs).</td>
+</tr>
+<tr>
+<td><code>disable_message_retention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message body is not retained in delivery history. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>image_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An image URL to show in the push. This overrides Image from the transactional template (referenced by <code>transactional_message_id</code>).</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/journeys/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A deep link to open when the push is tapped. This overrides Link from the transactional template (referenced by <code>transactional_message_id</code>).</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message body for your notification. This overrides the notification body of the transactional template (referenced by <code>transactional_message_id</code>).</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in your message.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>send_to_unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, your message is not sent to unsubscribed recipients. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>sound</code></td>
+<td><code>enum: default, none</code></td>
+<td>No</td>
+<td><strong>For iOS Only</strong>: your notification can alert users with the device's default notification sound or play no sound at all.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title for your notification. This overrides the title of the transactional template (referenced by <code>transactional_message_id</code>).</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>enum: all, last_used, $device_token</code></td>
+<td>No</td>
+<td>The devices you want to send this push to, <code>all</code>, <code>last_used</code>, or a custom device token from the identified profile. Defaults to <code>all</code> and overrides the <code>To</code> value from your transactional template.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>Yes</td>
+<td>The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery-3" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-2" class="status" data-status="4xx">400: The request was malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-don39t-have-push-enabled-for-your-workspace" class="status" data-status="4xx">403: You don't have push enabled for your workspace</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendsms" class="operation" data-method="post"><code>POST</code> /v1/send/sms</h3>
+<p>Operation ID: <code>sendSMS</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-5">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code> and your <code>transactional_message_id</code> doesn't match a record, Customer.io creates an empty record using that value as the <em>Trigger Name</em>. The ID must be a string. If the name already belongs to another channel, the request fails with <code>400</code>, and numeric IDs ignore this setting. See <a href="/journeys/transactional-email/#auto-create-transactional-message-records">details</a>.</td>
+</tr>
+<tr>
+<td><code>disable_message_retention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message body is not retained in delivery history. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The phone number or sender ID your SMS is from. It must be verified in your Twilio account. This overrides the template's sender. Use E.164 format for a phone number.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/journeys/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in your message.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>send_to_unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, your message is not sent to unsubscribed recipients. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The phone number you want to send your SMS to. Use E.164 format, like <code>+15551234567</code>, or Liquid if you store phone numbers as attributes.</td>
+</tr>
+<tr>
+<td><code>tracked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to track link clicks for this SMS. Defaults to the transactional message's own tracking setting.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>Yes</td>
+<td>The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery-4" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-3" class="status" data-status="4xx">400: The request was malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-don39t-have-sms-enabled" class="status" data-status="4xx">403: You don't have SMS enabled</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-v1sendwhatsapp" class="operation" data-method="post"><code>POST</code> /v1/send/whatsapp</h3>
+<p>Operation ID: <code>sendWhatsApp</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>) or bearer token (<code>ServiceAccount-Auth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>X-Workspace-Id</code> | <code>header</code> | <code>integer</code> | No | The numeric ID of the workspace you want to send a message in. This header is only needed when you authenticate with a service-account bearer token (<code>sa_live_…</code>). Service accounts work across workspaces, so you must supply this header so we know which workspace to send from. You can omit this header when you authenticate with a standard App API key, which is always scoped to one workspace. |</p>
+<h4 id="request-body-6">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disable_message_retention</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message body is not retained in delivery history. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The WhatsApp-approved sender (phone number or sender ID) that your message is from. It must be a WhatsApp-approved sender configured in your workspace. This overrides the template's sender. Use E.164 format for a phone number.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Identifies the person represented by your transactional message by one of, and only one of, <code>id</code>, <code>email</code>, or <code>cio_id</code>.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Overrides language preferences for the person you want to send your transactional message to. Use one of our <a href="/messaging/channels/localization/getting-started/#supported-languages">supported two- or four-letter language codes</a>.</td>
+</tr>
+<tr>
+<td><code>message_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the key-value pairs referenced using liquid in your message.</td>
+</tr>
+<tr>
+<td><code>queue_draft</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, your transactional message is held as a draft in Customer.io and not sent directly to your audience. You must go to the Deliveries and Drafts page to send your message.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (seconds since epoch) determining when the message will be sent. The timestamp can be up to 90 days in the future. If this value is in the past, your message is sent immediately.</td>
+</tr>
+<tr>
+<td><code>send_to_unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If false, your message is not sent to unsubscribed recipients. Setting this value overrides the value set in the settings of your <code>transactional_message_id</code>.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The WhatsApp phone number you want to send your message to. Use E.164 format, like <code>+15551234567</code>, or Liquid if you store phone numbers as attributes. The recipient must be able to receive WhatsApp messages.</td>
+</tr>
+<tr>
+<td><code>tracked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to track link clicks for this WhatsApp message. Defaults to the transactional message's own tracking setting.</td>
+</tr>
+<tr>
+<td><code>transactional_message_id</code></td>
+<td><code>integer or string</code></td>
+<td>Yes</td>
+<td>The transactional message template that you want to use for your message. You can call the template by its numerical ID or by the <em>Trigger Name</em> that you assigned to the template in the UI (case insensitive).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-returns-a-unique-id-for-the-delivery-5" class="status" data-status="2xx">200: Returns a unique ID for the delivery</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the message.</td>
+</tr>
+<tr>
+<td><code>queued_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>A Unix timestamp for when Customer.io accepted and queued your request. For scheduled messages (using <code>send_at</code>), this is when we received your request, not when the message sends.</td>
+</tr>
+<tr>
+<td><code>send_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>For a scheduled message, the Unix timestamp when the message is set to send. Returned only when you provide a future <code>send_at</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-4" class="status" data-status="4xx">400: The request was malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains errors.</td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="403-you-don39t-have-whatsapp-enabled" class="status" data-status="4xx">403: You don't have WhatsApp enabled</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>meta.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Describes the error that caused your request to fail.</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

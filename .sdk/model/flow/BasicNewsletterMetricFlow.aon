@@ -1,0 +1,48 @@
+# BasicNewsletterMetricFlow
+
+main: kit: flow: BasicNewsletterMetricFlow:
+{
+  entity: "newsletter_metric",
+  kind: "basic",
+  name: "BasicNewsletterMetricFlow",
+  step: [
+    {
+      match: {
+        newsletter_id: "newsletter01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "newsletter_metric_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "newsletter_metric_ref01",
+        srcdatavar: "newsletter_metric_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "newsletter_metric01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-newsletter_metric_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewsletterMetricFlow"
+}

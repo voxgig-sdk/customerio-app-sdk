@@ -1,0 +1,9 @@
+# BasicSmsFlow
+
+main: kit: flow: BasicSmsFlow:
+{
+  entity: "sms",
+  kind: "basic",
+  name: "BasicSmsFlow",
+  "key$": "BasicSmsFlow"
+}

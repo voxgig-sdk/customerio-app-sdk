@@ -1,0 +1,105 @@
+# BasicDesignStudioEmailFlow
+
+main: kit: flow: BasicDesignStudioEmailFlow:
+{
+  entity: "design_studio_email",
+  kind: "basic",
+  name: "BasicDesignStudioEmailFlow",
+  step: [
+    {
+      input: {
+        ref: "design_studio_email_ref01"
+      }
+
+      match: {
+        email_id: "email01",
+        inbox_preview_id: "inbox_preview01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "design_studio_email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_email_ref01",
+        srcdatavar: "design_studio_email_ref01_data",
+        suffix: "_up0",
+        textfield: "amp"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-design_studio_email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_email_ref01",
+        srcdatavar: "design_studio_email_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "design_studio_email01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-design_studio_email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "design_studio_email_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "design_studio_email01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "design_studio_email_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDesignStudioEmailFlow"
+}

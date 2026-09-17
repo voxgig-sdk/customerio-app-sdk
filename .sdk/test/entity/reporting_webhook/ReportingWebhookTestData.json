@@ -1,0 +1,1541 @@
+{
+  "existing": {
+    "reporting_webhook": {
+      "REPORTING_WEBHOOK00": {
+        "disabled": true,
+        "endpoint": "s51",
+        "events": [],
+        "full_resolution": false,
+        "id": "REPORTING_WEBHOOK00",
+        "name": "s55",
+        "type": "s56",
+        "with_content": false
+      },
+      "REPORTING_WEBHOOK01": {
+        "disabled": true,
+        "endpoint": "sa1",
+        "events": [],
+        "full_resolution": false,
+        "id": "REPORTING_WEBHOOK01",
+        "name": "sa5",
+        "type": "sa6",
+        "with_content": false
+      },
+      "REPORTING_WEBHOOK02": {
+        "disabled": true,
+        "endpoint": "sf1",
+        "events": [],
+        "full_resolution": false,
+        "id": "REPORTING_WEBHOOK02",
+        "name": "sf5",
+        "type": "sf6",
+        "with_content": false
+      }
+    }
+  },
+  "new": {
+    "reporting_webhook": {
+      "reporting_webhook_ref01": {
+        "disabled": true,
+        "endpoint": "s141",
+        "events": [],
+        "full_resolution": false,
+        "name": "s145",
+        "type": "s146",
+        "with_content": false
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/reporting_webhooks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createWebhook",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "disabled": {
+                    "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "endpoint": {
+                    "description": "The webhook URL.",
+                    "example": "https://example.com/webhook",
+                    "format": "url",
+                    "type": "string"
+                  },
+                  "events": {
+                    "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                    "example": [
+                      "email_failed",
+                      "webhook_failed"
+                    ],
+                    "items": {
+                      "enum": [
+                        "customer_subscribed",
+                        "customer_unsubscribed",
+                        "customer_subscription_preferences_changed",
+                        "email_drafted",
+                        "email_attempted",
+                        "email_sent",
+                        "email_delivered",
+                        "email_opened",
+                        "email_clicked",
+                        "email_converted",
+                        "email_bounced",
+                        "email_dropped",
+                        "email_deferred",
+                        "email_spammed",
+                        "email_failed",
+                        "email_unsubscribed",
+                        "email_undeliverable",
+                        "in_app_drafted",
+                        "in_app_attempted",
+                        "in_app_sent",
+                        "in_app_opened",
+                        "in_app_clicked",
+                        "in_app_converted",
+                        "in_app_failed",
+                        "in_app_undeliverable",
+                        "push_drafted",
+                        "push_attempted",
+                        "push_sent",
+                        "push_delivered",
+                        "push_opened",
+                        "push_clicked",
+                        "push_converted",
+                        "push_bounced",
+                        "push_dropped",
+                        "push_failed",
+                        "push_undeliverable",
+                        "slack_drafted",
+                        "slack_attempted",
+                        "slack_sent",
+                        "slack_clicked",
+                        "slack_converted",
+                        "slack_failed",
+                        "sms_drafted",
+                        "sms_attempted",
+                        "sms_sent",
+                        "sms_delivered",
+                        "sms_clicked",
+                        "sms_converted",
+                        "sms_bounced",
+                        "sms_dropped",
+                        "sms_failed",
+                        "sms_undeliverable",
+                        "sms_replied",
+                        "whatsapp_drafted",
+                        "whatsapp_attempted",
+                        "whatsapp_sent",
+                        "whatsapp_delivered",
+                        "whatsapp_opened",
+                        "whatsapp_clicked",
+                        "whatsapp_converted",
+                        "whatsapp_bounced",
+                        "whatsapp_dropped",
+                        "whatsapp_failed",
+                        "whatsapp_undeliverable",
+                        "whatsapp_replied",
+                        "webhook_drafted",
+                        "webhook_attempted",
+                        "webhook_sent",
+                        "webhook_clicked",
+                        "webhook_converted",
+                        "webhook_failed",
+                        "webhook_undeliverable"
+                      ],
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "full_resolution": {
+                    "default": false,
+                    "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "description": "The identifier for the webhook.",
+                    "example": 4,
+                    "readOnly": true,
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "The name of your webhook.",
+                    "example": "my cool webhook",
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                    "enum": [
+                      "webhook",
+                      "js"
+                    ],
+                    "example": "webhook",
+                    "readOnly": true,
+                    "type": "string"
+                  },
+                  "with_content": {
+                    "description": "Set to `true` to include the message `body` in `_sent` events.",
+                    "example": false,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "endpoint",
+                  "events"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "disabled": {
+                      "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "description": "The webhook URL.",
+                      "example": "https://example.com/webhook",
+                      "format": "url",
+                      "type": "string"
+                    },
+                    "events": {
+                      "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                      "example": [
+                        "email_failed",
+                        "webhook_failed"
+                      ],
+                      "items": {
+                        "enum": [
+                          "customer_subscribed",
+                          "customer_unsubscribed",
+                          "customer_subscription_preferences_changed",
+                          "email_drafted",
+                          "email_attempted",
+                          "email_sent",
+                          "email_delivered",
+                          "email_opened",
+                          "email_clicked",
+                          "email_converted",
+                          "email_bounced",
+                          "email_dropped",
+                          "email_deferred",
+                          "email_spammed",
+                          "email_failed",
+                          "email_unsubscribed",
+                          "email_undeliverable",
+                          "in_app_drafted",
+                          "in_app_attempted",
+                          "in_app_sent",
+                          "in_app_opened",
+                          "in_app_clicked",
+                          "in_app_converted",
+                          "in_app_failed",
+                          "in_app_undeliverable",
+                          "push_drafted",
+                          "push_attempted",
+                          "push_sent",
+                          "push_delivered",
+                          "push_opened",
+                          "push_clicked",
+                          "push_converted",
+                          "push_bounced",
+                          "push_dropped",
+                          "push_failed",
+                          "push_undeliverable",
+                          "slack_drafted",
+                          "slack_attempted",
+                          "slack_sent",
+                          "slack_clicked",
+                          "slack_converted",
+                          "slack_failed",
+                          "sms_drafted",
+                          "sms_attempted",
+                          "sms_sent",
+                          "sms_delivered",
+                          "sms_clicked",
+                          "sms_converted",
+                          "sms_bounced",
+                          "sms_dropped",
+                          "sms_failed",
+                          "sms_undeliverable",
+                          "sms_replied",
+                          "whatsapp_drafted",
+                          "whatsapp_attempted",
+                          "whatsapp_sent",
+                          "whatsapp_delivered",
+                          "whatsapp_opened",
+                          "whatsapp_clicked",
+                          "whatsapp_converted",
+                          "whatsapp_bounced",
+                          "whatsapp_dropped",
+                          "whatsapp_failed",
+                          "whatsapp_undeliverable",
+                          "whatsapp_replied",
+                          "webhook_drafted",
+                          "webhook_attempted",
+                          "webhook_sent",
+                          "webhook_clicked",
+                          "webhook_converted",
+                          "webhook_failed",
+                          "webhook_undeliverable"
+                        ],
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "full_resolution": {
+                      "default": false,
+                      "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The identifier for the webhook.",
+                      "example": 4,
+                      "readOnly": true,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "The name of your webhook.",
+                      "example": "my cool webhook",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                      "enum": [
+                        "webhook",
+                        "js"
+                      ],
+                      "example": "webhook",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "with_content": {
+                      "description": "Set to `true` to include the message `body` in `_sent` events.",
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "endpoint",
+                    "events"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns your webhook configuration and the ID of the webhook."
+          },
+          "400": {
+            "description": "The request was malformed."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/reporting_webhooks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listWebhooks",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "reporting_webhooks": {
+                      "items": {
+                        "properties": {
+                          "disabled": {
+                            "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "endpoint": {
+                            "description": "The webhook URL.",
+                            "example": "https://example.com/webhook",
+                            "format": "url",
+                            "type": "string"
+                          },
+                          "events": {
+                            "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                            "example": [
+                              "email_failed",
+                              "webhook_failed"
+                            ],
+                            "items": {
+                              "enum": [
+                                "customer_subscribed",
+                                "customer_unsubscribed",
+                                "customer_subscription_preferences_changed",
+                                "email_drafted",
+                                "email_attempted",
+                                "email_sent",
+                                "email_delivered",
+                                "email_opened",
+                                "email_clicked",
+                                "email_converted",
+                                "email_bounced",
+                                "email_dropped",
+                                "email_deferred",
+                                "email_spammed",
+                                "email_failed",
+                                "email_unsubscribed",
+                                "email_undeliverable",
+                                "in_app_drafted",
+                                "in_app_attempted",
+                                "in_app_sent",
+                                "in_app_opened",
+                                "in_app_clicked",
+                                "in_app_converted",
+                                "in_app_failed",
+                                "in_app_undeliverable",
+                                "push_drafted",
+                                "push_attempted",
+                                "push_sent",
+                                "push_delivered",
+                                "push_opened",
+                                "push_clicked",
+                                "push_converted",
+                                "push_bounced",
+                                "push_dropped",
+                                "push_failed",
+                                "push_undeliverable",
+                                "slack_drafted",
+                                "slack_attempted",
+                                "slack_sent",
+                                "slack_clicked",
+                                "slack_converted",
+                                "slack_failed",
+                                "sms_drafted",
+                                "sms_attempted",
+                                "sms_sent",
+                                "sms_delivered",
+                                "sms_clicked",
+                                "sms_converted",
+                                "sms_bounced",
+                                "sms_dropped",
+                                "sms_failed",
+                                "sms_undeliverable",
+                                "sms_replied",
+                                "whatsapp_drafted",
+                                "whatsapp_attempted",
+                                "whatsapp_sent",
+                                "whatsapp_delivered",
+                                "whatsapp_opened",
+                                "whatsapp_clicked",
+                                "whatsapp_converted",
+                                "whatsapp_bounced",
+                                "whatsapp_dropped",
+                                "whatsapp_failed",
+                                "whatsapp_undeliverable",
+                                "whatsapp_replied",
+                                "webhook_drafted",
+                                "webhook_attempted",
+                                "webhook_sent",
+                                "webhook_clicked",
+                                "webhook_converted",
+                                "webhook_failed",
+                                "webhook_undeliverable"
+                              ],
+                              "type": "string"
+                            },
+                            "minItems": 1,
+                            "type": "array"
+                          },
+                          "full_resolution": {
+                            "default": false,
+                            "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "description": "The identifier for the webhook.",
+                            "example": 4,
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "The name of your webhook.",
+                            "example": "my cool webhook",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                            "enum": [
+                              "webhook",
+                              "js"
+                            ],
+                            "example": "webhook",
+                            "readOnly": true,
+                            "type": "string"
+                          },
+                          "with_content": {
+                            "description": "Set to `true` to include the message `body` in `_sent` events.",
+                            "example": false,
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "endpoint",
+                          "events"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of your `reporting_webhooks`."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/reporting_webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getWebhook",
+        "parameters": [
+          {
+            "description": "The identifier of a webhook.",
+            "in": "path",
+            "name": "webhook_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "disabled": {
+                      "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "description": "The webhook URL.",
+                      "example": "https://example.com/webhook",
+                      "format": "url",
+                      "type": "string"
+                    },
+                    "events": {
+                      "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                      "example": [
+                        "email_failed",
+                        "webhook_failed"
+                      ],
+                      "items": {
+                        "enum": [
+                          "customer_subscribed",
+                          "customer_unsubscribed",
+                          "customer_subscription_preferences_changed",
+                          "email_drafted",
+                          "email_attempted",
+                          "email_sent",
+                          "email_delivered",
+                          "email_opened",
+                          "email_clicked",
+                          "email_converted",
+                          "email_bounced",
+                          "email_dropped",
+                          "email_deferred",
+                          "email_spammed",
+                          "email_failed",
+                          "email_unsubscribed",
+                          "email_undeliverable",
+                          "in_app_drafted",
+                          "in_app_attempted",
+                          "in_app_sent",
+                          "in_app_opened",
+                          "in_app_clicked",
+                          "in_app_converted",
+                          "in_app_failed",
+                          "in_app_undeliverable",
+                          "push_drafted",
+                          "push_attempted",
+                          "push_sent",
+                          "push_delivered",
+                          "push_opened",
+                          "push_clicked",
+                          "push_converted",
+                          "push_bounced",
+                          "push_dropped",
+                          "push_failed",
+                          "push_undeliverable",
+                          "slack_drafted",
+                          "slack_attempted",
+                          "slack_sent",
+                          "slack_clicked",
+                          "slack_converted",
+                          "slack_failed",
+                          "sms_drafted",
+                          "sms_attempted",
+                          "sms_sent",
+                          "sms_delivered",
+                          "sms_clicked",
+                          "sms_converted",
+                          "sms_bounced",
+                          "sms_dropped",
+                          "sms_failed",
+                          "sms_undeliverable",
+                          "sms_replied",
+                          "whatsapp_drafted",
+                          "whatsapp_attempted",
+                          "whatsapp_sent",
+                          "whatsapp_delivered",
+                          "whatsapp_opened",
+                          "whatsapp_clicked",
+                          "whatsapp_converted",
+                          "whatsapp_bounced",
+                          "whatsapp_dropped",
+                          "whatsapp_failed",
+                          "whatsapp_undeliverable",
+                          "whatsapp_replied",
+                          "webhook_drafted",
+                          "webhook_attempted",
+                          "webhook_sent",
+                          "webhook_clicked",
+                          "webhook_converted",
+                          "webhook_failed",
+                          "webhook_undeliverable"
+                        ],
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "full_resolution": {
+                      "default": false,
+                      "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The identifier for the webhook.",
+                      "example": 4,
+                      "readOnly": true,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "The name of your webhook.",
+                      "example": "my cool webhook",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                      "enum": [
+                        "webhook",
+                        "js"
+                      ],
+                      "example": "webhook",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "with_content": {
+                      "description": "Set to `true` to include the message `body` in `_sent` events.",
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "endpoint",
+                    "events"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an individual webhook configuration."
+          },
+          "404": {
+            "description": "The webhook ID does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "DELETE /v1/reporting_webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "description": "The identifier of a webhook.",
+            "in": "path",
+            "name": "webhook_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "A successful request has no response."
+          },
+          "404": {
+            "description": "The webhook ID does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "PUT /v1/reporting_webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "description": "The identifier of a webhook.",
+            "in": "path",
+            "name": "webhook_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "disabled": {
+                    "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "endpoint": {
+                    "description": "The webhook URL.",
+                    "example": "https://example.com/webhook",
+                    "format": "url",
+                    "type": "string"
+                  },
+                  "events": {
+                    "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                    "example": [
+                      "email_failed",
+                      "webhook_failed"
+                    ],
+                    "items": {
+                      "enum": [
+                        "customer_subscribed",
+                        "customer_unsubscribed",
+                        "customer_subscription_preferences_changed",
+                        "email_drafted",
+                        "email_attempted",
+                        "email_sent",
+                        "email_delivered",
+                        "email_opened",
+                        "email_clicked",
+                        "email_converted",
+                        "email_bounced",
+                        "email_dropped",
+                        "email_deferred",
+                        "email_spammed",
+                        "email_failed",
+                        "email_unsubscribed",
+                        "email_undeliverable",
+                        "in_app_drafted",
+                        "in_app_attempted",
+                        "in_app_sent",
+                        "in_app_opened",
+                        "in_app_clicked",
+                        "in_app_converted",
+                        "in_app_failed",
+                        "in_app_undeliverable",
+                        "push_drafted",
+                        "push_attempted",
+                        "push_sent",
+                        "push_delivered",
+                        "push_opened",
+                        "push_clicked",
+                        "push_converted",
+                        "push_bounced",
+                        "push_dropped",
+                        "push_failed",
+                        "push_undeliverable",
+                        "slack_drafted",
+                        "slack_attempted",
+                        "slack_sent",
+                        "slack_clicked",
+                        "slack_converted",
+                        "slack_failed",
+                        "sms_drafted",
+                        "sms_attempted",
+                        "sms_sent",
+                        "sms_delivered",
+                        "sms_clicked",
+                        "sms_converted",
+                        "sms_bounced",
+                        "sms_dropped",
+                        "sms_failed",
+                        "sms_undeliverable",
+                        "sms_replied",
+                        "whatsapp_drafted",
+                        "whatsapp_attempted",
+                        "whatsapp_sent",
+                        "whatsapp_delivered",
+                        "whatsapp_opened",
+                        "whatsapp_clicked",
+                        "whatsapp_converted",
+                        "whatsapp_bounced",
+                        "whatsapp_dropped",
+                        "whatsapp_failed",
+                        "whatsapp_undeliverable",
+                        "whatsapp_replied",
+                        "webhook_drafted",
+                        "webhook_attempted",
+                        "webhook_sent",
+                        "webhook_clicked",
+                        "webhook_converted",
+                        "webhook_failed",
+                        "webhook_undeliverable"
+                      ],
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "full_resolution": {
+                    "default": false,
+                    "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "description": "The identifier for the webhook.",
+                    "example": 4,
+                    "readOnly": true,
+                    "type": "integer"
+                  },
+                  "name": {
+                    "description": "The name of your webhook.",
+                    "example": "my cool webhook",
+                    "type": "string"
+                  },
+                  "type": {
+                    "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                    "enum": [
+                      "webhook",
+                      "js"
+                    ],
+                    "example": "webhook",
+                    "readOnly": true,
+                    "type": "string"
+                  },
+                  "with_content": {
+                    "description": "Set to `true` to include the message `body` in `_sent` events.",
+                    "example": false,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "endpoint",
+                  "events"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "disabled": {
+                      "description": "Set to `true` to quit sending events to the webhook URL. Set to `false` to enable the webhook.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "description": "The webhook URL.",
+                      "example": "https://example.com/webhook",
+                      "format": "url",
+                      "type": "string"
+                    },
+                    "events": {
+                      "description": "Specifies the types of events you want to report to your webhook. See our [reporting webhooks reference](/integrations/api/webhooks/) for more information about event types and the information they return.",
+                      "example": [
+                        "email_failed",
+                        "webhook_failed"
+                      ],
+                      "items": {
+                        "enum": [
+                          "customer_subscribed",
+                          "customer_unsubscribed",
+                          "customer_subscription_preferences_changed",
+                          "email_drafted",
+                          "email_attempted",
+                          "email_sent",
+                          "email_delivered",
+                          "email_opened",
+                          "email_clicked",
+                          "email_converted",
+                          "email_bounced",
+                          "email_dropped",
+                          "email_deferred",
+                          "email_spammed",
+                          "email_failed",
+                          "email_unsubscribed",
+                          "email_undeliverable",
+                          "in_app_drafted",
+                          "in_app_attempted",
+                          "in_app_sent",
+                          "in_app_opened",
+                          "in_app_clicked",
+                          "in_app_converted",
+                          "in_app_failed",
+                          "in_app_undeliverable",
+                          "push_drafted",
+                          "push_attempted",
+                          "push_sent",
+                          "push_delivered",
+                          "push_opened",
+                          "push_clicked",
+                          "push_converted",
+                          "push_bounced",
+                          "push_dropped",
+                          "push_failed",
+                          "push_undeliverable",
+                          "slack_drafted",
+                          "slack_attempted",
+                          "slack_sent",
+                          "slack_clicked",
+                          "slack_converted",
+                          "slack_failed",
+                          "sms_drafted",
+                          "sms_attempted",
+                          "sms_sent",
+                          "sms_delivered",
+                          "sms_clicked",
+                          "sms_converted",
+                          "sms_bounced",
+                          "sms_dropped",
+                          "sms_failed",
+                          "sms_undeliverable",
+                          "sms_replied",
+                          "whatsapp_drafted",
+                          "whatsapp_attempted",
+                          "whatsapp_sent",
+                          "whatsapp_delivered",
+                          "whatsapp_opened",
+                          "whatsapp_clicked",
+                          "whatsapp_converted",
+                          "whatsapp_bounced",
+                          "whatsapp_dropped",
+                          "whatsapp_failed",
+                          "whatsapp_undeliverable",
+                          "whatsapp_replied",
+                          "webhook_drafted",
+                          "webhook_attempted",
+                          "webhook_sent",
+                          "webhook_clicked",
+                          "webhook_converted",
+                          "webhook_failed",
+                          "webhook_undeliverable"
+                        ],
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "full_resolution": {
+                      "default": false,
+                      "description": "Set to `false` to send unique open and click events to the webhook. Set to `true` to send all events.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The identifier for the webhook.",
+                      "example": 4,
+                      "readOnly": true,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "The name of your webhook.",
+                      "example": "my cool webhook",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of webhook—`webhook` for a standard reporting webhook or `js` for a JavaScript webhook.",
+                      "enum": [
+                        "webhook",
+                        "js"
+                      ],
+                      "example": "webhook",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "with_content": {
+                      "description": "Set to `true` to include the message `body` in `_sent` events.",
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "endpoint",
+                    "events"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns your webhook configuration and the ID of the webhook."
+          },
+          "400": {
+            "description": "The request was malformed."
+          },
+          "404": {
+            "description": "The webhook ID does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "trigger": {
+      "TRIGGER00": {},
+      "TRIGGER01": {},
+      "TRIGGER02": {}
+    }
+  },
+  "new": {
+    "trigger": {
+      "trigger_ref01": {}
+    }
+  },
+  "requests": {}
+}

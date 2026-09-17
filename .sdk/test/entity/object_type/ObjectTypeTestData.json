@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "object_type": {
+      "OBJECT_TYPE00": {},
+      "OBJECT_TYPE01": {},
+      "OBJECT_TYPE02": {}
+    }
+  },
+  "new": {
+    "object_type": {
+      "object_type_ref01": {}
+    }
+  },
+  "requests": {}
+}

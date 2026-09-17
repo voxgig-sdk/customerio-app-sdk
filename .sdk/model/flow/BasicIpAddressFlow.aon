@@ -1,0 +1,9 @@
+# BasicIpAddressFlow
+
+main: kit: flow: BasicIpAddressFlow:
+{
+  entity: "ip_address",
+  kind: "basic",
+  name: "BasicIpAddressFlow",
+  "key$": "BasicIpAddressFlow"
+}

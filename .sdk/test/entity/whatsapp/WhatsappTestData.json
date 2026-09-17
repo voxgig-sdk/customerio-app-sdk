@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "whatsapp": {
+      "WHATSAPP00": {},
+      "WHATSAPP01": {},
+      "WHATSAPP02": {}
+    }
+  },
+  "new": {
+    "whatsapp": {
+      "whatsapp_ref01": {}
+    }
+  },
+  "requests": {}
+}

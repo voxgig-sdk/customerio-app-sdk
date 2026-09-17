@@ -1,0 +1,10 @@
+# Entity: sms
+
+main: kit: entity: sms: {
+
+  alias: field: {}
+
+  name: "sms"
+
+
+}

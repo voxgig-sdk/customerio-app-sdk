@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LiveNotification | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a aria-current="page" href="../api/live_notification.html">LiveNotification</a><div class="nav-sections"><a class="nav-section" href="#post-v1live_notificationsend">POST /v1/live_notifications/end</a>
+<a class="nav-section" href="#post-v1live_notificationsstart">POST /v1/live_notifications/start</a>
+<a class="nav-section" href="#post-v1live_notificationsupdate">POST /v1/live_notifications/update</a>
+<a class="nav-section" href="#get-v1live_notificationsinstance_id">GET /v1/live_notifications/{instance_id}</a></div>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="livenotification">LiveNotification</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1live_notificationsend"><code>/v1/live_notifications/end</code></a></td>
+<td><code>create</code></td>
+<td>The end event was queued</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1live_notificationsstart"><code>/v1/live_notifications/start</code></a></td>
+<td><code>create</code></td>
+<td>The activity was queued. Returns the instance ID for the new activity</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1live_notificationsupdate"><code>/v1/live_notifications/update</code></a></td>
+<td><code>create</code></td>
+<td>The update was queued</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1live_notificationsinstance_id"><code>/v1/live_notifications/{instance_id}</code></a></td>
+<td><code>load</code></td>
+<td>The activity's current status</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>When the delivery was created (unix timestamp).</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The delivery ID.</td>
+</tr>
+<tr>
+<td><code>operation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The lifecycle operation the delivery carried.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Where the operation originated, the API or the device.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The delivery's status.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1live_notificationsend" class="operation" data-method="post"><code>POST</code> /v1/live_notifications/end</h3>
+<p>Operation ID: <code>endLiveNotification</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Static activity fields, for renderers that need them alongside the content state.</td>
+</tr>
+<tr>
+<td><code>content_state</code></td>
+<td><code>object or object or object</code></td>
+<td>No</td>
+<td>The final content state to show before the activity ends. Defaults to the last state you sent. The content state's shape depends on the activity's <code>notification_type</code>. For iOS or a free form Android activity, pick the free form variant. For other Android notification types, pick the matching variant below.</td>
+</tr>
+<tr>
+<td><code>deep_link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A link to open when the person taps the activity.</td>
+</tr>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The activity's instance ID (ULID), returned when you started it.</td>
+</tr>
+<tr>
+<td><code>push_payload</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The alert to accompany the end event. Optional whether Customer.io delivers directly through APNs or relays through Firebase Cloud Messaging (FCM). If you include an alert, provide both its <code>title</code> and <code>body</code>.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>push_payload.alert.body</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert body.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.sound</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The sound to play with the end event.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert title.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-the-end-event-was-queued" class="status" data-status="2xx">200: The end event was queued</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The activity's instance ID.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-instance_id-isn39t-a-valid-ulid-or-a-push_payloadalert-was-missing-a-title-or-body" class="status" data-status="4xx">400: The request was malformed, <code>instance_id</code> isn't a valid ULID, or a <code>push_payload.alert</code> was missing a <code>title</code> or <code>body</code></h5>
+<h5 id="404-live-notifications-aren39t-enabled-for-this-workspace" class="status" data-status="4xx">404: Live notifications aren't enabled for this workspace</h5>
+<h3 id="post-v1live_notificationsstart" class="operation" data-method="post"><code>POST</code> /v1/live_notifications/start</h3>
+<p>Operation ID: <code>startLiveNotification</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app_identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The identifier of the app to start the activity on, a bundle ID on iOS or a package name on Android. This only matters when your workspace has multiple apps: set it to target a device belonging to that app, or omit it to target the workspace's default app. Workspaces without multiple apps ignore this field. If you provide a value that doesn't match an app in your workspace, the request fails with a <code>400</code>.</td>
+</tr>
+<tr>
+<td><code>attributes</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>Static fields used to create the activity, an order number, a flight's origin and destination, or the teams in a match. On iOS they can't change after start. On Android, include the static fields your renderer needs on update and end calls too, because the SDK renders from a merged payload. The shape depends on your <code>notification_type</code>: pick the free form variant for iOS or a free form Android activity, or the matching bundled-template variant below. Template fields are documented for <a href="/integrations/sdk/ios/live-activities/reference/#built-in-templates">iOS</a> and <a href="/integrations/sdk/android/live-notifications/reference/#built-in-templates">Android</a>.</td>
+</tr>
+<tr>
+<td><code>content_state</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>The initial dynamic content for the activity, the status, score, or ETA the device renders. Send the complete state on every call; partial updates aren't supported. The shape depends on your <code>notification_type</code>: pick the free form variant for iOS or a free form Android activity, or the matching bundled-template variant below. Date fields are epoch seconds.</td>
+</tr>
+<tr>
+<td><code>deep_link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A link to open when the person taps the activity.</td>
+</tr>
+<tr>
+<td><code>device_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The device token identifying the device to start the activity on.</td>
+</tr>
+<tr>
+<td><code>expiration</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A unix timestamp (in seconds) for when the activity should expire. Must be no more than 6 hours in the future, values outside the range between now and that 6-hour maximum are rejected with a <code>400</code>. If you omit it (or pass <code>0</code>), the activity expires 6 hours after it starts.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Identifies the profile you want to start the activity for. You must provide exactly one of <code>id</code>, <code>email</code>, <code>phone</code>, or <code>internal</code> (our internal identifier, <code>cio_</code> followed by an alphanumeric string). You cannot target anonymous profiles.</td>
+</tr>
+<tr>
+<td><code>identifiers.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The profile's email address.</td>
+</tr>
+<tr>
+<td><code>identifiers.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The profile's <code>id</code> attribute.</td>
+</tr>
+<tr>
+<td><code>identifiers.internal</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Our internal identifier for the profile, prefixed with <code>cio_</code>.</td>
+</tr>
+<tr>
+<td><code>identifiers.phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The profile's phone number.</td>
+</tr>
+<tr>
+<td><code>notification_type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The reverse-DNS identifier of the activity type, like <code>io.customer.livenotifications.segments</code>. Must match a type your app registered with the SDK.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>enum: ios, android</code></td>
+<td>No</td>
+<td>The device platform.</td>
+</tr>
+<tr>
+<td><code>push_payload</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The alert shown when the activity starts. Required for iOS.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>push_payload.alert.body</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert body.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.sound</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The sound to play when the activity starts.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert title.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-the-activity-was-queued-returns-the-instance-id-for-the-new-activity" class="status" data-status="2xx">200: The activity was queued. Returns the instance ID for the new activity</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier (ULID) for the new activity instance. Use it to update, end, or check the status of the activity.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-a-missing-required-field-an-invalid-platform-more-or-fewer-than-one-identifier-or-a-missing-ios-alert" class="status" data-status="4xx">400: The request was malformed, a missing required field, an invalid platform, more or fewer than one identifier, or a missing iOS alert</h5>
+<h5 id="404-live-notifications-aren39t-enabled-for-this-workspace-1" class="status" data-status="4xx">404: Live notifications aren't enabled for this workspace</h5>
+<h3 id="post-v1live_notificationsupdate" class="operation" data-method="post"><code>POST</code> /v1/live_notifications/update</h3>
+<p>Operation ID: <code>updateLiveNotification</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Static activity fields, for renderers that need them alongside the content state. On iOS, attributes can't change after start.</td>
+</tr>
+<tr>
+<td><code>content_state</code></td>
+<td><code>object or object or object</code></td>
+<td>Yes</td>
+<td>The complete new content state for the activity. The content state's shape depends on the activity's <code>notification_type</code>. For iOS or a free form Android activity, pick the free form variant. For other Android notification types, pick the matching variant below. Date fields are epoch seconds.</td>
+</tr>
+<tr>
+<td><code>deep_link</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A link to open when the person taps the activity.</td>
+</tr>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The activity's instance ID (ULID), returned when you started it.</td>
+</tr>
+<tr>
+<td><code>push_payload</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The alert to accompany the update. Optional whether Customer.io delivers directly through APNs or relays through Firebase Cloud Messaging (FCM). If you include an alert, provide both its <code>title</code> and <code>body</code>.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>push_payload.alert.body</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert body.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.sound</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The sound to play with the update.</td>
+</tr>
+<tr>
+<td><code>push_payload.alert.title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The alert title.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-the-update-was-queued" class="status" data-status="2xx">200: The update was queued</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The activity's instance ID.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed-instance_id-isn39t-a-valid-ulid-or-a-push_payloadalert-was-missing-a-title-or-body-1" class="status" data-status="4xx">400: The request was malformed, <code>instance_id</code> isn't a valid ULID, or a <code>push_payload.alert</code> was missing a <code>title</code> or <code>body</code></h5>
+<h5 id="404-live-notifications-aren39t-enabled-for-this-workspace-2" class="status" data-status="4xx">404: Live notifications aren't enabled for this workspace</h5>
+<h2 id="load">load</h2>
+<h3 id="get-v1live_notificationsinstance_id" class="operation" data-method="get"><code>GET</code> /v1/live_notifications/{instance_id}</h3>
+<p>Operation ID: <code>getLiveNotification</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>instance_id</code> | <code>path</code> | <code>string</code> | Yes | The activity's instance ID (ULID), returned when you started it. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-the-activity39s-current-status" class="status" data-status="2xx">200: The activity's current status</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ended_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>When the activity ended (unix timestamp).</td>
+</tr>
+<tr>
+<td><code>expires_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>When the activity expires (unix timestamp).</td>
+</tr>
+<tr>
+<td><code>failure_reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Why the activity failed, when <code>state</code> is <code>failed</code>.</td>
+</tr>
+<tr>
+<td><code>instance_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The activity's instance ID.</td>
+</tr>
+<tr>
+<td><code>last_delivery</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The most recent delivery for the activity.</td>
+</tr>
+<tr>
+<td><code>last_delivery.created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>When the delivery was created (unix timestamp).</td>
+</tr>
+<tr>
+<td><code>last_delivery.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The delivery ID.</td>
+</tr>
+<tr>
+<td><code>last_delivery.operation</code></td>
+<td><code>enum: start, update, end</code></td>
+<td>No</td>
+<td>The lifecycle operation the delivery carried.</td>
+</tr>
+<tr>
+<td><code>last_delivery.source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Where the operation originated, the API or the device.</td>
+</tr>
+<tr>
+<td><code>last_delivery.status</code></td>
+<td><code>enum: queued, sent, failed, undeliverable</code></td>
+<td>No</td>
+<td>The delivery's status.</td>
+</tr>
+<tr>
+<td><code>notification_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The activity's reverse-DNS type identifier.</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The device platform, <code>ios</code> or <code>android</code>.</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>When the activity started (unix timestamp).</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: active, ended, expired, failed</code></td>
+<td>No</td>
+<td>The activity's lifecycle state.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-instance_id-isn39t-a-valid-ulid" class="status" data-status="4xx">400: <code>instance_id</code> isn't a valid ULID</h5>
+<h5 id="404-the-activity-wasn39t-found-a-recently-started-one-may-not-be-processed-yet-or-live-notifications-aren39t-enabled-for-this-workspace" class="status" data-status="4xx">404: The activity wasn't found, a recently started one may not be processed yet, or live notifications aren't enabled for this workspace</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

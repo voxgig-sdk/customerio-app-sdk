@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Object | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a aria-current="page" href="../api/object.html">Object</a><div class="nav-sections"><a class="nav-section" href="#post-v1objects">POST /v1/objects</a>
+<a class="nav-section" href="#get-v1objectsobject_type_idobject_idrelationships">GET /v1/objects/{object_type_id}/{object_id}/relationships</a>
+<a class="nav-section" href="#get-v1object_types">GET /v1/object_types</a>
+<a class="nav-section" href="#get-v1objectsobject_type_idobject_idattributes">GET /v1/objects/{object_type_id}/{object_id}/attributes</a></div>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="object">Object</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1objects"><code>/v1/objects</code></a></td>
+<td><code>create</code></td>
+<td>Returns arrays of <code>identifiers</code> and <code>ids</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1objectsobject_type_idobject_idrelationships"><code>/v1/objects/{object_type_id}/{object_id}/relationships</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>cio_relationships</code>. Each object in the array represents a person related to the object specified in the endpoint path</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1object_types"><code>/v1/object_types</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>types</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1objectsobject_type_idobject_idattributes"><code>/v1/objects/{object_type_id}/{object_id}/attributes</code></a></td>
+<td><code>load</code></td>
+<td>Returns information about the attributes for the <code>object</code> specified in the endpoint path</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes assigned to this object.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the object type is enabled.</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>Use <code>and</code>, <code>or</code>, and <code>not</code> to combine object attribute conditions.</td>
+</tr>
+<tr>
+<td><code>icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the icon or emoji that represents the object type in the Customer.io UI.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>object_type_id</code> that you'll use with the Journeys Track API to create or modify objects.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifies an object.</td>
+</tr>
+<tr>
+<td><code>ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of object IDs matching the object_type_id and filter in the request.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the object type.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates the next page of results.</td>
+</tr>
+<tr>
+<td><code>object_type_disabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the object is disabled.</td>
+</tr>
+<tr>
+<td><code>object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;.</td>
+</tr>
+<tr>
+<td><code>singular_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The singular name of the object type.</td>
+</tr>
+<tr>
+<td><code>singular_slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The singular slug of the page in the Customer.io UI for the object type.</td>
+</tr>
+<tr>
+<td><code>slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug of the page in the Customer.io UI for the object type.</td>
+</tr>
+<tr>
+<td><code>timestamps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The epoch timestamps when corresponding attributes were set on the object.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1objects" class="operation" data-method="post"><code>POST</code> /v1/objects</h3>
+<p>Operation ID: <code>getObjectsFilter</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>filter</code></td>
+<td><code>object or object or object or object</code></td>
+<td>Yes</td>
+<td>Use <code>and</code>, <code>or</code>, and <code>not</code> to combine object attribute conditions. The top-level object accepts one property; nest groups for complex filters.</td>
+</tr>
+<tr>
+<td><code>object_type_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type of object you want to search in. Object type IDs are integers passed as strings.</td>
+</tr>
+</tbody>
+</table>
+<p>Example request body:</p>
+<pre><code class="language-json">{
+  &quot;filter&quot;: {
+    &quot;and&quot;: [
+      {
+        &quot;object_attribute&quot;: {
+          &quot;field&quot;: &quot;name&quot;,
+          &quot;operator&quot;: &quot;exists&quot;,
+          &quot;type_id&quot;: &quot;1&quot;
+        }
+      },
+      {
+        &quot;not&quot;: {
+          &quot;object_attribute&quot;: {
+            &quot;field&quot;: &quot;name&quot;,
+            &quot;operator&quot;: &quot;eq&quot;,
+            &quot;type_id&quot;: &quot;1&quot;,
+            &quot;value&quot;: &quot;acme corp&quot;
+          }
+        }
+      }
+    ]
+  },
+  &quot;object_type_id&quot;: &quot;1&quot;
+}
+</code></pre>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-arrays-of-identifiers-and-ids" class="status" data-status="2xx">200: Returns arrays of <code>identifiers</code> and <code>ids</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>identifiers[].cio_object_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The canonical, immutable identifier for the object, assigned by Customer.io.</td>
+</tr>
+<tr>
+<td><code>identifiers[].object_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the object, assigned by you or your systems.</td>
+</tr>
+<tr>
+<td><code>ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of object IDs matching the object_type_id and filter in the request. Items are the same as the <code>object_id</code> values under <code>identifiers</code>, but this array may be easier to search/sort through if you have a large number of objects and don't need to use the <code>cio_object_id</code>.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates the next page of results. Add <code>?start=&amp;lt;next_value&amp;gt;</code> to the request to get the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="list">list</h2>
+<h3 id="get-v1objectsobject_type_idobject_idrelationships" class="operation" data-method="get"><code>GET</code> /v1/objects/{object_type_id}/{object_id}/relationships</h3>
+<p>Operation ID: <code>getObjectRelationships</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>object_type_id</code> | <code>path</code> | <code>integer</code> | Yes | The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Object type IDs begin at <code>1</code> and increment for each new type. |
+| <code>object_id</code> | <code>path</code> | <code>string</code> | Yes | The <code>object_id</code> or <code>cio_object_id</code> of an object, depending on the <code>id_type</code> specified in query params. <code>id_type</code> defaults to <code>object_id</code>. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>id_type</code> | <code>query</code> | <code>enum: object_id, cio_object_id</code> | No |  |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-array-of-cio_relationships-each-object-in-the-array-represents-a-person-related-to-the-object-specified-in-the-endpoint-path" class="status" data-status="2xx">200: Returns an array of <code>cio_relationships</code>. Each object in the array represents a person related to the object specified in the endpoint path</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cio_relationships</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of people related to the object specified in the endpoint path.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifies an individual person.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers.email</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The email address of the customer.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].object_type_disabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the object is disabled.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Object type IDs are string-formatted integers that begin at <code>1</code> and increment for each new type.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates the next page of results. Add <code>?start=&amp;lt;next_value&amp;gt;</code> to the request to get the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials-1" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1object_types" class="operation" data-method="get"><code>GET</code> /v1/object_types</h3>
+<p>Operation ID: <code>getObjectTypes</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-an-array-of-types" class="status" data-status="2xx">200: Returns an array of <code>types</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>types</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>types[].enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the object type is enabled.</td>
+</tr>
+<tr>
+<td><code>types[].icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the icon or emoji that represents the object type in the Customer.io UI. Most commonly, you'll see this in the left-side navigation panel in Journeys.</td>
+</tr>
+<tr>
+<td><code>types[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>object_type_id</code> that you'll use with the Journeys Track API to create or modify objects. Object type IDs are integers passed as strings.</td>
+</tr>
+<tr>
+<td><code>types[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the object type.</td>
+</tr>
+<tr>
+<td><code>types[].singular_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The singular name of the object type.</td>
+</tr>
+<tr>
+<td><code>types[].singular_slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The singular slug of the page in the Customer.io UI for the object type.</td>
+</tr>
+<tr>
+<td><code>types[].slug</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The slug of the page in the Customer.io UI for the object type.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials-2" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1objectsobject_type_idobject_idattributes" class="operation" data-method="get"><code>GET</code> /v1/objects/{object_type_id}/{object_id}/attributes</h3>
+<p>Operation ID: <code>getObjectAttributes</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>object_type_id</code> | <code>path</code> | <code>integer</code> | Yes | The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Object type IDs begin at <code>1</code> and increment for each new type. |
+| <code>object_id</code> | <code>path</code> | <code>string</code> | Yes | The <code>object_id</code> or <code>cio_object_id</code> of an object, depending on the <code>id_type</code> specified in query params. <code>id_type</code> defaults to <code>object_id</code>. |
+| <code>id_type</code> | <code>query</code> | <code>enum: object_id, cio_object_id</code> | No |  |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-information-about-the-attributes-for-the-object-specified-in-the-endpoint-path" class="status" data-status="2xx">200: Returns information about the attributes for the <code>object</code> specified in the endpoint path</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The object specified in the endpoint path</td>
+</tr>
+<tr>
+<td><code>object.attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes assigned to this object.</td>
+</tr>
+<tr>
+<td><code>object.identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifies an object.</td>
+</tr>
+<tr>
+<td><code>object.identifiers.cio_object_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>object.identifiers.email</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The email address of the customer.</td>
+</tr>
+<tr>
+<td><code>object.identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>object.object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Object type IDs are string-formatted integers that begin at <code>1</code> and increment for each new type.</td>
+</tr>
+<tr>
+<td><code>object.timestamps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The epoch timestamps when corresponding attributes were set on the object.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials-3" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

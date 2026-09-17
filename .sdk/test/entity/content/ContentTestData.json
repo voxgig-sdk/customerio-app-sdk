@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "content": {
+      "CONTENT00": {},
+      "CONTENT01": {},
+      "CONTENT02": {}
+    }
+  },
+  "new": {
+    "content": {
+      "content_ref01": {}
+    }
+  },
+  "requests": {}
+}

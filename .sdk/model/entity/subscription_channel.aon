@@ -1,0 +1,10 @@
+# Entity: subscription_channel
+
+main: kit: entity: subscription_channel: {
+
+  alias: field: {}
+
+  name: "subscription_channel"
+
+
+}

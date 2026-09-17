@@ -1,0 +1,9 @@
+# BasicCampaignFlow
+
+main: kit: flow: BasicCampaignFlow:
+{
+  entity: "campaign",
+  kind: "basic",
+  name: "BasicCampaignFlow",
+  "key$": "BasicCampaignFlow"
+}

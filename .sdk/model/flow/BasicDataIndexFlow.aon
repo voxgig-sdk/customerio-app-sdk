@@ -1,0 +1,18 @@
+# BasicDataIndexFlow
+
+main: kit: flow: BasicDataIndexFlow:
+{
+  entity: "data_index",
+  kind: "basic",
+  name: "BasicDataIndexFlow",
+  step: [
+    {
+      input: {
+        ref: "data_index_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicDataIndexFlow"
+}

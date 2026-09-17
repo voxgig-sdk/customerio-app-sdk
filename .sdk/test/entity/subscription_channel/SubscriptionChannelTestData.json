@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "subscription_channel": {
+      "SUBSCRIPTION_CHANNEL00": {},
+      "SUBSCRIPTION_CHANNEL01": {},
+      "SUBSCRIPTION_CHANNEL02": {}
+    }
+  },
+  "new": {
+    "subscription_channel": {
+      "subscription_channel_ref01": {}
+    }
+  },
+  "requests": {}
+}

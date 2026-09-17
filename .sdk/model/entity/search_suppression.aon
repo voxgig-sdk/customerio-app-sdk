@@ -1,0 +1,10 @@
+# Entity: search_suppression
+
+main: kit: entity: search_suppression: {
+
+  alias: field: {}
+
+  name: "search_suppression"
+
+
+}

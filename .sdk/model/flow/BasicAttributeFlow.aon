@@ -1,0 +1,9 @@
+# BasicAttributeFlow
+
+main: kit: flow: BasicAttributeFlow:
+{
+  entity: "attribute",
+  kind: "basic",
+  name: "BasicAttributeFlow",
+  "key$": "BasicAttributeFlow"
+}

@@ -1,0 +1,1405 @@
+-- Typed models for the CustomerioApp SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class Action
+
+---@class Activity
+---@field customer_id? string|nil
+---@field customer_identifiers table
+---@field data? any
+---@field delivery_id? string
+---@field delivery_type? string
+---@field id? string
+---@field name? string
+---@field timestamp? number
+---@field type? string
+---@field url? string
+
+---@class ActivityListMatch
+---@field customer_id? string
+---@field deleted? boolean
+---@field id_type? string
+---@field limit? number
+---@field name? string
+---@field start? string
+---@field type? string
+
+---@class Asset
+---@field created? number
+---@field id? number
+---@field name? string
+---@field parent_folder_id? number|nil
+---@field path? string
+---@field size? number
+---@field updated? number
+
+---@class AssetLoadMatch
+---@field id number
+
+---@class AssetListMatch
+---@field direct_descendants_only? boolean
+---@field limit? number
+---@field page? number
+---@field parent_folder_id? number
+
+---@class AssetCreateData
+---@field created? number
+---@field id? number
+---@field name? string
+---@field parent_folder_id? number|nil
+---@field path? string
+---@field size? number
+---@field updated? number
+
+---@class AssetUpdateData
+---@field id number
+---@field created? number
+---@field name? string
+---@field parent_folder_id? number|nil
+---@field path? string
+---@field size? number
+---@field updated? number
+
+---@class AssetRemoveMatch
+---@field id number
+
+---@class Attribute
+
+---@class Automation
+---@field action_id? number
+---@field actions? table
+---@field activated? table
+---@field broadcast_id? string
+---@field campaign_id? string
+---@field campaigns? table
+---@field content_id? number
+---@field converted? table
+---@field created? number
+---@field customer_id? string|nil
+---@field customer_identifiers table
+---@field deduplicate_id? string
+---@field end? string
+---@field exited_early? table
+---@field failure_message? string|nil
+---@field finished? table
+---@field forgotten? boolean
+---@field id? string
+---@field language_variants? table
+---@field link? table
+---@field message_template_id? number
+---@field messaged? table
+---@field metric? table
+---@field metrics? table
+---@field never_activated? table
+---@field newsletter_id? string
+---@field next? string
+---@field parent_action_id? number
+---@field recipient? string
+---@field res? string
+---@field series? table
+---@field start? string
+---@field started? table
+---@field subject? string
+---@field tracked_responses? table
+---@field trigger_event_id? string
+---@field type? string
+
+---@class AutomationLoadMatch
+---@field action_id? number
+---@field campaign_id number
+---@field end? number
+---@field period? string
+---@field res? string
+---@field start? number
+---@field step? number
+---@field type? string
+---@field tz? string
+---@field version? string
+---@field resolution? string
+---@field language? string
+
+---@class AutomationListMatch
+---@field action_id? number
+---@field actions? table
+---@field activated? table
+---@field broadcast_id? string
+---@field campaign_id? string
+---@field campaigns? table
+---@field content_id? number
+---@field converted? table
+---@field created? number
+---@field customer_id? string|nil
+---@field customer_identifiers? table
+---@field deduplicate_id? string
+---@field end? string
+---@field exited_early? table
+---@field failure_message? string|nil
+---@field finished? table
+---@field forgotten? boolean
+---@field id? string
+---@field language_variants? table
+---@field link? table
+---@field message_template_id? number
+---@field messaged? table
+---@field metric? table
+---@field metrics? table
+---@field never_activated? table
+---@field newsletter_id? string
+---@field next? string
+---@field parent_action_id? number
+---@field recipient? string
+---@field res? string
+---@field series? table
+---@field start? string
+---@field started? table
+---@field subject? string
+---@field tracked_responses? table
+---@field trigger_event_id? string
+---@field type? string
+
+---@class AutomationUpdateData
+---@field action_id number
+---@field campaign_id number
+---@field language? string
+---@field actions? table
+---@field activated? table
+---@field broadcast_id? string
+---@field campaigns? table
+---@field content_id? number
+---@field converted? table
+---@field created? number
+---@field customer_id? string|nil
+---@field customer_identifiers? table
+---@field deduplicate_id? string
+---@field end? string
+---@field exited_early? table
+---@field failure_message? string|nil
+---@field finished? table
+---@field forgotten? boolean
+---@field id? string
+---@field language_variants? table
+---@field link? table
+---@field message_template_id? number
+---@field messaged? table
+---@field metric? table
+---@field metrics? table
+---@field never_activated? table
+---@field newsletter_id? string
+---@field next? string
+---@field parent_action_id? number
+---@field recipient? string
+---@field res? string
+---@field series? table
+---@field start? string
+---@field started? table
+---@field subject? string
+---@field tracked_responses? table
+---@field trigger_event_id? string
+---@field type? string
+
+---@class Broadcast
+---@field actions? table
+---@field active? boolean
+---@field broadcast_id? number
+---@field created? number
+---@field created_at? number
+---@field deduplicate_id? string
+---@field errors? table
+---@field first_started? number
+---@field id? number
+---@field language_variants? table
+---@field link? table
+---@field metric? table
+---@field msg_template_ids? table
+---@field name? string
+---@field next? number
+---@field processed_at? number
+---@field state? string
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class BroadcastLoadMatch
+---@field id number
+
+---@class BroadcastListMatch
+---@field actions? table
+---@field active? boolean
+---@field broadcast_id? number
+---@field created? number
+---@field created_at? number
+---@field deduplicate_id? string
+---@field errors? table
+---@field first_started? number
+---@field id? number
+---@field language_variants? table
+---@field link? table
+---@field metric? table
+---@field msg_template_ids? table
+---@field name? string
+---@field next? number
+---@field processed_at? number
+---@field state? string
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class BroadcastUpdateData
+---@field action_id number
+---@field id number
+---@field language? string
+---@field actions? table
+---@field active? boolean
+---@field broadcast_id? number
+---@field created? number
+---@field created_at? number
+---@field deduplicate_id? string
+---@field errors? table
+---@field first_started? number
+---@field language_variants? table
+---@field link? table
+---@field metric? table
+---@field msg_template_ids? table
+---@field name? string
+---@field next? number
+---@field processed_at? number
+---@field state? string
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class Campaign
+
+---@class Collection
+---@field bytes? number
+---@field created_at? number
+---@field id? number
+---@field name? string
+---@field rows? number
+---@field schema? table
+---@field updated_at? number
+
+---@class CollectionLoadMatch
+---@field id number
+
+---@class CollectionListMatch
+---@field bytes? number
+---@field created_at? number
+---@field id? number
+---@field name? string
+---@field rows? number
+---@field schema? table
+---@field updated_at? number
+
+---@class CollectionCreateData
+---@field bytes? number
+---@field created_at? number
+---@field id? number
+---@field name? string
+---@field rows? number
+---@field schema? table
+---@field updated_at? number
+
+---@class CollectionUpdateData
+---@field id number
+---@field bytes? number
+---@field created_at? number
+---@field name? string
+---@field rows? number
+---@field schema? table
+---@field updated_at? number
+
+---@class CollectionRemoveMatch
+---@field id number
+
+---@class Content
+
+---@class Customer
+---@field cio_id string
+---@field email string|nil
+---@field filter any
+---@field id string|nil
+---@field identifiers? table
+---@field ids? table
+---@field next? string
+
+---@class CustomerLoadMatch
+---@field id string
+---@field id_type? string
+---@field language? string
+
+---@class CustomerListMatch
+---@field email string
+
+---@class CustomerCreateData
+---@field limit? number
+---@field start? string
+---@field cio_id string
+---@field email string|nil
+---@field filter any
+---@field id string|nil
+---@field identifiers? table
+---@field ids? table
+---@field next? string
+
+---@class DataIndex
+
+---@class DataIndexCreateData
+
+---@class Delivery
+
+---@class DesignStudio
+---@field content? string
+---@field created? number
+---@field id? string
+---@field name? string
+---@field parent_folder_id? string|nil
+---@field tag? string
+---@field updated? number
+
+---@class DesignStudioLoadMatch
+---@field id string
+
+---@class DesignStudioListMatch
+---@field created_after? number
+---@field created_before? number
+---@field direct_descendants_only? boolean
+---@field limit? number
+---@field page? number
+---@field parent_folder_id? string
+---@field sort_by? string
+---@field sort_order? string
+---@field tag? string
+---@field updated_after? number
+---@field updated_before? number
+
+---@class DesignStudioCreateData
+---@field content? string
+---@field created? number
+---@field id? string
+---@field name? string
+---@field parent_folder_id? string|nil
+---@field tag? string
+---@field updated? number
+
+---@class DesignStudioUpdateData
+---@field id string
+---@field content? string
+---@field created? number
+---@field name? string
+---@field parent_folder_id? string|nil
+---@field tag? string
+---@field updated? number
+
+---@class DesignStudioRemoveMatch
+---@field id string
+
+---@class DesignStudioEmail
+---@field amp? string
+---@field available_languages? table
+---@field browser? string
+---@field category? string
+---@field check? string
+---@field client? string
+---@field client_ids? table
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field created_on_publish? boolean
+---@field credits_original? number
+---@field credits_remaining? number
+---@field dependencies? table
+---@field description? string
+---@field details? string
+---@field emails? table
+---@field envelope? table
+---@field expires_at? number|nil
+---@field feedback? boolean
+---@field folders? table
+---@field has_unpublished_changes? boolean
+---@field html? string
+---@field id? string
+---@field is_linked? boolean
+---@field is_processed? boolean
+---@field is_template? boolean
+---@field language? string
+---@field language_group_id? string
+---@field lax_mode? boolean
+---@field meta? table
+---@field name? string
+---@field node? table
+---@field node_count? number
+---@field node_id? string
+---@field node_type? string
+---@field os? string
+---@field parent_folder_id? string|nil
+---@field previews? table
+---@field replayed? boolean
+---@field run_id? number
+---@field sample_data? table
+---@field severity? string
+---@field state? string
+---@field summary? string
+---@field template_id? number
+---@field text? string
+---@field tier? string
+---@field title? string
+---@field total_previews_bounced? number
+---@field total_previews_cached? number
+---@field total_previews_ready? number
+---@field total_previews_requested? number
+---@field total_previews_succeeded? number
+---@field transformers? table
+---@field updated? number
+---@field updated_at? number
+---@field version? table
+---@field version_id? string
+
+---@class DesignStudioEmailLoadMatch
+---@field id string
+
+---@class DesignStudioEmailListMatch
+---@field created_after? number
+---@field created_before? number
+---@field direct_descendants_only? boolean
+---@field has_translation? boolean
+---@field is_linked? boolean
+---@field is_template? boolean
+---@field limit? number
+---@field page? number
+---@field parent_folder_id? string
+---@field sort_by? string
+---@field sort_order? string
+---@field updated_after? number
+---@field updated_before? number
+
+---@class DesignStudioEmailCreateData
+---@field amp? string
+---@field available_languages? table
+---@field browser? string
+---@field category? string
+---@field check? string
+---@field client? string
+---@field client_ids? table
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field created_on_publish? boolean
+---@field credits_original? number
+---@field credits_remaining? number
+---@field dependencies? table
+---@field description? string
+---@field details? string
+---@field emails? table
+---@field envelope? table
+---@field expires_at? number|nil
+---@field feedback? boolean
+---@field folders? table
+---@field has_unpublished_changes? boolean
+---@field html? string
+---@field id? string
+---@field is_linked? boolean
+---@field is_processed? boolean
+---@field is_template? boolean
+---@field language? string
+---@field language_group_id? string
+---@field lax_mode? boolean
+---@field meta? table
+---@field name? string
+---@field node? table
+---@field node_count? number
+---@field node_id? string
+---@field node_type? string
+---@field os? string
+---@field parent_folder_id? string|nil
+---@field previews? table
+---@field replayed? boolean
+---@field run_id? number
+---@field sample_data? table
+---@field severity? string
+---@field state? string
+---@field summary? string
+---@field template_id? number
+---@field text? string
+---@field tier? string
+---@field title? string
+---@field total_previews_bounced? number
+---@field total_previews_cached? number
+---@field total_previews_ready? number
+---@field total_previews_requested? number
+---@field total_previews_succeeded? number
+---@field transformers? table
+---@field updated? number
+---@field updated_at? number
+---@field version? table
+---@field version_id? string
+
+---@class DesignStudioEmailUpdateData
+---@field id string
+---@field amp? string
+---@field available_languages? table
+---@field browser? string
+---@field category? string
+---@field check? string
+---@field client? string
+---@field client_ids? table
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field created_on_publish? boolean
+---@field credits_original? number
+---@field credits_remaining? number
+---@field dependencies? table
+---@field description? string
+---@field details? string
+---@field emails? table
+---@field envelope? table
+---@field expires_at? number|nil
+---@field feedback? boolean
+---@field folders? table
+---@field has_unpublished_changes? boolean
+---@field html? string
+---@field is_linked? boolean
+---@field is_processed? boolean
+---@field is_template? boolean
+---@field language? string
+---@field language_group_id? string
+---@field lax_mode? boolean
+---@field meta? table
+---@field name? string
+---@field node? table
+---@field node_count? number
+---@field node_id? string
+---@field node_type? string
+---@field os? string
+---@field parent_folder_id? string|nil
+---@field previews? table
+---@field replayed? boolean
+---@field run_id? number
+---@field sample_data? table
+---@field severity? string
+---@field state? string
+---@field summary? string
+---@field template_id? number
+---@field text? string
+---@field tier? string
+---@field title? string
+---@field total_previews_bounced? number
+---@field total_previews_cached? number
+---@field total_previews_ready? number
+---@field total_previews_requested? number
+---@field total_previews_succeeded? number
+---@field transformers? table
+---@field updated? number
+---@field updated_at? number
+---@field version? table
+---@field version_id? string
+
+---@class DesignStudioEmailRemoveMatch
+---@field id string
+
+---@class Email
+
+---@class End
+
+---@class EspSuppression
+---@field category? string
+---@field id? string
+---@field next? string
+---@field suppressions? table
+
+---@class EspSuppressionLoadMatch
+---@field id string
+---@field domain? string
+---@field limit? number
+---@field offset? number
+
+---@class EspSuppressionCreateData
+---@field email_address string
+---@field suppression_type string
+---@field category? string
+---@field id? string
+---@field next? string
+---@field suppressions? table
+
+---@class EspSuppressionRemoveMatch
+---@field email_address string
+---@field suppression_type string
+
+---@class Export
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field downloads? number
+---@field failed? boolean
+---@field id? number
+---@field status? string
+---@field total? number
+---@field type? string
+---@field updated_at? number
+---@field user_email? string
+---@field user_id? number
+
+---@class ExportLoadMatch
+---@field id number
+
+---@class ExportListMatch
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field downloads? number
+---@field failed? boolean
+---@field id? number
+---@field status? string
+---@field total? number
+---@field type? string
+---@field updated_at? number
+---@field user_email? string
+---@field user_id? number
+
+---@class ExportCreateData
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field downloads? number
+---@field failed? boolean
+---@field id? number
+---@field status? string
+---@field total? number
+---@field type? string
+---@field updated_at? number
+---@field user_email? string
+---@field user_id? number
+
+---@class Import
+---@field created_at? number
+---@field data_to_process? string
+---@field description? string
+---@field error? string
+---@field id? number
+---@field identifier? string
+---@field import any
+---@field name? string
+---@field object_type_id? string
+---@field people_to_process? string
+---@field rows_imported? number
+---@field rows_to_import? number
+---@field state? string
+---@field type? string
+---@field updated_at? number
+
+---@class ImportLoadMatch
+---@field id number
+
+---@class ImportCreateData
+---@field created_at? number
+---@field data_to_process? string
+---@field description? string
+---@field error? string
+---@field id? number
+---@field identifier? string
+---@field import any
+---@field name? string
+---@field object_type_id? string
+---@field people_to_process? string
+---@field rows_imported? number
+---@field rows_to_import? number
+---@field state? string
+---@field type? string
+---@field updated_at? number
+
+---@class InApp
+
+---@class InboxMessage
+
+---@class Info
+
+---@class InfoListMatch
+
+---@class IpAddress
+
+---@class Language
+
+---@class Link
+
+---@class LiveNotification
+---@field created_at? number
+---@field id? string
+---@field operation? string
+---@field source? string
+---@field status? string
+
+---@class LiveNotificationLoadMatch
+---@field id string
+
+---@class LiveNotificationCreateData
+---@field created_at? number
+---@field id? string
+---@field operation? string
+---@field source? string
+---@field status? string
+
+---@class Message
+---@field action_id? number
+---@field broadcast_id? string
+---@field campaign_id? string
+---@field content_id? number
+---@field created? number
+---@field customer_id? string|nil
+---@field customer_identifiers table
+---@field deduplicate_id? string
+---@field failure_message? string|nil
+---@field forgotten? boolean
+---@field id? string
+---@field message_template_id? number
+---@field metrics? table
+---@field newsletter_id? string
+---@field parent_action_id? number
+---@field recipient? string
+---@field subject? string
+---@field tracked_responses? table
+---@field trigger_event_id? string
+---@field type? string
+
+---@class MessageLoadMatch
+---@field id string
+---@field get_tracked_response? boolean
+
+---@class MessageListMatch
+---@field action_id? number
+---@field campaign_id? number
+---@field draft? boolean
+---@field end_t? number
+---@field get_tracked_response? boolean
+---@field limit? number
+---@field metric? string
+---@field newsletter_id? number
+---@field start? string
+---@field start_t? number
+---@field type? string
+
+---@class Newsletter
+---@field content_ids? table
+---@field created? number
+---@field deduplicate_id? string
+---@field id? number
+---@field name? string
+---@field recipient_segment_ids? table
+---@field sent_at? number
+---@field subscription_topic_id? number
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class NewsletterLoadMatch
+---@field id number
+
+---@class NewsletterListMatch
+---@field limit? number
+---@field sort? string
+---@field start? string
+
+---@class NewsletterCreateData
+---@field content_ids? table
+---@field created? number
+---@field deduplicate_id? string
+---@field id? number
+---@field name? string
+---@field recipient_segment_ids? table
+---@field sent_at? number
+---@field subscription_topic_id? number
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class NewsletterRemoveMatch
+---@field id number
+
+---@class NewsletterMetric
+---@field id? string
+---@field link? table
+---@field metric? table
+---@field series? table
+---@field type? string
+
+---@class NewsletterMetricLoadMatch
+---@field id number
+---@field period? string
+---@field step? number
+---@field type? string
+
+---@class NewsletterMetricListMatch
+---@field content_id? number
+---@field newsletter_id number
+---@field period? string
+---@field step? number
+---@field type? string
+---@field unique? boolean
+
+---@class NewsletterVariant
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content_ids? table
+---@field created? number
+---@field deduplicate_id? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field id? number
+---@field language? string
+---@field layout? string
+---@field name? string
+---@field newsletter_id? number
+---@field preheader_text? string
+---@field preprocessor? string
+---@field recipient? string
+---@field recipient_segment_ids? table
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field sent_at? number
+---@field subject? string
+---@field subscription_topic_id? number
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class NewsletterVariantLoadMatch
+---@field language? string
+---@field newsletter_id number
+---@field test_group_id? string
+---@field content_id? number
+
+---@class NewsletterVariantListMatch
+---@field id number
+
+---@class NewsletterVariantCreateData
+---@field newsletter_id number
+---@field test_group_id string
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content_ids? table
+---@field created? number
+---@field deduplicate_id? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field id? number
+---@field language? string
+---@field layout? string
+---@field name? string
+---@field preheader_text? string
+---@field preprocessor? string
+---@field recipient? string
+---@field recipient_segment_ids? table
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field sent_at? number
+---@field subject? string
+---@field subscription_topic_id? number
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class NewsletterVariantUpdateData
+---@field language? string
+---@field newsletter_id number
+---@field test_group_id? string
+---@field content_id? number
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content_ids? table
+---@field created? number
+---@field deduplicate_id? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field id? number
+---@field layout? string
+---@field name? string
+---@field preheader_text? string
+---@field preprocessor? string
+---@field recipient? string
+---@field recipient_segment_ids? table
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field sent_at? number
+---@field subject? string
+---@field subscription_topic_id? number
+---@field tags? table
+---@field type? string
+---@field updated? number
+
+---@class NewsletterVariantRemoveMatch
+---@field language string
+---@field newsletter_id number
+---@field test_group_id? string
+
+---@class Object
+---@field attributes? table
+---@field enabled? boolean
+---@field filter any
+---@field icon? string
+---@field id? string
+---@field identifiers? table
+---@field ids? table
+---@field name? string
+---@field next? string
+---@field object_type_disabled? boolean
+---@field object_type_id? string
+---@field singular_name? string
+---@field singular_slug? string
+---@field slug? string
+---@field timestamps? table
+
+---@class ObjectLoadMatch
+---@field id number
+---@field object_id string
+---@field id_type? string
+
+---@class ObjectListMatch
+---@field attributes? table
+---@field enabled? boolean
+---@field filter? any
+---@field icon? string
+---@field id? string
+---@field identifiers? table
+---@field ids? table
+---@field name? string
+---@field next? string
+---@field object_type_disabled? boolean
+---@field object_type_id? string
+---@field singular_name? string
+---@field singular_slug? string
+---@field slug? string
+---@field timestamps? table
+
+---@class ObjectCreateData
+---@field limit? number
+---@field start? string
+---@field attributes? table
+---@field enabled? boolean
+---@field filter any
+---@field icon? string
+---@field id? string
+---@field identifiers? table
+---@field ids? table
+---@field name? string
+---@field next? string
+---@field object_type_disabled? boolean
+---@field object_type_id? string
+---@field singular_name? string
+---@field singular_slug? string
+---@field slug? string
+---@field timestamps? table
+
+---@class ObjectType
+
+---@class OptOut
+---@field channel? string
+---@field cio_id? string
+---@field customer_id? string
+---@field from? string
+---@field optouts table
+
+---@class OptOutListMatch
+---@field from? string
+---@field limit? number
+---@field start? string
+
+---@class OptOutUpdateData
+---@field customer_id string
+---@field id_type? string
+---@field channel? string
+---@field cio_id? string
+---@field from? string
+---@field optouts? table
+
+---@class Push
+
+---@class Relationship
+
+---@class ReportingWebhook
+---@field disabled? boolean
+---@field endpoint string
+---@field events table
+---@field full_resolution? boolean
+---@field id? number
+---@field name string
+---@field type? string
+---@field with_content? boolean
+
+---@class ReportingWebhookLoadMatch
+---@field id number
+
+---@class ReportingWebhookListMatch
+---@field disabled? boolean
+---@field endpoint? string
+---@field events? table
+---@field full_resolution? boolean
+---@field id? number
+---@field name? string
+---@field type? string
+---@field with_content? boolean
+
+---@class ReportingWebhookCreateData
+---@field disabled? boolean
+---@field endpoint string
+---@field events table
+---@field full_resolution? boolean
+---@field id? number
+---@field name string
+---@field type? string
+---@field with_content? boolean
+
+---@class ReportingWebhookUpdateData
+---@field id number
+---@field disabled? boolean
+---@field endpoint? string
+---@field events? table
+---@field full_resolution? boolean
+---@field name? string
+---@field type? string
+---@field with_content? boolean
+
+---@class ReportingWebhookRemoveMatch
+---@field id number
+
+---@class SearchSuppression
+
+---@class Segment
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field id? number
+---@field name? string
+---@field progress? number|nil
+---@field segment table
+---@field state? string
+---@field tags? table|nil
+---@field type? string
+---@field updated_at? number
+
+---@class SegmentLoadMatch
+---@field id number
+
+---@class SegmentListMatch
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field id? number
+---@field name? string
+---@field progress? number|nil
+---@field segment? table
+---@field state? string
+---@field tags? table|nil
+---@field type? string
+---@field updated_at? number
+
+---@class SegmentCreateData
+---@field created_at? number
+---@field deduplicate_id? string
+---@field description? string
+---@field id? number
+---@field name? string
+---@field progress? number|nil
+---@field segment table
+---@field state? string
+---@field tags? table|nil
+---@field type? string
+---@field updated_at? number
+
+---@class SegmentRemoveMatch
+---@field id number
+
+---@class SendMessage
+---@field attachments? table
+---@field auto_create? boolean
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field body_plain? string
+---@field cc? string
+---@field custom_data? table
+---@field custom_device any
+---@field custom_payload? table
+---@field delivery_id? string
+---@field disable_css_preprocessing? boolean
+---@field disable_message_retention? boolean
+---@field fake_bcc? boolean
+---@field from? string
+---@field headers? string
+---@field id? number
+---@field identifiers? any
+---@field image_url? string
+---@field language? string
+---@field link? string
+---@field message? string
+---@field message_data? table
+---@field preheader? string
+---@field queue_draft? boolean
+---@field queued_at? number
+---@field reply_to? string
+---@field send_at? number
+---@field send_to_unsubscribed? boolean
+---@field sound? string
+---@field subject? string
+---@field title? string
+---@field to string
+---@field tracked? boolean
+---@field transactional_message_id? string
+
+---@class SendMessageCreateData
+---@field attachments? table
+---@field auto_create? boolean
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field body_plain? string
+---@field cc? string
+---@field custom_data? table
+---@field custom_device any
+---@field custom_payload? table
+---@field delivery_id? string
+---@field disable_css_preprocessing? boolean
+---@field disable_message_retention? boolean
+---@field fake_bcc? boolean
+---@field from? string
+---@field headers? string
+---@field id? number
+---@field identifiers? any
+---@field image_url? string
+---@field language? string
+---@field link? string
+---@field message? string
+---@field message_data? table
+---@field preheader? string
+---@field queue_draft? boolean
+---@field queued_at? number
+---@field reply_to? string
+---@field send_at? number
+---@field send_to_unsubscribed? boolean
+---@field sound? string
+---@field subject? string
+---@field title? string
+---@field to string
+---@field tracked? boolean
+---@field transactional_message_id? string
+
+---@class SenderIdentity
+---@field address? string
+---@field auto_generated? boolean
+---@field deduplicate_id? string
+---@field email? string
+---@field hidden? boolean
+---@field id? number
+---@field name? string
+---@field phone? string
+---@field template_type? string
+
+---@class SenderIdentityLoadMatch
+---@field id number
+
+---@class SenderIdentityListMatch
+---@field hidden? boolean
+---@field limit? number
+---@field sort? string
+---@field start? string
+
+---@class Sms
+
+---@class Snippet
+---@field id? string
+---@field name string
+---@field updated_at? number
+---@field value string
+
+---@class SnippetListMatch
+---@field id? string
+---@field name? string
+---@field updated_at? number
+---@field value? string
+
+---@class SnippetCreateData
+---@field id? string
+---@field name string
+---@field updated_at? number
+---@field value string
+
+---@class SnippetUpdateData
+---@field id? string
+---@field name? string
+---@field updated_at? number
+---@field value? string
+
+---@class SnippetRemoveMatch
+---@field id string
+
+---@class Start
+
+---@class SubscriptionCenter
+---@field description? string
+---@field id? number
+---@field identifier? string
+---@field name? string
+---@field subscribed_by_default? boolean
+---@field type? string
+
+---@class SubscriptionCenterLoadMatch
+---@field id string
+
+---@class SubscriptionCenterListMatch
+---@field description? string
+---@field id? number
+---@field identifier? string
+---@field name? string
+---@field subscribed_by_default? boolean
+---@field type? string
+
+---@class SubscriptionChannel
+
+---@class SubscriptionTopic
+
+---@class Suppression
+
+---@class TestGroup
+
+---@class Transactional
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field description? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field hide_message_body? boolean
+---@field id? number
+---@field language? string
+---@field link_tracking? boolean
+---@field name? string
+---@field open_tracking? boolean
+---@field preheader_text? string
+---@field preprocessor? string
+---@field queue_drafts? boolean
+---@field recipient? string
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field send_to_unsubscribed? boolean
+---@field subject? string
+---@field type? string
+---@field updated? number
+---@field updated_at? number
+
+---@class TransactionalLoadMatch
+---@field content_id? number
+---@field id number
+---@field language? string
+
+---@class TransactionalListMatch
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field description? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field hide_message_body? boolean
+---@field id? number
+---@field language? string
+---@field link_tracking? boolean
+---@field name? string
+---@field open_tracking? boolean
+---@field preheader_text? string
+---@field preprocessor? string
+---@field queue_drafts? boolean
+---@field recipient? string
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field send_to_unsubscribed? boolean
+---@field subject? string
+---@field type? string
+---@field updated? number
+---@field updated_at? number
+
+---@class TransactionalUpdateData
+---@field content_id? number
+---@field id number
+---@field language? string
+---@field bcc? string
+---@field body? string
+---@field body_amp? string
+---@field cc? string
+---@field content? table
+---@field created? number
+---@field created_at? number
+---@field description? string
+---@field fake_bcc? boolean
+---@field from? string
+---@field from_id? number
+---@field headers? string
+---@field hide_message_body? boolean
+---@field link_tracking? boolean
+---@field name? string
+---@field open_tracking? boolean
+---@field preheader_text? string
+---@field preprocessor? string
+---@field queue_drafts? boolean
+---@field recipient? string
+---@field reply_to? string
+---@field reply_to_id? number|nil
+---@field send_to_unsubscribed? boolean
+---@field subject? string
+---@field type? string
+---@field updated? number
+---@field updated_at? number
+
+---@class Trigger
+
+---@class Update
+
+---@class Whatsapp
+
+---@class Workspace
+---@field billable_messages_sent? number
+---@field id? number
+---@field messages_sent? number
+---@field name? string
+---@field object_types? number
+---@field objects? number
+---@field people? number
+
+---@class WorkspaceListMatch
+---@field billable_messages_sent? number
+---@field id? number
+---@field messages_sent? number
+---@field name? string
+---@field object_types? number
+---@field objects? number
+---@field people? number
+
+local M = {}
+
+return M

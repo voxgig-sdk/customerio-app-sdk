@@ -1,0 +1,119 @@
+# BasicNewsletterVariantFlow
+
+main: kit: flow: BasicNewsletterVariantFlow:
+{
+  entity: "newsletter_variant",
+  kind: "basic",
+  name: "BasicNewsletterVariantFlow",
+  step: [
+    {
+      input: {
+        ref: "newsletter_variant_ref01"
+      }
+
+      match: {
+        newsletter_id: "newsletter01",
+        test_group_id: "test_group01"
+      }
+
+      op: "create"
+    }
+
+    {
+      match: {
+        newsletter_id: "newsletter01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "newsletter_variant_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      data: {
+        newsletter_id: "newsletter01"
+      }
+
+      input: {
+        ref: "newsletter_variant_ref01",
+        srcdatavar: "newsletter_variant_ref01_data",
+        suffix: "_up0",
+        textfield: "body"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-newsletter_variant_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "newsletter_variant_ref01",
+        srcdatavar: "newsletter_variant_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "newsletter_variant01",
+        newsletter_id: "newsletter01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-newsletter_variant_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "newsletter_variant_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "newsletter_variant01",
+        newsletter_id: "newsletter01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      match: {
+        newsletter_id: "newsletter01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "newsletter_variant_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewsletterVariantFlow"
+}

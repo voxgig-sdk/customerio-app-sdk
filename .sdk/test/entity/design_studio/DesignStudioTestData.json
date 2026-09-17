@@ -1,0 +1,2389 @@
+{
+  "existing": {
+    "design_studio": {
+      "DESIGN_STUDIO00": {
+        "content": "s46",
+        "created": 71,
+        "id": "DESIGN_STUDIO00",
+        "name": "s49",
+        "parent_folder_id": "PARENT_FOLDER01",
+        "tag": "s4b",
+        "updated": 76
+      },
+      "DESIGN_STUDIO01": {
+        "content": "s8c",
+        "created": 141,
+        "id": "DESIGN_STUDIO01",
+        "name": "s8f",
+        "parent_folder_id": "PARENT_FOLDER01",
+        "tag": "s91",
+        "updated": 146
+      },
+      "DESIGN_STUDIO02": {
+        "content": "sd2",
+        "created": 211,
+        "id": "DESIGN_STUDIO02",
+        "name": "sd5",
+        "parent_folder_id": "PARENT_FOLDER01",
+        "tag": "sd7",
+        "updated": 216
+      }
+    }
+  },
+  "new": {
+    "design_studio": {
+      "design_studio_ref01": {
+        "content": "s118",
+        "created": 281,
+        "name": "s11b",
+        "parent_folder_id": "PARENT_FOLDER01",
+        "tag": "s11d",
+        "updated": 286
+      }
+    }
+  },
+  "requests": {
+    "POST /v1/design_studio/components": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createComponent",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "HTML content",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Display name of the component. You see this on your Design Studio dashboard. This may be different from the component tag name.",
+                    "example": "Custom footer",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "parent_folder_id": {
+                    "description": "UUID of the parent folder. Omit or pass `null` to create in the root directory.",
+                    "format": "uuid",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tag": {
+                    "description": "The component tag name, used to reference your component in an email. [Learn what characters you can use](/journeys/design-studio/reusable/components/code-custom-component/#component-tag-name-validation).",
+                    "example": "custom-footer",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "tag",
+                  "content"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "component": {
+                      "properties": {
+                        "content": {
+                          "description": "HTML content",
+                          "type": "string"
+                        },
+                        "created": {
+                          "description": "Unix timestamp of when the component was created.",
+                          "example": 1773856017,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "id": {
+                          "description": "ID of the component",
+                          "example": "e89b-12d3",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Display name of the component. You see this on your Design Studio dashboard. This may be different from the component tag name.",
+                          "example": "Custom footer",
+                          "type": "string"
+                        },
+                        "parent_folder_id": {
+                          "description": "ID of the parent folder, or `null` if the component is in your root directory.",
+                          "example": "123e4567-e89b-12d3-a456-426614174000",
+                          "format": "uuid",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "tag": {
+                          "description": "The component tag name, used to reference your component in an email.",
+                          "example": "custom-footer",
+                          "type": "string"
+                        },
+                        "updated": {
+                          "description": "Unix timestamp of the last update to the component.",
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Component created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request. Possible reasons:\n  - Missing or invalid name\n  - Missing or invalid tag\n  - parent_folder_id is an empty string\n  - Unknown JSON field in request body\n"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "a constraint violation prevents this operation",
+                      "status": "409"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Conflict - linked resource or other constraint violation"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "POST /v1/design_studio/folders": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createFolder",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "description": "The name of the folder. Cannot contain these characters: < > : \" / \\ | ? * .\n",
+                    "example": "Product Announcements",
+                    "maxLength": 170,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "parent_folder_id": {
+                    "description": "UUID of the parent folder. Omit or pass `null` to create at root.",
+                    "format": "uuid",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "folder": {
+                      "example": {
+                        "created": 1714732800,
+                        "id": "123e4567-e89b-12d3-a456-426614174000",
+                        "name": "Product Announcements",
+                        "parent_folder_id": null,
+                        "updated": 1714732800
+                      },
+                      "properties": {
+                        "created": {
+                          "description": "Timestamp of when the folder was created.",
+                          "format": "Unix timestamp",
+                          "type": "integer"
+                        },
+                        "id": {
+                          "description": "ID of folder",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the folder.",
+                          "type": "string"
+                        },
+                        "parent_folder_id": {
+                          "description": "The ID of the parent folder. Returns `null` if there is no parent, which means the folder is in the root directory.",
+                          "format": "uuid",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "updated": {
+                          "description": "Timestamp of last update to the folder.",
+                          "format": "Unix timestamp",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Folder created"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "errors": [
+                      {
+                        "detail": "missing or invalid name",
+                        "status": "400"
+                      }
+                    ]
+                  },
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "The name is missing or invalid, the parent folder id is an empty string, or there's an unknown JSON field in the request body",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "parent folder not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Response not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/design_studio/components": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listComponents",
+        "parameters": [
+          {
+            "description": "Filter by component tag name. This is the name of the tag inserted into your emails.",
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page number of results you want to display. Use with `limit`.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Limit the number of results per page.",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 1000,
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by parent folder. Must reference an existing folder. If not set, the response filters by the root level directory.\n\nTo list only items in the root folder, leave `parent_folder_id` unset and only set `direct_descendants_only` to `true`.\n",
+            "in": "query",
+            "name": "parent_folder_id",
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "If true, this returns only children of the parent folder.",
+            "in": "query",
+            "name": "direct_descendants_only",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "schema": {
+              "default": "created",
+              "enum": [
+                "created",
+                "updated",
+                "name"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return records created before this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "created_before",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records created after this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "created_after",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records updated before this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "updated_before",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records updated after this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "updated_after",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "components": {
+                      "items": {
+                        "properties": {
+                          "created": {
+                            "description": "Unix timestamp of when the component was created.",
+                            "example": 1773856017,
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID of the component",
+                            "example": "e89b-12d3",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Display name of the component. You see this on your Design Studio dashboard. This may be different from the component tag name.",
+                            "example": "Custom footer",
+                            "type": "string"
+                          },
+                          "parent_folder_id": {
+                            "description": "ID of the parent folder, or `null` if the component is in your root directory.",
+                            "example": "123e4567-e89b-12d3-a456-426614174000",
+                            "format": "uuid",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "tag": {
+                            "description": "The component tag name, used to reference your component in an email.",
+                            "example": "custom-footer",
+                            "type": "string"
+                          },
+                          "updated": {
+                            "description": "Unix timestamp of the last update to the component.",
+                            "example": 1773856019,
+                            "format": "int64",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "folders": {
+                      "items": {
+                        "example": {
+                          "created": 1714732800,
+                          "id": "123e4567-e89b-12d3-a456-426614174000",
+                          "name": "Product Announcements",
+                          "parent_folder_id": null,
+                          "updated": 1714732800
+                        },
+                        "properties": {
+                          "created": {
+                            "description": "Timestamp of when the folder was created.",
+                            "format": "Unix timestamp",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID of folder",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the folder.",
+                            "type": "string"
+                          },
+                          "parent_folder_id": {
+                            "description": "The ID of the parent folder. Returns `null` if there is no parent, which means the folder is in the root directory.",
+                            "format": "uuid",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "updated": {
+                            "description": "Timestamp of last update to the folder.",
+                            "format": "Unix timestamp",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "properties": {
+                        "filters": {
+                          "description": "The filters applied in your request.",
+                          "example": {
+                            "created_after": null,
+                            "created_before": 1714732800,
+                            "direct_descendants_only": true,
+                            "parent_folder_id": "123e4567-e89b-12d3-a456-426614174000",
+                            "sort_by": "created",
+                            "sort_order": "desc",
+                            "updated_after": null,
+                            "updated_before": null
+                          },
+                          "type": "object"
+                        },
+                        "pagination": {
+                          "properties": {
+                            "limit": {
+                              "description": "The number of results per page.",
+                              "type": "integer"
+                            },
+                            "page": {
+                              "description": "The page number of results you're on.",
+                              "type": "integer"
+                            },
+                            "total": {
+                              "description": "The total number of folders.",
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/design_studio/folders": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listFolders",
+        "parameters": [
+          {
+            "description": "The page number of results you want to display. Use with `limit`.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Limit the number of results per page.",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 1000,
+              "maximum": 10000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by parent folder. Must reference an existing folder. If not set, the response filters by the root level directory.\n\nTo list only items in the root folder, leave `parent_folder_id` unset and only set `direct_descendants_only` to `true`.\n",
+            "in": "query",
+            "name": "parent_folder_id",
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "description": "If true, this returns only children of the parent folder.",
+            "in": "query",
+            "name": "direct_descendants_only",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "schema": {
+              "default": "created",
+              "enum": [
+                "created",
+                "updated",
+                "name"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return records created before this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "created_before",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records created after this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "created_after",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records updated before this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "updated_before",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return records updated after this time. Must be a unix timestamp.",
+            "example": 1773856017,
+            "in": "query",
+            "name": "updated_after",
+            "schema": {
+              "format": "Unix timestamp",
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "folders": {
+                      "items": {
+                        "example": {
+                          "created": 1714732800,
+                          "id": "123e4567-e89b-12d3-a456-426614174000",
+                          "name": "Product Announcements",
+                          "parent_folder_id": null,
+                          "updated": 1714732800
+                        },
+                        "properties": {
+                          "created": {
+                            "description": "Timestamp of when the folder was created.",
+                            "format": "Unix timestamp",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID of folder",
+                            "format": "uuid",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the folder.",
+                            "type": "string"
+                          },
+                          "parent_folder_id": {
+                            "description": "The ID of the parent folder. Returns `null` if there is no parent, which means the folder is in the root directory.",
+                            "format": "uuid",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "updated": {
+                            "description": "Timestamp of last update to the folder.",
+                            "format": "Unix timestamp",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "properties": {
+                        "filters": {
+                          "description": "The filters applied in your request.",
+                          "example": {
+                            "created_after": null,
+                            "created_before": 1714732800,
+                            "direct_descendants_only": true,
+                            "parent_folder_id": "123e4567-e89b-12d3-a456-426614174000",
+                            "sort_by": "created",
+                            "sort_order": "desc",
+                            "updated_after": null,
+                            "updated_before": null
+                          },
+                          "type": "object"
+                        },
+                        "pagination": {
+                          "properties": {
+                            "limit": {
+                              "description": "The number of results per page.",
+                              "type": "integer"
+                            },
+                            "page": {
+                              "description": "The page number of results you're on.",
+                              "type": "integer"
+                            },
+                            "total": {
+                              "description": "The total number of folders.",
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "invalid query parameter",
+                      "status": "400"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/design_studio/components/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getComponent",
+        "parameters": [
+          {
+            "description": "The UUID of the component.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "component": {
+                      "properties": {
+                        "content": {
+                          "description": "HTML content",
+                          "type": "string"
+                        },
+                        "created": {
+                          "description": "Unix timestamp of when the component was created.",
+                          "example": 1773856017,
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "id": {
+                          "description": "ID of the component",
+                          "example": "e89b-12d3",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Display name of the component. You see this on your Design Studio dashboard. This may be different from the component tag name.",
+                          "example": "Custom footer",
+                          "type": "string"
+                        },
+                        "parent_folder_id": {
+                          "description": "ID of the parent folder, or `null` if the component is in your root directory.",
+                          "example": "123e4567-e89b-12d3-a456-426614174000",
+                          "format": "uuid",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "tag": {
+                          "description": "The component tag name, used to reference your component in an email.",
+                          "example": "custom-footer",
+                          "type": "string"
+                        },
+                        "updated": {
+                          "description": "Unix timestamp of the last update to the component.",
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /v1/design_studio/folders/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getFolder",
+        "parameters": [
+          {
+            "description": "The UUID of the folder.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "folder": {
+                      "example": {
+                        "created": 1714732800,
+                        "id": "123e4567-e89b-12d3-a456-426614174000",
+                        "name": "Product Announcements",
+                        "parent_folder_id": null,
+                        "updated": 1714732800
+                      },
+                      "properties": {
+                        "created": {
+                          "description": "Timestamp of when the folder was created.",
+                          "format": "Unix timestamp",
+                          "type": "integer"
+                        },
+                        "id": {
+                          "description": "ID of folder",
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the folder.",
+                          "type": "string"
+                        },
+                        "parent_folder_id": {
+                          "description": "The ID of the parent folder. Returns `null` if there is no parent, which means the folder is in the root directory.",
+                          "format": "uuid",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "updated": {
+                          "description": "Timestamp of last update to the folder.",
+                          "format": "Unix timestamp",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "DELETE /v1/design_studio/components/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteComponent",
+        "parameters": [
+          {
+            "description": "The UUID of the component.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "Component deleted"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "DELETE /v1/design_studio/folders/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteFolder",
+        "parameters": [
+          {
+            "description": "The UUID of the folder.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "Successful response, no content returned"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "a constraint violation prevents this operation",
+                      "status": "409"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Conflict - linked resource or other constraint violation"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "PUT /v1/design_studio/components/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateComponent",
+        "parameters": [
+          {
+            "description": "The UUID of the component.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "content": {
+                    "description": "HTML content",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Display name of the component. You see this on your Design Studio dashboard. This may be different from the component tag name.",
+                    "example": "custom-footer",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "parent_folder_id": {
+                    "description": "The UUID of the parent folder.\n\nOmit if you want no change to where the folder or file is located. Include `null` to move it to your root directory. Or add the UUID of another folder to move it there.\n",
+                    "format": "uuid",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tag": {
+                    "description": "The component tag name, used to reference your component in an email. Learn what [characters](/journeys/design-studio/reusable/components/code-custom-component/#component-tag-name-validation) you can use.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "description": "You must provide a body with at least one of the following properties. Omitting a field leaves it unchanged.",
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Component updated"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request. Possible reasons:\n  - No fields provided\n  - Invalid name\n  - Invalid tag\n  - parent_folder_id is an empty string\n  - Unknown JSON field in request body\n"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "a constraint violation prevents this operation",
+                      "status": "409"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Conflict - linked resource or other constraint violation"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "PUT /v1/design_studio/folders/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateFolder",
+        "parameters": [
+          {
+            "description": "The UUID of the folder.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "description": "Name of the folder. Cannot contain any of these characters: < > : \" / \\ | ? * .\n",
+                    "maxLength": 170,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "parent_folder_id": {
+                    "description": "The UUID of the parent folder.\n\nOmit if you want no change to where the folder or file is located. Include `null` to move it to your root directory. Or add the UUID of another folder to move it there.\n",
+                    "format": "uuid",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful response, no content returned"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "errors": [
+                      {
+                        "detail": "missing or invalid name",
+                        "status": "400"
+                      }
+                    ]
+                  },
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Possible reasons for error: No fields provided, invalid name, parent_folder_id is an empty string or not a valid place to move the folder to, or unknown JSON field in request body\n",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "unauthorized",
+                      "status": "401"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - missing or invalid API key"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "resource not found",
+                      "status": "404"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An error response containing one or more error details.",
+                  "properties": {
+                    "errors": {
+                      "description": "A list of errors that occurred while processing the request.",
+                      "items": {
+                        "properties": {
+                          "detail": {
+                            "description": "Reason for error",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "description": "Additional detail about the error, when there is any. A failed publish uses this to list Liquid errors per language.",
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "Response code",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Resource not found"
+          }
+        },
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
+  }
+}

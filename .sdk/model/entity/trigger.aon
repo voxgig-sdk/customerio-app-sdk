@@ -1,0 +1,18 @@
+# Entity: trigger
+
+main: kit: entity: trigger: {
+
+  alias: field: {}
+
+  name: "trigger"
+  relations: {
+    ancestors: [
+      [
+        "campaign"
+      ]
+    ]
+  }
+
+
+
+}

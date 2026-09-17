@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "relationship": {
+      "RELATIONSHIP00": {},
+      "RELATIONSHIP01": {},
+      "RELATIONSHIP02": {}
+    }
+  },
+  "new": {
+    "relationship": {
+      "relationship_ref01": {}
+    }
+  },
+  "requests": {}
+}

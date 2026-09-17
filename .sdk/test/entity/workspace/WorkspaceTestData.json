@@ -1,0 +1,137 @@
+{
+  "existing": {
+    "workspace": {
+      "WORKSPACE00": {
+        "billable_messages_sent": 70,
+        "id": "WORKSPACE00",
+        "messages_sent": 72,
+        "name": "s49",
+        "object_types": 74,
+        "objects": 75,
+        "people": 76
+      },
+      "WORKSPACE01": {
+        "billable_messages_sent": 140,
+        "id": "WORKSPACE01",
+        "messages_sent": 142,
+        "name": "s8f",
+        "object_types": 144,
+        "objects": 145,
+        "people": 146
+      },
+      "WORKSPACE02": {
+        "billable_messages_sent": 210,
+        "id": "WORKSPACE02",
+        "messages_sent": 212,
+        "name": "sd5",
+        "object_types": 214,
+        "objects": 215,
+        "people": 216
+      }
+    }
+  },
+  "new": {
+    "workspace": {
+      "workspace_ref01": {
+        "billable_messages_sent": 280,
+        "messages_sent": 282,
+        "name": "s11b",
+        "object_types": 284,
+        "objects": 285,
+        "people": 286
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/workspaces": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listWorkspaces",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "workspaces": {
+                      "items": {
+                        "description": "Contains workspace properties including the count of messages, people, and objects. Customer.io caches these counts, so your data may be up to two hours old.",
+                        "properties": {
+                          "billable_messages_sent": {
+                            "description": "The count of [emails sent](/journeys/channels/message-statuses/#sent) that are considered for billing in your current billing period. Ultimately, we only bill for the overages on your plan.",
+                            "example": 75124,
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The id of the workspace.",
+                            "example": "13XXXX",
+                            "type": "integer"
+                          },
+                          "messages_sent": {
+                            "description": "The count of [messages sent](/journeys/channels/message-statuses/#sent) via any channel (email, SMS, in-app, push, slack) in the current billing period.",
+                            "example": 100202,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "The name of the workspace.",
+                            "example": "Workspace 1",
+                            "type": "string"
+                          },
+                          "object_types": {
+                            "description": "The current count of object types in the workspace. Updates roughly every hour.",
+                            "example": 4,
+                            "type": "integer"
+                          },
+                          "objects": {
+                            "description": "The current count of object profiles in the workspace. Updates roughly every hour.",
+                            "example": 10,
+                            "type": "integer"
+                          },
+                          "people": {
+                            "description": "The current count of people profiles in the workspace. Updates roughly every hour.",
+                            "example": 25666,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of `workspaces`."
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

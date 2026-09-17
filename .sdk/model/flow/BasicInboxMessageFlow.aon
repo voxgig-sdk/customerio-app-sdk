@@ -1,0 +1,9 @@
+# BasicInboxMessageFlow
+
+main: kit: flow: BasicInboxMessageFlow:
+{
+  entity: "inbox_message",
+  kind: "basic",
+  name: "BasicInboxMessageFlow",
+  "key$": "BasicInboxMessageFlow"
+}

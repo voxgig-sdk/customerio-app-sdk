@@ -1,0 +1,9 @@
+# BasicPushFlow
+
+main: kit: flow: BasicPushFlow:
+{
+  entity: "push",
+  kind: "basic",
+  name: "BasicPushFlow",
+  "key$": "BasicPushFlow"
+}

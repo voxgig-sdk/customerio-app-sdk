@@ -1,0 +1,2720 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Broadcast | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a aria-current="page" href="../api/broadcast.html">Broadcast</a><div class="nav-sections"><a class="nav-section" href="#get-v1broadcastsbroadcast_idmessages">GET /v1/broadcasts/{broadcast_id}/messages</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idactionsaction_idmetricslinks">GET /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links</a>
+<a class="nav-section" href="#get-v1campaignsbroadcast_idtriggerstrigger_iderrors">GET /v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idmetricslinks">GET /v1/broadcasts/{broadcast_id}/metrics/links</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idactions">GET /v1/broadcasts/{broadcast_id}/actions</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idtriggers">GET /v1/broadcasts/{broadcast_id}/triggers</a>
+<a class="nav-section" href="#get-v1broadcasts">GET /v1/broadcasts</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idactionsaction_idmetrics">GET /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idmetrics">GET /v1/broadcasts/{broadcast_id}/metrics</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage">GET /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_idactionsaction_id">GET /v1/broadcasts/{broadcast_id}/actions/{action_id}</a>
+<a class="nav-section" href="#get-v1campaignsbroadcast_idtriggerstrigger_id">GET /v1/campaigns/{broadcast_id}/triggers/{trigger_id}</a>
+<a class="nav-section" href="#get-v1broadcastsbroadcast_id">GET /v1/broadcasts/{broadcast_id}</a>
+<a class="nav-section" href="#put-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage">PUT /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</a>
+<a class="nav-section" href="#put-v1broadcastsbroadcast_idactionsaction_id">PUT /v1/broadcasts/{broadcast_id}/actions/{action_id}</a></div>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="broadcast">Broadcast</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idmessages"><code>/v1/broadcasts/{broadcast_id}/messages</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>messages</code>. Each object represents a different message in your broadcast</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idactionsaction_idmetricslinks"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links</code></a></td>
+<td><code>list</code></td>
+<td>Returns broadcast variant metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1campaignsbroadcast_idtriggerstrigger_iderrors"><code>/v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of errors</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idmetricslinks"><code>/v1/broadcasts/{broadcast_id}/metrics/links</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of link objects. Each object represents a different link in your broadcast and contains independent metrics</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idactions"><code>/v1/broadcasts/{broadcast_id}/actions</code></a></td>
+<td><code>list</code></td>
+<td>Returns broadcast <code>actions</code>. Each object represents an individual variant for this broadcast</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idtriggers"><code>/v1/broadcasts/{broadcast_id}/triggers</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>triggers</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcasts"><code>/v1/broadcasts</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of API-triggered broadcasts</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idactionsaction_idmetrics"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics</code></a></td>
+<td><code>load</code></td>
+<td>Returns action metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast. For a multi-language message, also returns a per-variant breakdown in <code>language_variants</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idmetrics"><code>/v1/broadcasts/{broadcast_id}/metrics</code></a></td>
+<td><code>load</code></td>
+<td>Returns broadcast metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</code></a></td>
+<td><code>load</code></td>
+<td>Returns information for the requested language variant for a broadcast <code>action</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_idactionsaction_id"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns the requested broadcast <code>action</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1campaignsbroadcast_idtriggerstrigger_id"><code>/v1/campaigns/{broadcast_id}/triggers/{trigger_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns the status of your broadcast</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1broadcastsbroadcast_id"><code>/v1/broadcasts/{broadcast_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns metadata for the broadcast</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated broadcast action</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><a href="#put-v1broadcastsbroadcast_idactionsaction_id"><code>/v1/broadcasts/{broadcast_id}/actions/{action_id}</code></a></td>
+<td><code>update</code></td>
+<td>Returns the updated broadcast action</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>actions</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of actions used by the broadcast.</td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the broadcast is active.</td>
+</tr>
+<tr>
+<td><code>broadcast_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast.</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was update…</td>
+</tr>
+<tr>
+<td><code>errors</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of errors in the format <code>line &amp;lt;x&amp;gt;: &amp;lt;error text&amp;gt;</code> to help you troubleshoot errors associated with your audience or data file.</td>
+</tr>
+<tr>
+<td><code>first_started</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date and time when you activated the broadcast.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast trigger.</td>
+</tr>
+<tr>
+<td><code>language_variants</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metrics for each language variant of a multi-language message, keyed by the variant's action ID.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metric</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains metrics for the link.</td>
+</tr>
+<tr>
+<td><code>msg_template_ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Indicates the message template(s) used in this broadcast.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the broadcast.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The offset to pass as the <code>start</code> value to fetch the next page of errors.</td>
+</tr>
+<tr>
+<td><code>processed_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date-time when Customer.io processed the trigger.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state of the broadcast.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of tags you set on this broadcast.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of broadcast.</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-v1broadcastsbroadcast_idmessages" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/messages</h3>
+<p>Operation ID: <code>broadcastMessages</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>metric</code> | <code>query</code> | <code>enum: attempted, sent, delivered, opened, clicked, converted, ...</code> | No | Determines the metric(s) you want to return. |
+| <code>state</code> | <code>query</code> | <code>enum: failed, sent, drafted, attempted</code> | No | The state of a broadcast. |
+| <code>type</code> | <code>query</code> | <code>enum: email, webhook, twilio, whatsapp, slack, push, ...</code> | No | The type of item you want to return metrics for. When empty, the response contains metrics for all possible types. |
+| <code>start_ts</code> | <code>query</code> | <code>integer (unix timestamp)</code> | No | The beginning timestamp for your query. |
+| <code>end_ts</code> | <code>query</code> | <code>integer (unix timestamp)</code> | No | The ending timestamp for your query. |
+| <code>get_tracked_responses</code> | <code>query</code> | <code>boolean</code> | No | If true, the response includes <code>tracked_responses</code> for each message, an object containing tracked response option names for in-app survey responses. |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-an-array-of-messages-each-object-represents-a-different-message-in-your-broadcast" class="status" data-status="2xx">200: Returns an array of <code>messages</code>. Each object represents a different message in your broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages[].action_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for an action.</td>
+</tr>
+<tr>
+<td><code>messages[].broadcast_id</code></td>
+<td><code>integer or null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages[].campaign_id</code></td>
+<td><code>integer or null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages[].content_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a message in a one-time send. One-time sends can have multiple content IDs (for multi-language messages or A/B tests).</td>
+</tr>
+<tr>
+<td><code>messages[].created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifiers for the person in a response, <code>id</code>, <code>cio_id</code>, and <code>email</code>. Unset <code>id</code> or <code>email</code> values are <code>null</code>. We recommend this object over the less descriptive <code>customer_id</code>. This object doesn't include <code>phone</code>, even if your workspace uses phone numbers as an identifier; look for the person's <code>phone</code> attribute instead.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_identifiers.email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set. This is the same as the <code>customer_id</code> if present.</td>
+</tr>
+<tr>
+<td><code>messages[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>messages[].failure_message</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>Explains why a message failed, if applicable.</td>
+</tr>
+<tr>
+<td><code>messages[].forgotten</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true message contents are not retained by Customer.io.</td>
+</tr>
+<tr>
+<td><code>messages[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The identifier for a delivery, the instance of a message intended for an individual recipient.</td>
+</tr>
+<tr>
+<td><code>messages[].message_template_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier of the message template used to create a message.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metrics for an individual instance of a message; each item in the object represents the timestamp when a message achieved a particular metric. This object only contains metrics that have been recorded.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.bounced</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message <code>bounced</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.clicked</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>clicked</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.converted</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>converted</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.created</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>created</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.delivered</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>delivered</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.drafted</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>drafted</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.dropped</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>dropped</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.failed</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message <code>failed</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.human_clicked</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> messages excluding machine clicks. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.human_opened</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> messages excluding machine opens. This metric is reliable starting March 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.opened</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>opened</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.prefetch_clicked</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> messages attributed to machines. This metric is reliable starting April 20, 2025.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.prefetch_opened</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> messages attributed to machines. This metric is reliable starting March 20, 2025.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.sent</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was <code>sent</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.spammed</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message was marked as spam.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.undeliverable</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when the message became <code>undeliverable</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.unsubscribed</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The timestamp when a person unsubscribed based on this message.</td>
+</tr>
+<tr>
+<td><code>messages[].newsletter_id</code></td>
+<td><code>integer or null</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages[].parent_action_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the parent action, if the action occurred within an automation and has a parent (like a randomized split, etc).</td>
+</tr>
+<tr>
+<td><code>messages[].recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient address for an action.</td>
+</tr>
+<tr>
+<td><code>messages[].subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line for an <code>email</code> action.</td>
+</tr>
+<tr>
+<td><code>messages[].tracked_responses</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Tracked in-app survey responses, keyed by response option name. Present only when <code>get_tracked_responses</code> is <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>messages[].trigger_event_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the event that triggered an event-triggered automation (not an API-triggered broadcast).</td>
+</tr>
+<tr>
+<td><code>messages[].type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, slack, ...</code></td>
+<td>No</td>
+<td>The type of message or action for a delivery, automation action, or related object. Includes channels that one-time sends do not support (for example, <code>slack</code> and <code>whatsapp</code>).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idactionsaction_idmetricslinks" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics/links</h3>
+<p>Operation ID: <code>broadcastActionLinks</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |
+| <code>period</code> | <code>query</code> | <code>enum: hours, days, weeks, months</code> | No | The unit of time for your report. |
+| <code>steps</code> | <code>query</code> | <code>integer</code> | No | The number of periods you want to return. Defaults to the maximum available, or <code>12</code> if the period is in <code>months</code>. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month. |
+| <code>type</code> | <code>query</code> | <code>enum: email, webhook, twilio, whatsapp, slack, push, ...</code> | No | The type of item you want to return metrics for. When empty, the response contains metrics for all possible types. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-broadcast-variant-metrics-by-series-with-increments-are-based-on-the-period-and-step-in-your-request-for-the-broadcast" class="status" data-status="2xx">200: Returns broadcast variant metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Each object in the array represents a link in your broadcast variant.</td>
+</tr>
+<tr>
+<td><code>links[].link</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>links[].link.href</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The link destination, a URL, mailto, etc.</td>
+</tr>
+<tr>
+<td><code>links[].link.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the link.</td>
+</tr>
+<tr>
+<td><code>links[].metric</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains metrics for the link.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>links[].metric.series.clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of results from oldest to newest, where each result indicates a period.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series.human_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of human click counts (clicks excluding machine clicks) from oldest to newest, where each result indicates a period. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series.machine_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of machine click counts (clicks attributed to bots or prefetching) from oldest to newest, where each result indicates a period. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-1" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-1" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1campaignsbroadcast_idtriggerstrigger_iderrors" class="operation" data-method="get"><code>GET</code> /v1/campaigns/{broadcast_id}/triggers/{trigger_id}/errors</h3>
+<p>Operation ID: <code>broadcastErrors</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the broadcast that you want to return information about. |
+| <code>trigger_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the automation trigger that you want to return information for. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the broadcast that you want to return information about. |
+| <code>trigger_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the automation trigger that you want to return information for. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-an-array-of-errors" class="status" data-status="2xx">200: Returns an array of errors</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of errors in the format <code>line &amp;lt;x&amp;gt;: &amp;lt;error text&amp;gt;</code> to help you troubleshoot errors associated with your audience or data file.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The offset to pass as the <code>start</code> value to fetch the next page of errors.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-2" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-2" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idmetricslinks" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/metrics/links</h3>
+<p>Operation ID: <code>broadcastLinks</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>period</code> | <code>query</code> | <code>enum: hours, days, weeks, months</code> | No | The unit of time for your report. |
+| <code>steps</code> | <code>query</code> | <code>integer</code> | No | The number of periods you want to return. Defaults to the maximum available, or <code>12</code> if the period is in <code>months</code>. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month. |
+| <code>unique</code> | <code>query</code> | <code>boolean</code> | No | If true, the response contains only unique customer results, that is a customer who clicks a link twice is only counted once. If false, the response contains the total number of results without regard to uniqueness. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-an-array-of-link-objects-each-object-represents-a-different-link-in-your-broadcast-and-contains-independent-metrics" class="status" data-status="2xx">200: Returns an array of link objects. Each object represents a different link in your broadcast and contains independent metrics</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>links</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>links[].link</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>links[].link.href</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The link destination, a URL, mailto, etc.</td>
+</tr>
+<tr>
+<td><code>links[].link.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the link.</td>
+</tr>
+<tr>
+<td><code>links[].metric</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains metrics for the link.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>links[].metric.series.clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of results from oldest to newest, where each result indicates a period.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series.human_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of human click counts (clicks excluding machine clicks) from oldest to newest, where each result indicates a period. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>links[].metric.series.machine_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>An array of machine click counts (clicks attributed to bots or prefetching) from oldest to newest, where each result indicates a period. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-3" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-3" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idactions" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/actions</h3>
+<p>Operation ID: <code>broadcastActions</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-broadcast-actions-each-object-represents-an-individual-variant-for-this-broadcast" class="status" data-status="2xx">200: Returns broadcast <code>actions</code>. Each object represents an individual variant for this broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>actions</code></td>
+<td><code>array of object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-4" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-4" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-4" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idtriggers" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/triggers</h3>
+<p>Operation ID: <code>listBroadcastTriggers</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-an-array-of-triggers" class="status" data-status="2xx">200: Returns an array of <code>triggers</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>triggers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Each object in the array represents a time that your broadcast was triggered/sent.</td>
+</tr>
+<tr>
+<td><code>triggers[].broadcast_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast.</td>
+</tr>
+<tr>
+<td><code>triggers[].created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>triggers[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast trigger.</td>
+</tr>
+<tr>
+<td><code>triggers[].processed_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when Customer.io processed the trigger.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-5" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-5" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-5" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcasts" class="operation" data-method="get"><code>GET</code> /v1/broadcasts</h3>
+<p>Operation ID: <code>listBroadcasts</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-returns-an-array-of-api-triggered-broadcasts" class="status" data-status="2xx">200: Returns an array of API-triggered broadcasts</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>broadcasts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>broadcasts[].actions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of actions used by the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].actions[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for the action.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].actions[].type</code></td>
+<td><code>enum: email, webhook, push, sms, slack</code></td>
+<td>No</td>
+<td>The type of action.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].active</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the broadcast is active.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].first_started</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when you activated the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].msg_template_ids</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Indicates the message template(s) used in this broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].msg_template_ids[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for the template.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].msg_template_ids[].type</code></td>
+<td><code>enum: email, webhook, push, sms, slack</code></td>
+<td>No</td>
+<td>The type of template.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].state</code></td>
+<td><code>enum: running, draft</code></td>
+<td>No</td>
+<td>The state of the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags you set on this broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].type</code></td>
+<td><code>enum: triggered_broadcast</code></td>
+<td>No</td>
+<td>The type of broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcasts[].updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-6" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1broadcastsbroadcast_idactionsaction_idmetrics" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}/metrics</h3>
+<p>Operation ID: <code>broadcastActionMetrics</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |
+| <code>period</code> | <code>query</code> | <code>enum: hours, days, weeks, months</code> | No | The unit of time for your report. |
+| <code>steps</code> | <code>query</code> | <code>integer</code> | No | The number of periods you want to return. Defaults to the maximum available, or <code>12</code> if the period is in <code>months</code>. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month. |
+| <code>type</code> | <code>query</code> | <code>enum: email, webhook, twilio, whatsapp, slack, push, ...</code> | No | The type of item you want to return metrics for. When empty, the response contains metrics for all possible types. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-returns-action-metrics-by-series-with-increments-are-based-on-the-period-and-step-in-your-request-for-the-broadcast-for-a-multi-language-message-also-returns-a-per-variant-breakdown-in-language_variants" class="status" data-status="2xx">200: Returns action metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast. For a multi-language message, also returns a per-variant breakdown in <code>language_variants</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>language_variants</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metrics for each language variant of a multi-language message, keyed by the variant's action ID. Only returned when you request metrics for a multi-language branch action.</td>
+</tr>
+<tr>
+<td><code>metric</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metric.series</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metrics grouped by the requested resolution. Each property is an array where each entry represents one period, such as one day.</td>
+</tr>
+<tr>
+<td><code>metric.series.attempted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>attempted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.bounced</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>bounced</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.converted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>converted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.created</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>created</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.deferred</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>deferred</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.delivered</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>delivered</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.drafted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>drafted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.failed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>failed</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.human_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> emails excluding machine clicks. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.human_opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> emails excluding machine opens. This metric is reliable starting March 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.link_untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of emails delivered with link tracking inactive for any reason. We subtract these from the click-rate denominator.</td>
+</tr>
+<tr>
+<td><code>metric.series.machine_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> emails attributed to machines, security scanners, bot user agents, known proxy services, and repetitive click patterns. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.open_untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of emails delivered with open tracking inactive for any reason, including the consent opt-outs that <code>untracked</code> counts and messages sent with open tracking disabled. We subtract these from the open-rate denominator.</td>
+</tr>
+<tr>
+<td><code>metric.series.opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.prefetch_opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> emails attributed to machines. This metric is reliable starting March 20, 2025.</td>
+</tr>
+<tr>
+<td><code>metric.series.replied</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of SMS/MMS messages a person replied to with a keyword. <a href="/messaging/channels/sms/inbound/get-started/">Learn more about inbound messages</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.sent</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of sent messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.spammed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of spam complaints.</td>
+</tr>
+<tr>
+<td><code>metric.series.suppressed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>suppressed</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.topic_unsubscribed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of topic unsubscribes in a given period.</td>
+</tr>
+<tr>
+<td><code>metric.series.tracking_consent_denied</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of people who denied consent to email open tracking in the period.</td>
+</tr>
+<tr>
+<td><code>metric.series.tracking_consent_granted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of people who granted consent to email open tracking in the period.</td>
+</tr>
+<tr>
+<td><code>metric.series.undeliverable</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>undeliverable</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.unsubscribed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of unsubscribes attributed to the automation or message.</td>
+</tr>
+<tr>
+<td><code>metric.series.untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>sent</code> emails whose open pixel we withheld because the person opted out of open tracking. We exclude these from the open-rate denominator; click tracking is unaffected.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-6" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-6" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-7" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idmetrics" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/metrics</h3>
+<p>Operation ID: <code>broadcastMetrics</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>period</code> | <code>query</code> | <code>enum: hours, days, weeks, months</code> | No | The unit of time for your report. |
+| <code>steps</code> | <code>query</code> | <code>integer</code> | No | The number of periods you want to return. Defaults to the maximum available, or <code>12</code> if the period is in <code>months</code>. Maximums are 24 hours, 45 days, 12 weeks, or 121 months. Days start at 00:00 EST. Weeks start at 00:00 EST on Sunday. Months start at 00:00 EST on the 1st of the month. |
+| <code>type</code> | <code>query</code> | <code>enum: email, webhook, twilio, whatsapp, slack, push, ...</code> | No | The type of item you want to return metrics for. When empty, the response contains metrics for all possible types. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-returns-broadcast-metrics-by-series-with-increments-are-based-on-the-period-and-step-in-your-request-for-the-broadcast" class="status" data-status="2xx">200: Returns broadcast metrics by <code>series</code> (with increments are based on the <code>period</code> and <code>step</code> in your request) for the broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metric</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>metric.series</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Metrics grouped by the requested resolution. Each property is an array where each entry represents one period, such as one day.</td>
+</tr>
+<tr>
+<td><code>metric.series.attempted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>attempted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.bounced</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>bounced</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.converted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>converted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.created</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>created</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.deferred</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>deferred</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.delivered</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>delivered</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.drafted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>drafted</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.failed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>failed</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.human_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> emails excluding machine clicks. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.human_opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> emails excluding machine opens. This metric is reliable starting March 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.link_untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of emails delivered with link tracking inactive for any reason. We subtract these from the click-rate denominator.</td>
+</tr>
+<tr>
+<td><code>metric.series.machine_clicked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>clicked</code> emails attributed to machines, security scanners, bot user agents, known proxy services, and repetitive click patterns. This metric is reliable starting April 20, 2025. <a href="/messaging/metrics/analytics/#delivery-metrics">Learn more</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.open_untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of emails delivered with open tracking inactive for any reason, including the consent opt-outs that <code>untracked</code> counts and messages sent with open tracking disabled. We subtract these from the open-rate denominator.</td>
+</tr>
+<tr>
+<td><code>metric.series.opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.prefetch_opened</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>opened</code> emails attributed to machines. This metric is reliable starting March 20, 2025.</td>
+</tr>
+<tr>
+<td><code>metric.series.replied</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of SMS/MMS messages a person replied to with a keyword. <a href="/messaging/channels/sms/inbound/get-started/">Learn more about inbound messages</a>.</td>
+</tr>
+<tr>
+<td><code>metric.series.sent</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of sent messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.spammed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of spam complaints.</td>
+</tr>
+<tr>
+<td><code>metric.series.suppressed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>suppressed</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.topic_unsubscribed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of topic unsubscribes in a given period.</td>
+</tr>
+<tr>
+<td><code>metric.series.tracking_consent_denied</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of people who denied consent to email open tracking in the period.</td>
+</tr>
+<tr>
+<td><code>metric.series.tracking_consent_granted</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of people who granted consent to email open tracking in the period.</td>
+</tr>
+<tr>
+<td><code>metric.series.undeliverable</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>undeliverable</code> messages.</td>
+</tr>
+<tr>
+<td><code>metric.series.unsubscribed</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of unsubscribes attributed to the automation or message.</td>
+</tr>
+<tr>
+<td><code>metric.series.untracked</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The number of <code>sent</code> emails whose open pixel we withheld because the person opted out of open tracking. We exclude these from the open-rate denominator; click tracking is unaffected.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-7" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-7" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-8" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</h3>
+<p>Operation ID: <code>getBroadcastActionLanguage</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-returns-information-for-the-requested-language-variant-for-a-broadcast-action" class="status" data-status="2xx">200: Returns information for the requested language variant for a broadcast <code>action</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-or-the-language-does-not-exist-for-this-action" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid. Or the <code>language</code> does not exist for this action</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-8" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-9" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_idactionsaction_id" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}</h3>
+<p>Operation ID: <code>getBroadcastAction</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-returns-the-requested-broadcast-action" class="status" data-status="2xx">200: Returns the requested broadcast <code>action</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-or-the-language-does-not-exist-for-this-action-1" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid. Or the <code>language</code> does not exist for this action</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-9" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-10" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1campaignsbroadcast_idtriggerstrigger_id" class="operation" data-method="get"><code>GET</code> /v1/campaigns/{broadcast_id}/triggers/{trigger_id}</h3>
+<p>Operation ID: <code>broadcastStatus</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the broadcast that you want to return information about. |
+| <code>trigger_id</code> | <code>path</code> | <code>integer</code> | Yes | The ID of the automation trigger that you want to return information for. |</p>
+<h4 id="responses-11">Responses</h4>
+<h5 id="200-returns-the-status-of-your-broadcast" class="status" data-status="2xx">200: Returns the status of your broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>broadcast_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast.</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast trigger.</td>
+</tr>
+<tr>
+<td><code>processed_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when Customer.io processed the trigger.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-8" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-10" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-11" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1broadcastsbroadcast_id" class="operation" data-method="get"><code>GET</code> /v1/broadcasts/{broadcast_id}</h3>
+<p>Operation ID: <code>getBroadcast</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-11">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |</p>
+<h4 id="responses-12">Responses</h4>
+<h5 id="200-returns-metadata-for-the-broadcast" class="status" data-status="2xx">200: Returns metadata for the broadcast</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>broadcast</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>broadcast.actions</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of actions used by the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.actions[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for the action.</td>
+</tr>
+<tr>
+<td><code>broadcast.actions[].type</code></td>
+<td><code>enum: email, webhook, push, sms, slack</code></td>
+<td>No</td>
+<td>The type of action.</td>
+</tr>
+<tr>
+<td><code>broadcast.active</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the broadcast is active.</td>
+</tr>
+<tr>
+<td><code>broadcast.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>broadcast.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>broadcast.first_started</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when you activated the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.msg_template_ids</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Indicates the message template(s) used in this broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.msg_template_ids[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for the template.</td>
+</tr>
+<tr>
+<td><code>broadcast.msg_template_ids[].type</code></td>
+<td><code>enum: email, webhook, push, sms, slack</code></td>
+<td>No</td>
+<td>The type of template.</td>
+</tr>
+<tr>
+<td><code>broadcast.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.state</code></td>
+<td><code>enum: running, draft</code></td>
+<td>No</td>
+<td>The state of the broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags you set on this broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.type</code></td>
+<td><code>enum: triggered_broadcast</code></td>
+<td>No</td>
+<td>The type of broadcast.</td>
+</tr>
+<tr>
+<td><code>broadcast.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-9" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-11" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-12" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="update">update</h2>
+<h3 id="put-v1broadcastsbroadcast_idactionsaction_idlanguagelanguage" class="operation" data-method="put"><code>PUT</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}/language/{language}</h3>
+<p>Operation ID: <code>updateBroadcastActionLanguage</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-12">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |
+| <code>language</code> | <code>path</code> | <code>string</code> | Yes | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> of a language variant. If you don't provide a language (an empty string), we'll use your default language. If the language variant does not exist, we'll return an error. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object</code>.</p>
+<h4 id="responses-13">Responses</h4>
+<h5 id="200-returns-the-updated-broadcast-action" class="status" data-status="2xx">200: Returns the updated broadcast action</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-or-the-language-does-not-exist-for-this-action-2" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid. Or the <code>language</code> does not exist for this action</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-12" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-13" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="put-v1broadcastsbroadcast_idactionsaction_id" class="operation" data-method="put"><code>PUT</code> /v1/broadcasts/{broadcast_id}/actions/{action_id}</h3>
+<p>Operation ID: <code>updateBroadcastAction</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-13">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>broadcast_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a broadcast. |
+| <code>action_id</code> | <code>path</code> | <code>integer</code> | Yes | The action you want to lookup or act on. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object or object or object or object</code>.</p>
+<h4 id="responses-14">Responses</h4>
+<h5 id="200-returns-the-updated-broadcast-action-1" class="status" data-status="2xx">200: Returns the updated broadcast action</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>object or object or object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-broadcastid-actionid-or-triggerid-is-invalid-or-the-language-does-not-exist-for-this-action-3" class="status" data-status="4xx">400: The <code>broadcastID</code>, <code>actionID</code> or <code>triggerID</code> is invalid. Or the <code>language</code> does not exist for this action</h5>
+<h5 id="404-the-broadcast-action-andor-trigger-do-not-exist-13" class="status" data-status="4xx">404: The broadcast, action, and/or trigger do not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-14" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

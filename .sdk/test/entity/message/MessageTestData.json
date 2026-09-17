@@ -1,0 +1,1483 @@
+{
+  "existing": {
+    "message": {
+      "MESSAGE00": {
+        "action_id": "ACTION01",
+        "broadcast_id": "BROADCAST01",
+        "campaign_id": "CAMPAIGN01",
+        "content_id": "CONTENT01",
+        "created": 204,
+        "customer_id": "CUSTOMER01",
+        "customer_identifiers": {},
+        "deduplicate_id": "DEDUPLICATE01",
+        "failure_message": "sd0",
+        "forgotten": false,
+        "id": "MESSAGE00",
+        "message_template_id": "MESSAGE_TEMPLATE01",
+        "metrics": {},
+        "newsletter_id": "NEWSLETTER01",
+        "parent_action_id": "PARENT_ACTION01",
+        "recipient": "sd7",
+        "subject": "sd8",
+        "tracked_responses": {},
+        "trigger_event_id": "TRIGGER_EVENT01",
+        "type": "sdb"
+      },
+      "MESSAGE01": {
+        "action_id": "ACTION01",
+        "broadcast_id": "BROADCAST01",
+        "campaign_id": "CAMPAIGN01",
+        "content_id": "CONTENT01",
+        "created": 404,
+        "customer_id": "CUSTOMER01",
+        "customer_identifiers": {},
+        "deduplicate_id": "DEDUPLICATE01",
+        "failure_message": "s198",
+        "forgotten": false,
+        "id": "MESSAGE01",
+        "message_template_id": "MESSAGE_TEMPLATE01",
+        "metrics": {},
+        "newsletter_id": "NEWSLETTER01",
+        "parent_action_id": "PARENT_ACTION01",
+        "recipient": "s19f",
+        "subject": "s1a0",
+        "tracked_responses": {},
+        "trigger_event_id": "TRIGGER_EVENT01",
+        "type": "s1a3"
+      },
+      "MESSAGE02": {
+        "action_id": "ACTION01",
+        "broadcast_id": "BROADCAST01",
+        "campaign_id": "CAMPAIGN01",
+        "content_id": "CONTENT01",
+        "created": 604,
+        "customer_id": "CUSTOMER01",
+        "customer_identifiers": {},
+        "deduplicate_id": "DEDUPLICATE01",
+        "failure_message": "s260",
+        "forgotten": false,
+        "id": "MESSAGE02",
+        "message_template_id": "MESSAGE_TEMPLATE01",
+        "metrics": {},
+        "newsletter_id": "NEWSLETTER01",
+        "parent_action_id": "PARENT_ACTION01",
+        "recipient": "s267",
+        "subject": "s268",
+        "tracked_responses": {},
+        "trigger_event_id": "TRIGGER_EVENT01",
+        "type": "s26b"
+      }
+    }
+  },
+  "new": {
+    "message": {
+      "message_ref01": {
+        "action_id": "ACTION01",
+        "broadcast_id": "BROADCAST01",
+        "campaign_id": "CAMPAIGN01",
+        "content_id": "CONTENT01",
+        "created": 804,
+        "customer_id": "CUSTOMER01",
+        "customer_identifiers": {},
+        "deduplicate_id": "DEDUPLICATE01",
+        "failure_message": "s328",
+        "forgotten": false,
+        "message_template_id": "MESSAGE_TEMPLATE01",
+        "metrics": {},
+        "newsletter_id": "NEWSLETTER01",
+        "parent_action_id": "PARENT_ACTION01",
+        "recipient": "s32f",
+        "subject": "s330",
+        "tracked_responses": {},
+        "trigger_event_id": "TRIGGER_EVENT01",
+        "type": "s333"
+      }
+    }
+  },
+  "requests": {
+    "GET /v1/messages": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listMessages",
+        "parameters": [
+          {
+            "description": "The token for the page of results you want to return. Responses contain a `next` property. Use this property as the `start` value to return the next page of results.",
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The maximum number of results you want to retrieve per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 1000,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The type of item you want to return metrics for. When empty, the response contains metrics for all possible types.",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "email",
+                "webhook",
+                "twilio",
+                "whatsapp",
+                "slack",
+                "push",
+                "in_app",
+                "live_notification"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Determines the metric(s) you want to return.",
+            "in": "query",
+            "name": "metric",
+            "required": false,
+            "schema": {
+              "enum": [
+                "attempted",
+                "sent",
+                "delivered",
+                "opened",
+                "clicked",
+                "converted",
+                "bounced",
+                "spammed",
+                "unsubscribed",
+                "dropped",
+                "failed",
+                "undeliverable"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "If true, your request returns drafts rather than active/sent messages.",
+            "in": "query",
+            "name": "drafts",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The automation you want to filter for.",
+            "in": "query",
+            "name": "campaign_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The one-time send you want to filter for.",
+            "in": "query",
+            "name": "newsletter_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The action you want to filter for.",
+            "in": "query",
+            "name": "action_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The beginning timestamp for your query.",
+            "in": "query",
+            "name": "start_ts",
+            "required": false,
+            "schema": {
+              "format": "unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The ending timestamp for your query.",
+            "in": "query",
+            "name": "end_ts",
+            "required": false,
+            "schema": {
+              "format": "unix timestamp",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "If true, the response includes `tracked_responses` for each message—an object containing tracked response option names for in-app survey responses.",
+            "in": "query",
+            "name": "get_tracked_responses",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "email": {
+                    "summary": "An email message",
+                    "value": {
+                      "messages": [
+                        {
+                          "action_id": 215,
+                          "broadcast_id": null,
+                          "campaign_id": 23,
+                          "content_id": null,
+                          "created": 1619137767,
+                          "customer_id": null,
+                          "deduplicate_id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=:1619137768",
+                          "failure_message": null,
+                          "forgotten": false,
+                          "id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                          "metrics": {
+                            "delivered": 1619137768,
+                            "sent": 1619137768
+                          },
+                          "msg_template_id": 43,
+                          "newsletter_id": null,
+                          "parent_action_id": null,
+                          "recipient": "person@example.com",
+                          "subject": "Did you get that thing I sent you?",
+                          "trigger_event_id": null,
+                          "type": "email"
+                        }
+                      ]
+                    }
+                  },
+                  "in-app": {
+                    "summary": "An in-app message with tracked survey responses",
+                    "value": {
+                      "messages": [
+                        {
+                          "action_id": 312,
+                          "broadcast_id": null,
+                          "campaign_id": 45,
+                          "content_id": null,
+                          "created": 1715769500,
+                          "customer_id": "user_2048",
+                          "deduplicate_id": "bX2r7YZq8RCAAB5_DGopeWY8nGlEcSGv8fl=:1715769500",
+                          "failure_message": null,
+                          "forgotten": false,
+                          "id": "bX2r7YZq8RCAAB5_DGopeWY8nGlEcSGv8fl=",
+                          "metrics": {
+                            "opened": 1715769550,
+                            "sent": 1715769500
+                          },
+                          "msg_template_id": 87,
+                          "newsletter_id": null,
+                          "parent_action_id": null,
+                          "recipient": "user_2048",
+                          "subject": null,
+                          "tracked_responses": {
+                            "how-satisfied": {
+                              "id": 1,
+                              "ts": 1715769560
+                            },
+                            "would-recommend": {
+                              "id": 2,
+                              "ts": 1715769565
+                            }
+                          },
+                          "trigger_event_id": null,
+                          "type": "in_app"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "messages": {
+                      "description": "Each object in the array describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null.",
+                      "items": {
+                        "description": "Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null.",
+                        "example": {
+                          "action_id": 215,
+                          "broadcast_id": null,
+                          "campaign_id": 23,
+                          "content_id": null,
+                          "created": 1619137767,
+                          "customer_id": null,
+                          "deduplicate_id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=:1619137768",
+                          "failure_message": null,
+                          "forgotten": false,
+                          "id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                          "metrics": {
+                            "delivered": 1619137768,
+                            "sent": 1619137768
+                          },
+                          "msg_template_id": 43,
+                          "newsletter_id": null,
+                          "parent_action_id": null,
+                          "recipient": "person@example.com",
+                          "subject": "Did you get that thing I sent you?",
+                          "trigger_event_id": null,
+                          "type": "email"
+                        },
+                        "properties": {
+                          "action_id": {
+                            "description": "The identifier for an action.",
+                            "example": 96,
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "broadcast_id": {
+                            "oneOf": [
+                              {
+                                "description": "The identifier for a broadcast.",
+                                "example": 2,
+                                "type": "integer"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "campaign_id": {
+                            "oneOf": [
+                              {
+                                "description": "The identifier for an automation.",
+                                "example": 5,
+                                "type": "integer"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "content_id": {
+                            "description": "The identifier for a message in a one-time send. One-time sends can have multiple content IDs (for multi-language messages or A/B tests).",
+                            "example": 1,
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "created": {
+                            "description": "The date time when the referenced ID was created.",
+                            "example": 1552341937,
+                            "format": "unix timestamp",
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "customer_id": {
+                            "description": "The ID of a customer profile, analogous to a \"person\" in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.",
+                            "example": "42",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "customer_identifiers": {
+                            "description": "Identifiers for the person in a response—`id`, `cio_id`, and `email`. Unset `id` or `email` values are `null`. We recommend this object over the less descriptive `customer_id`. This object doesn't include `phone`, even if your workspace uses phone numbers as an identifier; look for the person's `phone` attribute instead.",
+                            "properties": {
+                              "cio_id": {
+                                "description": "A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.",
+                                "example": "a3000001",
+                                "type": "string"
+                              },
+                              "email": {
+                                "description": "A person's email address, if set.",
+                                "example": "test@example.com",
+                                "format": "email",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "id": {
+                                "description": "A person's unique ID, if set. This is the same as the `customer_id` if present.",
+                                "example": 2,
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "email",
+                              "id",
+                              "cio_id"
+                            ],
+                            "type": "object"
+                          },
+                          "deduplicate_id": {
+                            "description": "An identifier in the format `id:timestamp` where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.",
+                            "example": "15:1492548073",
+                            "readOnly": true,
+                            "type": "string"
+                          },
+                          "failure_message": {
+                            "description": "Explains why a message failed, if applicable.",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "forgotten": {
+                            "description": "If true message contents are not retained by Customer.io.",
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "description": "The identifier for a delivery—the instance of a message intended for an individual recipient.",
+                            "example": "dgOq6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                            "readOnly": true,
+                            "type": "string"
+                          },
+                          "message_template_id": {
+                            "deprecated": true,
+                            "description": "The identifier of the message template used to create a message.",
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "metrics": {
+                            "description": "Metrics for an individual instance of a message; each item in the object represents the timestamp when a message achieved a particular metric. This object only contains metrics that have been recorded.",
+                            "properties": {
+                              "bounced": {
+                                "description": "The timestamp when the message `bounced`.",
+                                "type": "integer"
+                              },
+                              "clicked": {
+                                "description": "The timestamp when the message was `clicked`.",
+                                "type": "integer"
+                              },
+                              "converted": {
+                                "description": "The timestamp when the message was `converted`.",
+                                "type": "integer"
+                              },
+                              "created": {
+                                "description": "The timestamp when the message was `created`.",
+                                "type": "integer"
+                              },
+                              "delivered": {
+                                "description": "The timestamp when the message was `delivered`.",
+                                "type": "integer"
+                              },
+                              "drafted": {
+                                "description": "The timestamp when the message was `drafted`.",
+                                "type": "integer"
+                              },
+                              "dropped": {
+                                "description": "The timestamp when the message was `dropped`.",
+                                "type": "integer"
+                              },
+                              "failed": {
+                                "description": "The timestamp when the message `failed`.",
+                                "type": "integer"
+                              },
+                              "human_clicked": {
+                                "description": "The number of `clicked` messages excluding machine clicks. This metric is reliable starting April 20, 2025. [Learn more](/messaging/metrics/analytics/#delivery-metrics).",
+                                "type": "integer"
+                              },
+                              "human_opened": {
+                                "description": "The number of `opened` messages excluding machine opens. This metric is reliable starting March 20, 2025. [Learn more](/messaging/metrics/analytics/#delivery-metrics).",
+                                "type": "integer"
+                              },
+                              "opened": {
+                                "description": "The timestamp when the message was `opened`.",
+                                "type": "integer"
+                              },
+                              "prefetch_clicked": {
+                                "description": "The number of `clicked` messages attributed to machines. This metric is reliable starting April 20, 2025.",
+                                "type": "integer"
+                              },
+                              "prefetch_opened": {
+                                "description": "The number of `opened` messages attributed to machines. This metric is reliable starting March 20, 2025.",
+                                "type": "integer"
+                              },
+                              "sent": {
+                                "description": "The timestamp when the message was `sent`.",
+                                "type": "integer"
+                              },
+                              "spammed": {
+                                "description": "The timestamp when the message was marked as spam.",
+                                "type": "integer"
+                              },
+                              "undeliverable": {
+                                "description": "The timestamp when the message became `undeliverable`.",
+                                "type": "integer"
+                              },
+                              "unsubscribed": {
+                                "description": "The timestamp when a person unsubscribed based on this message.",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "newsletter_id": {
+                            "oneOf": [
+                              {
+                                "description": "The identifier for a one-time send.",
+                                "example": 10,
+                                "type": "integer"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "parent_action_id": {
+                            "description": "The ID of the parent action, if the action occurred within an automation and has a parent (like a randomized split, etc).",
+                            "example": 1,
+                            "readOnly": true,
+                            "type": "integer"
+                          },
+                          "recipient": {
+                            "description": "The recipient address for an action.",
+                            "example": "{{customer.email}}",
+                            "type": "string"
+                          },
+                          "subject": {
+                            "description": "The subject line for an `email` action.",
+                            "example": "Did you get that thing I sent you?",
+                            "type": "string"
+                          },
+                          "tracked_responses": {
+                            "additionalProperties": {
+                              "properties": {
+                                "id": {
+                                  "description": "The identifier for the tracked response.",
+                                  "type": "integer"
+                                },
+                                "ts": {
+                                  "description": "A unix timestamp representing when the response was tracked.",
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "description": "Tracked in-app survey responses, keyed by response option name. Present only when `get_tracked_responses` is `true`.",
+                            "example": {
+                              "cool-button": {
+                                "id": 1,
+                                "ts": 1715769600
+                              },
+                              "cool-button-2": {
+                                "id": 2,
+                                "ts": 1715769600
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "trigger_event_id": {
+                            "description": "The id of the event that triggered an event-triggered automation (not an API-triggered broadcast).",
+                            "example": "21E4C3CT6YDC7Y4N7FE1GWWABC",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of message or action for a delivery, automation action, or related object. Includes channels that one-time sends do not support (for example, `slack` and `whatsapp`).",
+                            "enum": [
+                              "email",
+                              "webhook",
+                              "twilio",
+                              "push",
+                              "in_app",
+                              "slack",
+                              "whatsapp",
+                              "live_notification"
+                            ],
+                            "example": "email",
+                            "readOnly": true,
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns an array of message objects."
+          },
+          "400": {
+            "description": "The request was malformed."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/messages/{message_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "description": "The identifier of a message.",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "If true, the response includes `tracked_responses` for each message—an object containing tracked response option names for in-app survey responses.",
+            "in": "query",
+            "name": "get_tracked_responses",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "email": {
+                    "summary": "An email message",
+                    "value": {
+                      "message": {
+                        "action_id": 215,
+                        "broadcast_id": null,
+                        "campaign_id": 23,
+                        "content_id": null,
+                        "created": 1619137767,
+                        "customer_id": null,
+                        "deduplicate_id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=:1619137768",
+                        "failure_message": null,
+                        "forgotten": false,
+                        "id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                        "metrics": {
+                          "delivered": 1619137768,
+                          "sent": 1619137768
+                        },
+                        "msg_template_id": 43,
+                        "newsletter_id": null,
+                        "parent_action_id": null,
+                        "recipient": "person@example.com",
+                        "subject": "Did you get that thing I sent you?",
+                        "trigger_event_id": null,
+                        "type": "email"
+                      }
+                    }
+                  },
+                  "in-app": {
+                    "summary": "An in-app message with tracked survey responses",
+                    "value": {
+                      "message": {
+                        "action_id": 312,
+                        "broadcast_id": null,
+                        "campaign_id": 45,
+                        "content_id": null,
+                        "created": 1715769500,
+                        "customer_id": "user_2048",
+                        "deduplicate_id": "bX2r7YZq8RCAAB5_DGopeWY8nGlEcSGv8fl=:1715769500",
+                        "failure_message": null,
+                        "forgotten": false,
+                        "id": "bX2r7YZq8RCAAB5_DGopeWY8nGlEcSGv8fl=",
+                        "metrics": {
+                          "opened": 1715769550,
+                          "sent": 1715769500
+                        },
+                        "msg_template_id": 87,
+                        "newsletter_id": null,
+                        "parent_action_id": null,
+                        "recipient": "user_2048",
+                        "subject": null,
+                        "tracked_responses": {
+                          "how-satisfied": {
+                            "id": 1,
+                            "ts": 1715769560
+                          },
+                          "would-recommend": {
+                            "id": 2,
+                            "ts": 1715769565
+                          }
+                        },
+                        "trigger_event_id": null,
+                        "type": "in_app"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null.",
+                  "properties": {
+                    "message": {
+                      "description": "Describes an individual message delivery. The object contains keys for all possible parents of the message (`newsletter_id`, `broadcast_id`, etc) but only the parents of the delivery are populated. Other parent IDs are null.",
+                      "example": {
+                        "action_id": 215,
+                        "broadcast_id": null,
+                        "campaign_id": 23,
+                        "content_id": null,
+                        "created": 1619137767,
+                        "customer_id": null,
+                        "deduplicate_id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=:1619137768",
+                        "failure_message": null,
+                        "forgotten": false,
+                        "id": "ag1q6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                        "metrics": {
+                          "delivered": 1619137768,
+                          "sent": 1619137768
+                        },
+                        "msg_template_id": 43,
+                        "newsletter_id": null,
+                        "parent_action_id": null,
+                        "recipient": "person@example.com",
+                        "subject": "Did you get that thing I sent you?",
+                        "trigger_event_id": null,
+                        "type": "email"
+                      },
+                      "properties": {
+                        "action_id": {
+                          "description": "The identifier for an action.",
+                          "example": 96,
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "broadcast_id": {
+                          "oneOf": [
+                            {
+                              "description": "The identifier for a broadcast.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "campaign_id": {
+                          "oneOf": [
+                            {
+                              "description": "The identifier for an automation.",
+                              "example": 5,
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "content_id": {
+                          "description": "The identifier for a message in a one-time send. One-time sends can have multiple content IDs (for multi-language messages or A/B tests).",
+                          "example": 1,
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "created": {
+                          "description": "The date time when the referenced ID was created.",
+                          "example": 1552341937,
+                          "format": "unix timestamp",
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "customer_id": {
+                          "description": "The ID of a customer profile, analogous to a \"person\" in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.",
+                          "example": "42",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "customer_identifiers": {
+                          "description": "Identifiers for the person in a response—`id`, `cio_id`, and `email`. Unset `id` or `email` values are `null`. We recommend this object over the less descriptive `customer_id`. This object doesn't include `phone`, even if your workspace uses phone numbers as an identifier; look for the person's `phone` attribute instead.",
+                          "properties": {
+                            "cio_id": {
+                              "description": "A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.",
+                              "example": "a3000001",
+                              "type": "string"
+                            },
+                            "email": {
+                              "description": "A person's email address, if set.",
+                              "example": "test@example.com",
+                              "format": "email",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "id": {
+                              "description": "A person's unique ID, if set. This is the same as the `customer_id` if present.",
+                              "example": 2,
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "id",
+                            "cio_id"
+                          ],
+                          "type": "object"
+                        },
+                        "deduplicate_id": {
+                          "description": "An identifier in the format `id:timestamp` where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.",
+                          "example": "15:1492548073",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "failure_message": {
+                          "description": "Explains why a message failed, if applicable.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "forgotten": {
+                          "description": "If true message contents are not retained by Customer.io.",
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "description": "The identifier for a delivery—the instance of a message intended for an individual recipient.",
+                          "example": "dgOq6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "message_template_id": {
+                          "deprecated": true,
+                          "description": "The identifier of the message template used to create a message.",
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "metrics": {
+                          "description": "Metrics for an individual instance of a message; each item in the object represents the timestamp when a message achieved a particular metric. This object only contains metrics that have been recorded.",
+                          "properties": {
+                            "bounced": {
+                              "description": "The timestamp when the message `bounced`.",
+                              "type": "integer"
+                            },
+                            "clicked": {
+                              "description": "The timestamp when the message was `clicked`.",
+                              "type": "integer"
+                            },
+                            "converted": {
+                              "description": "The timestamp when the message was `converted`.",
+                              "type": "integer"
+                            },
+                            "created": {
+                              "description": "The timestamp when the message was `created`.",
+                              "type": "integer"
+                            },
+                            "delivered": {
+                              "description": "The timestamp when the message was `delivered`.",
+                              "type": "integer"
+                            },
+                            "drafted": {
+                              "description": "The timestamp when the message was `drafted`.",
+                              "type": "integer"
+                            },
+                            "dropped": {
+                              "description": "The timestamp when the message was `dropped`.",
+                              "type": "integer"
+                            },
+                            "failed": {
+                              "description": "The timestamp when the message `failed`.",
+                              "type": "integer"
+                            },
+                            "human_clicked": {
+                              "description": "The number of `clicked` messages excluding machine clicks. This metric is reliable starting April 20, 2025. [Learn more](/messaging/metrics/analytics/#delivery-metrics).",
+                              "type": "integer"
+                            },
+                            "human_opened": {
+                              "description": "The number of `opened` messages excluding machine opens. This metric is reliable starting March 20, 2025. [Learn more](/messaging/metrics/analytics/#delivery-metrics).",
+                              "type": "integer"
+                            },
+                            "opened": {
+                              "description": "The timestamp when the message was `opened`.",
+                              "type": "integer"
+                            },
+                            "prefetch_clicked": {
+                              "description": "The number of `clicked` messages attributed to machines. This metric is reliable starting April 20, 2025.",
+                              "type": "integer"
+                            },
+                            "prefetch_opened": {
+                              "description": "The number of `opened` messages attributed to machines. This metric is reliable starting March 20, 2025.",
+                              "type": "integer"
+                            },
+                            "sent": {
+                              "description": "The timestamp when the message was `sent`.",
+                              "type": "integer"
+                            },
+                            "spammed": {
+                              "description": "The timestamp when the message was marked as spam.",
+                              "type": "integer"
+                            },
+                            "undeliverable": {
+                              "description": "The timestamp when the message became `undeliverable`.",
+                              "type": "integer"
+                            },
+                            "unsubscribed": {
+                              "description": "The timestamp when a person unsubscribed based on this message.",
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "newsletter_id": {
+                          "oneOf": [
+                            {
+                              "description": "The identifier for a one-time send.",
+                              "example": 10,
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "parent_action_id": {
+                          "description": "The ID of the parent action, if the action occurred within an automation and has a parent (like a randomized split, etc).",
+                          "example": 1,
+                          "readOnly": true,
+                          "type": "integer"
+                        },
+                        "recipient": {
+                          "description": "The recipient address for an action.",
+                          "example": "{{customer.email}}",
+                          "type": "string"
+                        },
+                        "subject": {
+                          "description": "The subject line for an `email` action.",
+                          "example": "Did you get that thing I sent you?",
+                          "type": "string"
+                        },
+                        "tracked_responses": {
+                          "additionalProperties": {
+                            "properties": {
+                              "id": {
+                                "description": "The identifier for the tracked response.",
+                                "type": "integer"
+                              },
+                              "ts": {
+                                "description": "A unix timestamp representing when the response was tracked.",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "description": "Tracked in-app survey responses, keyed by response option name. Present only when `get_tracked_responses` is `true`.",
+                          "example": {
+                            "cool-button": {
+                              "id": 1,
+                              "ts": 1715769600
+                            },
+                            "cool-button-2": {
+                              "id": 2,
+                              "ts": 1715769600
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "trigger_event_id": {
+                          "description": "The id of the event that triggered an event-triggered automation (not an API-triggered broadcast).",
+                          "example": "21E4C3CT6YDC7Y4N7FE1GWWABC",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "The type of message or action for a delivery, automation action, or related object. Includes channels that one-time sends do not support (for example, `slack` and `whatsapp`).",
+                          "enum": [
+                            "email",
+                            "webhook",
+                            "twilio",
+                            "push",
+                            "in_app",
+                            "slack",
+                            "whatsapp",
+                            "live_notification"
+                          ],
+                          "example": "email",
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns a message object."
+          },
+          "404": {
+            "description": "The message does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 10 requests per 1s (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over the 10-per-second limit. `Retry-After` tells you how many seconds you must wait before you send the next request.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /v1/messages/{message_id}/archived_message": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getArchivedMessage",
+        "parameters": [
+          {
+            "description": "The identifier of a message.",
+            "in": "path",
+            "name": "message_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Describes an archived message delivery.",
+                  "properties": {
+                    "archived_message": {
+                      "description": "An archived message, including a complete message body.\n",
+                      "properties": {
+                        "bcc": {
+                          "description": "The blind-copy address(es) for this action.",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "body": {
+                          "description": "The body of the variant. You cannot modify the body if you created it with our drag-and-drop editor.",
+                          "example": "<!DOCTYPE html><html><head>\\n<meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=UTF-8\\\"/><h1>Hello World</h1>\\n\\n</body></html>",
+                          "type": "string"
+                        },
+                        "cc": {
+                          "description": "The carbon-copy address(es) for this action.",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "fake_bcc": {
+                          "description": "If true, rather than sending true copies to BCC addresses, Customer.io sends a copy of the message with the subject line containing the recipient address(es).\n",
+                          "readOnly": true,
+                          "type": "boolean"
+                        },
+                        "forgotten": {
+                          "description": "If true, Customer.io does not retain the message content.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "from": {
+                          "description": "The address that the message is from, relevant if the action `type` is `email`.",
+                          "example": "sentFrom@example.com",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "headers": {
+                          "description": "A JSON string containing header objects with `name` and `value`. Names and values must be strings, with no non-ASCII characters or spaces. You can't overwrite reserved headers.",
+                          "example": "[{\"name\":\"X-Mailgun-Tag\",\"value\":\"my-cool-tag\"},{\"name\":\"X-Custom-Header\",\"value\":\"custom-value\"}]",
+                          "format": "json",
+                          "type": "string"
+                        },
+                        "id": {
+                          "description": "The identifier for a delivery—the instance of a message intended for an individual recipient.",
+                          "example": "dgOq6QWq6QUBAAF4_CGoeVX7mFkDbRFu7ek=",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "preheader_text": {
+                          "description": "[Also known as \"preview text\"](/journeys/channels/email/headers/custom-preheader-text/), this is the small block of text shown in an email inbox next to or underneath the subject line.\n",
+                          "type": "string"
+                        },
+                        "recipient": {
+                          "description": "The recipient address for an action.",
+                          "example": "person@example.com",
+                          "type": "string"
+                        },
+                        "reply_to": {
+                          "description": "The address that receives replies for the message, if applicable.",
+                          "example": "replyto@example.com",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "request_method": {
+                          "description": "The method used in conjunction with a webhook `url`.",
+                          "enum": [
+                            "GET",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "PATCH"
+                          ],
+                          "example": "POST",
+                          "type": "string"
+                        },
+                        "subject": {
+                          "description": "The subject line for an `email` action.",
+                          "example": "Did you get that thing I sent you?",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "The URL of a webhook or action.",
+                          "example": "https://example.com/webhook",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Returns the archived message object.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "How many requests the daily quota on this endpoint allows.",
+                "schema": {
+                  "example": 100,
+                  "type": "integer"
+                }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "How many requests are left in today's quota for this endpoint. Endpoints with a daily quota set it on every response, not only on a 429, so you can slow down before you run out.",
+                "schema": {
+                  "example": 97,
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The message does not exist."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "errors": [
+                    {
+                      "detail": "rate limited to 100 request(s) per day (reference a1b2c3)",
+                      "status": "429"
+                    }
+                  ]
+                },
+                "schema": {
+                  "description": "An array/list of failures where each entry is a separate failure reason.",
+                  "properties": {
+                    "errors": {
+                      "description": "One entry for each reason the request failed.",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A stable identifier for the failure, on the errors that carry one. Use this rather than the text in `detail` if you need to identify the error programmatically.",
+                            "example": "invalid_credentials",
+                            "type": "string"
+                          },
+                          "detail": {
+                            "description": "What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.",
+                            "example": "bad request (reference a1b2c3)",
+                            "type": "string"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "Extra context (if available).",
+                            "type": "object"
+                          },
+                          "source": {
+                            "description": "The part of the request that the error refers to.",
+                            "properties": {
+                              "pointer": {
+                                "description": "A JSON pointer to the part of the request body that the error refers to.",
+                                "example": "/data/attributes/email",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "status": {
+                            "description": "The HTTP status code as a string.",
+                            "example": "400",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "detail",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Your request is over one of the limits on this endpoint. The per-second limit sets `Retry-After`. The daily quota doesn't, because the wait is until the next day. `X-RateLimit-Remaining` tells you how much of today's quota is left.",
+            "headers": {
+              "Retry-After": {
+                "description": "How many seconds you must wait before you send another request. This header is present when you are rate limited by a per-second limit. If you hit a daily quota, this header is not set.",
+                "schema": {
+                  "example": 1,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "X-RateLimit-Limit": {
+                "description": "How many requests the daily quota on this endpoint allows.",
+                "schema": {
+                  "example": 100,
+                  "type": "integer"
+                }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "How many requests are left in today's quota for this endpoint. Endpoints with a daily quota set it on every response, not only on a 429, so you can slow down before you run out.",
+                "schema": {
+                  "example": 97,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer-Auth": []
+          }
+        ],
+        "securitySchemes": {
+          "Bearer-Auth": {
+            "description": "The App API uses a bearer authentication scheme.\n\nYou can generate a bearer token, known as an **App API Key**, with a defined scope in [your account settings](https://fly.customer.io/settings/api_credentials?keyType=app). [Learn more about bearer authorization in Customer.io](/accounts/settings/managing-credentials).\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "ServiceAccount-Auth": {
+            "bearerFormat": "sa_live_",
+            "description": "Transactional send endpoints (`/v1/send/email`, `/v1/send/push`, `/v1/send/sms`, `/v1/send/whatsapp`, `/v1/send/in_app`, `/v1/send/inbox_message`) also accept a service-account bearer token, prefixed with `sa_live_`. Service-account tokens work across workspaces, so you must pass the target workspace as the `X-Workspace-Id` header on each request.\n\nService-account tokens are intended for testing and one-off sends—for example, using the Customer.io CLI with an AI agent like Claude to verify that a transactional message renders correctly before wiring it into your production backend. **For the production integration that triggers the message from your application, use an App API Key instead**: it's workspace-scoped, easier to rotate, and has a smaller blast radius.\n\nService-account tokens are server-side credentials. Treat them like any API key—keep them in environment variables or a secret manager, and never embed them in client-side code, mobile apps, or other untrusted contexts.\n",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "bearerAuth": {
+            "description": "API key passed as a Bearer token",
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
+  }
+}

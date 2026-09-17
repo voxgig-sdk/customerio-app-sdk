@@ -1,0 +1,9 @@
+# BasicWhatsappFlow
+
+main: kit: flow: BasicWhatsappFlow:
+{
+  entity: "whatsapp",
+  kind: "basic",
+  name: "BasicWhatsappFlow",
+  "key$": "BasicWhatsappFlow"
+}

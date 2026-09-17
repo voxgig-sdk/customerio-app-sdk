@@ -1,0 +1,9 @@
+# BasicInAppFlow
+
+main: kit: flow: BasicInAppFlow:
+{
+  entity: "in_app",
+  kind: "basic",
+  name: "BasicInAppFlow",
+  "key$": "BasicInAppFlow"
+}

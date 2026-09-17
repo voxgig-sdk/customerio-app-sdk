@@ -1,0 +1,63 @@
+# BasicTransactionalFlow
+
+main: kit: flow: BasicTransactionalFlow:
+{
+  entity: "transactional",
+  kind: "basic",
+  name: "BasicTransactionalFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "transactional_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "transactional_ref01",
+        srcdatavar: "transactional_ref01_data",
+        suffix: "_up0",
+        textfield: "body"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-transactional_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "transactional_ref01",
+        srcdatavar: "transactional_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "transactional01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-transactional_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTransactionalFlow"
+}

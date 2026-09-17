@@ -1,0 +1,9 @@
+# BasicRelationshipFlow
+
+main: kit: flow: BasicRelationshipFlow:
+{
+  entity: "relationship",
+  kind: "basic",
+  name: "BasicRelationshipFlow",
+  "key$": "BasicRelationshipFlow"
+}

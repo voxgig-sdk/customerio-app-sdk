@@ -1,0 +1,60 @@
+# BasicEspSuppressionFlow
+
+main: kit: flow: BasicEspSuppressionFlow:
+{
+  entity: "esp_suppression",
+  kind: "basic",
+  name: "BasicEspSuppressionFlow",
+  step: [
+    {
+      input: {
+        ref: "esp_suppression_ref01"
+      }
+
+      match: {
+        domain_id: "domain01",
+        email_address: "email_address01",
+        suppression_type: "suppression_type01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "esp_suppression_ref01",
+        srcdatavar: "esp_suppression_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "esp_suppression01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-esp_suppression_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "esp_suppression_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "esp_suppression01",
+        suppression_type: "suppression_type01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicEspSuppressionFlow"
+}

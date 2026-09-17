@@ -1,0 +1,2041 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Customer | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a aria-current="page" href="../api/customer.html">Customer</a><div class="nav-sections"><a class="nav-section" href="#post-v1customers">POST /v1/customers</a>
+<a class="nav-section" href="#post-v1customersattributes">POST /v1/customers/attributes</a>
+<a class="nav-section" href="#get-v1customerscustomer_idactivities">GET /v1/customers/{customer_id}/activities</a>
+<a class="nav-section" href="#get-v1customerscustomer_idmessages">GET /v1/customers/{customer_id}/messages</a>
+<a class="nav-section" href="#get-v1customerscustomer_idrelationships">GET /v1/customers/{customer_id}/relationships</a>
+<a class="nav-section" href="#get-v1customerscustomer_idsegments">GET /v1/customers/{customer_id}/segments</a>
+<a class="nav-section" href="#get-v1customers">GET /v1/customers</a>
+<a class="nav-section" href="#get-v1customerscustomer_idsubscription_preferences">GET /v1/customers/{customer_id}/subscription_preferences</a>
+<a class="nav-section" href="#get-v1customerscustomer_idattributes">GET /v1/customers/{customer_id}/attributes</a></div>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="customer">Customer</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1customers"><code>/v1/customers</code></a></td>
+<td><code>create</code></td>
+<td>Returns an array of customers matching your filters</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1customersattributes"><code>/v1/customers/attributes</code></a></td>
+<td><code>create</code></td>
+<td>Returns an array of <code>customers</code>. Each object represents a customer profile</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idactivities"><code>/v1/customers/{customer_id}/activities</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of activity objects. Each object represents an activity that the customer performed, or that you performed on behalf of the customer</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idmessages"><code>/v1/customers/{customer_id}/messages</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of message objects. Each object represents a message that you sent a customer</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idrelationships"><code>/v1/customers/{customer_id}/relationships</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>cio_relationships</code></td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idsegments"><code>/v1/customers/{customer_id}/segments</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of segments that the customer belongs to</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customers"><code>/v1/customers</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>results</code>; each result represents a person</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idsubscription_preferences"><code>/v1/customers/{customer_id}/subscription_preferences</code></a></td>
+<td><code>load</code></td>
+<td>Returns the customer's associated subscription preferences</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1customerscustomer_idattributes"><code>/v1/customers/{customer_id}/attributes</code></a></td>
+<td><code>load</code></td>
+<td>Returns the <code>customer</code> and associated attributes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>one,string,null</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td>Use <code>and</code>, <code>or</code>, and <code>not</code> to combine segment and attribute conditions.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>one,string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set.</td>
+</tr>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of objects, where each object represents a customer.</td>
+</tr>
+<tr>
+<td><code>ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>In general, you should use the <code>identifiers</code> array.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>start</code> value for the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1customers" class="operation" data-method="post"><code>POST</code> /v1/customers</h3>
+<p>Operation ID: <code>getPeopleFilter</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>filter</code></td>
+<td><code>object or object or object or object or object or object or object or object</code></td>
+<td>Yes</td>
+<td>Use <code>and</code>, <code>or</code>, and <code>not</code> to combine segment and attribute conditions. The top-level object accepts one property; nest groups for complex filters.</td>
+</tr>
+</tbody>
+</table>
+<p>Example request body:</p>
+<pre><code class="language-json">{
+  &quot;filter&quot;: {
+    &quot;and&quot;: [
+      {
+        &quot;attribute&quot;: {
+          &quot;field&quot;: &quot;email&quot;,
+          &quot;operator&quot;: &quot;eq&quot;,
+          &quot;value&quot;: &quot;{{customer.email}}&quot;
+        }
+      },
+      {
+        &quot;not&quot;: {
+          &quot;attribute&quot;: {
+            &quot;field&quot;: &quot;source&quot;,
+            &quot;operator&quot;: &quot;eq&quot;,
+            &quot;value&quot;: &quot;website_newsletter&quot;
+          }
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-an-array-of-customers-matching-your-filters" class="status" data-status="2xx">200: Returns an array of customers matching your filters</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>identifiers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of objects, where each object represents a customer. Each object contains identifiers for a customer.</td>
+</tr>
+<tr>
+<td><code>identifiers[].cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>identifiers[].email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>identifiers[].id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set.</td>
+</tr>
+<tr>
+<td><code>ids</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>In general, you should use the <code>identifiers</code> array. This array contains identifiers for people captured in your filter. However, as of June 2021, some workspaces let you add people without an <code>id</code>. Entries without an <code>id</code> are empty strings in this array, where the <code>identifiers</code> array contains more complete information for each person captured in the filter.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The <code>start</code> value for the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-v1customersattributes" class="operation" data-method="post"><code>POST</code> /v1/customers/attributes</h3>
+<p>Operation ID: <code>getPeopleById</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ids</code></td>
+<td><code>array of string</code></td>
+<td>Yes</td>
+<td>An array of up to 100 customer identifiers. All values must match the <code>id_type</code> query parameter, <code>id</code> values by default.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-array-of-customers-each-object-represents-a-customer-profile" class="status" data-status="2xx">200: Returns an array of <code>customers</code>. Each object represents a customer profile</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customers[].customer</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The profile you referenced by ID in the request.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains attributes assigned to this profile, including your workspace's people-identifiers (by default, these are <code>id</code>, <code>email</code>, and <code>cio_id</code>). Attributes are all stored as strings.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes._cio_subscription_preferences_computed</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A person's computed subscription preferences as stringified JSON, combining set preferences with defaults for unset topics. <a href="/messaging/channels/subscriptions/center/#backfill-preferences">Learn more about backfilled preferences</a>.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes.cio_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes.cio_subscription_preferences</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A person's subscription preferences as stringified JSON. If unset, preferences are computed from topic defaults; see <code>_cio_subscription_preferences_computed</code>.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes.email</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The email address of the customer.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.attributes.id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Lists the devices associated with the customer profile.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes that you can reference to segment your audience, like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes._last_status</code></td>
+<td><code>enum: , bounced, sent, suppressed</code></td>
+<td>No</td>
+<td>The delivery status of the last message sent to the device, sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.app_identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The app that the device belongs to, the <strong>Bundle ID / App identifier</strong> you entered with that app's push credentials. If you have more than one app, we use this attribute to send push notifications to the right app. A device without an app identifier receives push notifications you send to your <a href="/messaging/channels/push/getting-started/#the-default-app">default app</a>.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of your app that a customer uses. You might target app versions to let people know when they need to update, or expose them to new features when they do.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.cio_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Customer.io SDK in the app.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.device_locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The device's <a href="/journeys/channels/localization/getting-started/#supported-languages">IETF language code</a>, such as <code>en-MX</code> or <code>es-ES</code>.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.device_model</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The model of the device a person uses.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.device_os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system, including the version, on the device.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].attributes.push_enabled</code></td>
+<td><code>enum: true, false</code></td>
+<td>No</td>
+<td>If <code>&amp;quot;true&amp;quot;</code>, the device is opted-in and can receive push notifications.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The device token.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].last_used</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The <code>timestamp</code> when you last identified this device. If you don't pass a timestamp when you add or update a device, we use the time of the request itself. Our SDKs identify a device when a person launches their app.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.devices[].platform</code></td>
+<td><code>enum: ios, android</code></td>
+<td>Yes</td>
+<td>The device/messaging platform.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The customer ID referenced in the request.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifiers for the person in a response, <code>id</code>, <code>cio_id</code>, and <code>email</code>. Unset <code>id</code> or <code>email</code> values are <code>null</code>. We recommend this object over the less descriptive <code>customer_id</code>. This object doesn't include <code>phone</code>, even if your workspace uses phone numbers as an identifier; look for the person's <code>phone</code> attribute instead.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.identifiers.email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set. This is the same as the <code>customer_id</code> if present.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The epoch timestamps when corresponding attributes were set on the customer profile.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps._cio_subscription_preferences_computed</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Because this value is computed and not actually set on a person, this value is always 0</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps._last_emailed</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when you last emailed a person.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.additionalProperties</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Timestamps when attributes assigned to the person were set.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.cio_id</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when <code>cio_id</code> was assigned.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.cio_subscription_preferences</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The datetime when a person's subscription preferences were last updated.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.email</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person's email address was added.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.id</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person's ID was generated.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.timestamps.unsubscribed</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person unsubscribed.</td>
+</tr>
+<tr>
+<td><code>customers[].customer.unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code>, a person is globally unsubscribed from email, SMS, WhatsApp, and push. Values like <code>true</code>, <code>TRUE</code>, <code>1</code>, and <code>&amp;quot;1&amp;quot;</code> count as true; other values are treated as subscribed or topic-based.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-malformed" class="status" data-status="4xx">400: The request is malformed</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="list">list</h2>
+<h3 id="get-v1customerscustomer_idactivities" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/activities</h3>
+<p>Operation ID: <code>getPersonActivities</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>type</code> | <code>query</code> | <code>enum: add_relationship, anon_merge, attempted_action, attempted_email, attempted_in_app, attempted_push, ...</code> | No | The type of activity you want to search for. Types with <code>_o:&amp;lt;object_type_id&amp;gt;</code> are for objects and types with <code>_r:&amp;lt;object_type_id&amp;gt;</code> are for relationships. |
+| <code>name</code> | <code>query</code> | <code>string</code> | No | For <code>event</code> and <code>attribute_update</code> types, you can search by event or attribute name respectively. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-an-array-of-activity-objects-each-object-represents-an-activity-that-the-customer-performed-or-that-you-performed-on-behalf-of-the-customer" class="status" data-status="2xx">200: Returns an array of activity objects. Each object represents an activity that the customer performed, or that you performed on behalf of the customer</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activities</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activities[].customer_id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>activities[].customer_identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifiers for the person in a response, <code>id</code>, <code>cio_id</code>, and <code>email</code>. Unset <code>id</code> or <code>email</code> values are <code>null</code>. We recommend this object over the less descriptive <code>customer_id</code>. This object doesn't include <code>phone</code>, even if your workspace uses phone numbers as an identifier; look for the person's <code>phone</code> attribute instead.</td>
+</tr>
+<tr>
+<td><code>activities[].customer_identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>activities[].customer_identifiers.email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>activities[].customer_identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set. This is the same as the <code>customer_id</code> if present.</td>
+</tr>
+<tr>
+<td><code>activities[].data</code></td>
+<td><code>object or object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activities[].delivery_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message ID.</td>
+</tr>
+<tr>
+<td><code>activities[].delivery_type</code></td>
+<td><code>enum: ios, android, email, phone</code></td>
+<td>No</td>
+<td>The recipient device, if applicable.</td>
+</tr>
+<tr>
+<td><code>activities[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The identifier for the action.</td>
+</tr>
+<tr>
+<td><code>activities[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the event, for <code>event</code> and <code>screen</code> activities.</td>
+</tr>
+<tr>
+<td><code>activities[].timestamp</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when the action occurred.</td>
+</tr>
+<tr>
+<td><code>activities[].type</code></td>
+<td><code>enum: add_relationship, anon_merge, attempted_action, attempted_email, attempted_in_app, attempted_push, ...</code></td>
+<td>No</td>
+<td>The type of activity. Types with <code>_o:&amp;lt;object_type_id&amp;gt;</code> are for objects and types with <code>_r:&amp;lt;object_type_id&amp;gt;</code> are for relationships.</td>
+</tr>
+<tr>
+<td><code>activities[].url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The page URL, for <code>page</code> activities.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-parameters-are-malformed" class="status" data-status="4xx">400: The request parameters are malformed</h5>
+<h5 id="404-the-customer_id-does-not-exist" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1customerscustomer_idmessages" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/messages</h3>
+<p>Operation ID: <code>getPersonMessages</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>start_ts</code> | <code>query</code> | <code>integer (unix timestamp)</code> | No | The beginning timestamp for your query. |
+| <code>end_ts</code> | <code>query</code> | <code>integer (unix timestamp)</code> | No | The ending timestamp for your query. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-an-array-of-message-objects-each-object-represents-a-message-that-you-sent-a-customer" class="status" data-status="2xx">200: Returns an array of message objects. Each object represents a message that you sent a customer</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages[].action_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for the message action within the automation or broadcast the message belonged to.</td>
+</tr>
+<tr>
+<td><code>messages[].broadcast_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The broadcast the message was sent as a part of, if applicable.</td>
+</tr>
+<tr>
+<td><code>messages[].campaign_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The automation the message belongs to.</td>
+</tr>
+<tr>
+<td><code>messages[].content_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The one-time send variant for the message, if applicable.</td>
+</tr>
+<tr>
+<td><code>messages[].created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when the message was created.</td>
+</tr>
+<tr>
+<td><code>messages[].customer_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The customer the message was sent to.</td>
+</tr>
+<tr>
+<td><code>messages[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A group identifier to deduplicate messages (useful if a customer may have received multiple messages of the same type).</td>
+</tr>
+<tr>
+<td><code>messages[].failure_message</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>An error, if the message did not make it to the customer.</td>
+</tr>
+<tr>
+<td><code>messages[].forgotten</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the message content was forgotten.</td>
+</tr>
+<tr>
+<td><code>messages[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message identifier.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains information about the send and delivery time of the message.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.delivered</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when the customer received the message.</td>
+</tr>
+<tr>
+<td><code>messages[].metrics.sent</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date and time when the message was sent.</td>
+</tr>
+<tr>
+<td><code>messages[].msg_template_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message template the message was created from.</td>
+</tr>
+<tr>
+<td><code>messages[].newsletter_id</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>The one-time send that the message was sent as a part of, if applicable.</td>
+</tr>
+<tr>
+<td><code>messages[].recipient</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The address of the recipient. May be an email address, MSISDN, or a device UUID.</td>
+</tr>
+<tr>
+<td><code>messages[].subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject line of the message.</td>
+</tr>
+<tr>
+<td><code>messages[].type</code></td>
+<td><code>enum: email, webhook, twilio, slack, push, in_app, ...</code></td>
+<td>No</td>
+<td>The type of message.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-customer_id-does-not-exist-1" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1customerscustomer_idrelationships" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/relationships</h3>
+<p>Operation ID: <code>getPersonRelationships</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-an-array-of-cio_relationships" class="status" data-status="2xx">200: Returns an array of <code>cio_relationships</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cio_relationships</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of &quot;objects&quot; that the customer is related to; each JSON object in the array represents an &quot;object&quot; in Customer.io.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes for the relationship between the person and the object.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The <code>object_id</code> and <code>cio_object_id</code> that a person is related to.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers.cio_object_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The canonical, immutable identifier for the object that the customer is related to.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].identifiers.object_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the object that the customer is related to.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].object_type_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The type of object that the customer is related to.</td>
+</tr>
+<tr>
+<td><code>cio_relationships[].timestamps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Unix timestamps when the object's attributes were last updated.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates the next page of results. Add <code>?start=&amp;lt;next_value&amp;gt;</code> to the request to get the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-customer_id-does-not-exist-2" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-4" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1customerscustomer_idsegments" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/segments</h3>
+<p>Operation ID: <code>getPersonSegments</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-an-array-of-segments-that-the-customer-belongs-to" class="status" data-status="2xx">200: Returns an array of segments that the customer belongs to</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>segments[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The description of the segment, as entered in the UI.</td>
+</tr>
+<tr>
+<td><code>segments[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The segment identifier.</td>
+</tr>
+<tr>
+<td><code>segments[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-customer_id-does-not-exist-3" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-5" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1customers" class="operation" data-method="get"><code>GET</code> /v1/customers</h3>
+<p>Operation ID: <code>getPeopleEmail</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>email</code> | <code>query</code> | <code>string (email)</code> | Yes | The email address you want to search for. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-returns-an-array-of-results-each-result-represents-a-person" class="status" data-status="2xx">200: Returns an array of <code>results</code>; each result represents a person</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of customers matching the email address in your query.</td>
+</tr>
+<tr>
+<td><code>results[].cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>results[].email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>results[].id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-request-make-sure-that-you-provided-the-right-credentials-1" class="status" data-status="4xx">401: Unauthorized request. Make sure that you provided the right credentials</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-6" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1customerscustomer_idsubscription_preferences" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/subscription_preferences</h3>
+<p>Operation ID: <code>getPersonSubscriptionPreferences</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |
+| <code>language</code> | <code>query</code> | <code>string</code> | No | A <a href="/journeys/channels/subscriptions/unsubscribe-faqs/#currently-supported-languages">language tag</a> you want the content translated in. If none is provided, the content will be sent in the default language of your subscription center. |
+| <code>Accept-Language</code> | <code>header</code> | <code>string (string)</code> | No |  |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-returns-the-customer39s-associated-subscription-preferences" class="status" data-status="2xx">200: Returns the customer's associated subscription preferences</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customer</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The profile you referenced by ID in the request.</td>
+</tr>
+<tr>
+<td><code>customer.header</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.header.subtitle</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subtitle or headline beneath the header of the subscription preferences page.</td>
+</tr>
+<tr>
+<td><code>customer.header.title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The header of the subscription preferences page.</td>
+</tr>
+<tr>
+<td><code>customer.id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifiers for the person in a response, <code>id</code>, <code>cio_id</code>, and <code>email</code>. Unset <code>id</code> or <code>email</code> values are <code>null</code>. We recommend this object over the less descriptive <code>customer_id</code>. This object doesn't include <code>phone</code>, even if your workspace uses phone numbers as an identifier; look for the person's <code>phone</code> attribute instead.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set. This is the same as the <code>customer_id</code> if present.</td>
+</tr>
+<tr>
+<td><code>customer.topics</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of all subscription preferences for the customer.</td>
+</tr>
+<tr>
+<td><code>customer.topics[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The (optional) description of the topic.</td>
+</tr>
+<tr>
+<td><code>customer.topics[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>System-generated ID of the topic.</td>
+</tr>
+<tr>
+<td><code>customer.topics[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the subscription topic.</td>
+</tr>
+<tr>
+<td><code>customer.topics[].subscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the customer is subscribed to the topic. If false, the customer is unsubscribed from the topic.</td>
+</tr>
+<tr>
+<td><code>customer.unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, the customer is unsubscribed from all messaging. If false, the customer is subscribed according to their topic preferences.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;customer&quot;: {
+    &quot;header&quot;: {
+      &quot;subtitle&quot;: &quot;Check the box next to each topic you'd like to subscribe to.&quot;,
+      &quot;title&quot;: &quot;Manage your subscription preferences&quot;
+    },
+    &quot;id&quot;: &quot;1&quot;,
+    &quot;identifiers&quot;: {
+      &quot;cio_id&quot;: &quot;01000001&quot;,
+      &quot;email&quot;: &quot;me@example.com&quot;,
+      &quot;id&quot;: &quot;1&quot;
+    },
+    &quot;topics&quot;: [
+      {
+        &quot;description&quot;: &quot;Description for topic 1, if any&quot;,
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Offers&quot;,
+        &quot;subscribed&quot;: true
+      },
+      {
+        &quot;description&quot;: &quot;Description for topic 2, if any&quot;,
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;News and Programs&quot;,
+        &quot;subscribed&quot;: true
+      },
+      {
+        &quot;description&quot;: &quot;Description for topic 3, if any&quot;,
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;Feedback&quot;,
+        &quot;subscribed&quot;: false
+      }
+    ],
+    &quot;unsubscribed&quot;: false
+  }
+}
+</code></pre>
+<h5 id="400-invalid-or-malformed-request-use-this-response-not-the-shared-400-for-anything-served-from-apicustomerio-the-app-api-reports-errors-as-a-list-under-errors-where-the-track-and-pipelines-apis-use-meta" class="status" data-status="4xx">400: Invalid or malformed request. Use this response, not the shared <code>400</code>, for anything served from <code>api.customer.io</code>, the App API reports errors as a list under <code>errors</code>, where the Track and Pipelines APIs use <code>meta</code></h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-customer_id-does-not-exist-4" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-7" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1customerscustomer_idattributes" class="operation" data-method="get"><code>GET</code> /v1/customers/{customer_id}/attributes</h3>
+<p>Operation ID: <code>getPersonAttributes</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>customer_id</code> | <code>path</code> | <code>string</code> | Yes | The ID of the customer you want to perform an operation against. |
+| <code>id_type</code> | <code>query</code> | <code>enum: id, email, phone, cio_id</code> | No | The type of <code>customer_id</code> you want to use to reference a person. If you don't provide this parameter, we assume that the <code>customer_id</code> in your request is a person's <code>id</code>. You can use <code>email</code> and <code>phone</code> only if they're enabled as identifiers in your <a href="/accounts/workspaces/overview/#migrate-workspace">workspace settings</a>; otherwise the request returns <code>400</code>. Reference <code>phone</code> values in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, like <code>+14155552671</code>, and URL-encode the leading <code>+</code> as <code>%2B</code>. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-returns-the-customer-and-associated-attributes" class="status" data-status="2xx">200: Returns the <code>customer</code> and associated attributes</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customer</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The profile you referenced by ID in the request.</td>
+</tr>
+<tr>
+<td><code>customer.attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains attributes assigned to this profile, including your workspace's people-identifiers (by default, these are <code>id</code>, <code>email</code>, and <code>cio_id</code>). Attributes are all stored as strings.</td>
+</tr>
+<tr>
+<td><code>customer.attributes._cio_subscription_preferences_computed</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A person's computed subscription preferences as stringified JSON, combining set preferences with defaults for unset topics. <a href="/messaging/channels/subscriptions/center/#backfill-preferences">Learn more about backfilled preferences</a>.</td>
+</tr>
+<tr>
+<td><code>customer.attributes.cio_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>customer.attributes.cio_subscription_preferences</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A person's subscription preferences as stringified JSON. If unset, preferences are computed from topic defaults; see <code>_cio_subscription_preferences_computed</code>.</td>
+</tr>
+<tr>
+<td><code>customer.attributes.email</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The email address of the customer.</td>
+</tr>
+<tr>
+<td><code>customer.attributes.id</code></td>
+<td><code>string,null</code></td>
+<td>No</td>
+<td>The ID of a customer profile, analogous to a &quot;person&quot; in the UI. If your workspace supports multiple identifiers (email and ID), this value can be null.</td>
+</tr>
+<tr>
+<td><code>customer.devices</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Lists the devices associated with the customer profile.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Attributes that you can reference to segment your audience, like a person's attributes, but specific to a device. These can be either the attributes defined below or custom key-value attributes.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes._last_status</code></td>
+<td><code>enum: , bounced, sent, suppressed</code></td>
+<td>No</td>
+<td>The delivery status of the last message sent to the device, sent, bounced, or suppressed. An empty string indicates that that the device hasn't received a push yet.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.app_identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The app that the device belongs to, the <strong>Bundle ID / App identifier</strong> you entered with that app's push credentials. If you have more than one app, we use this attribute to send push notifications to the right app. A device without an app identifier receives push notifications you send to your <a href="/messaging/channels/push/getting-started/#the-default-app">default app</a>.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of your app that a customer uses. You might target app versions to let people know when they need to update, or expose them to new features when they do.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.cio_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Customer.io SDK in the app.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.device_locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The device's <a href="/journeys/channels/localization/getting-started/#supported-languages">IETF language code</a>, such as <code>en-MX</code> or <code>es-ES</code>.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.device_model</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The model of the device a person uses.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.device_os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system, including the version, on the device.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].attributes.push_enabled</code></td>
+<td><code>enum: true, false</code></td>
+<td>No</td>
+<td>If <code>&amp;quot;true&amp;quot;</code>, the device is opted-in and can receive push notifications.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The device token.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].last_used</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The <code>timestamp</code> when you last identified this device. If you don't pass a timestamp when you add or update a device, we use the time of the request itself. Our SDKs identify a device when a person launches their app.</td>
+</tr>
+<tr>
+<td><code>customer.devices[].platform</code></td>
+<td><code>enum: ios, android</code></td>
+<td>Yes</td>
+<td>The device/messaging platform.</td>
+</tr>
+<tr>
+<td><code>customer.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The customer ID referenced in the request.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Identifiers for the person in a response, <code>id</code>, <code>cio_id</code>, and <code>email</code>. Unset <code>id</code> or <code>email</code> values are <code>null</code>. We recommend this object over the less descriptive <code>customer_id</code>. This object doesn't include <code>phone</code>, even if your workspace uses phone numbers as an identifier; look for the person's <code>phone</code> attribute instead.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.cio_id</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A unique identifier set by Customer.io, used to reference a person if you want to update their identifiers.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.email</code></td>
+<td><code>string,null (email)</code></td>
+<td>Yes</td>
+<td>A person's email address, if set.</td>
+</tr>
+<tr>
+<td><code>customer.identifiers.id</code></td>
+<td><code>string,null</code></td>
+<td>Yes</td>
+<td>A person's unique ID, if set. This is the same as the <code>customer_id</code> if present.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The epoch timestamps when corresponding attributes were set on the customer profile.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps._cio_subscription_preferences_computed</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Because this value is computed and not actually set on a person, this value is always 0</td>
+</tr>
+<tr>
+<td><code>customer.timestamps._last_emailed</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when you last emailed a person.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.additionalProperties</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td>Timestamps when attributes assigned to the person were set.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.cio_id</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when <code>cio_id</code> was assigned.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.cio_subscription_preferences</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The datetime when a person's subscription preferences were last updated.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.email</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person's email address was added.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.id</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person's ID was generated.</td>
+</tr>
+<tr>
+<td><code>customer.timestamps.unsubscribed</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date-time when the person unsubscribed.</td>
+</tr>
+<tr>
+<td><code>customer.unsubscribed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If <code>true</code>, a person is globally unsubscribed from email, SMS, WhatsApp, and push. Values like <code>true</code>, <code>TRUE</code>, <code>1</code>, and <code>&amp;quot;1&amp;quot;</code> count as true; other values are treated as subscribed or topic-based.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-customer_id-does-not-exist-5" class="status" data-status="4xx">404: The <code>customer_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-8" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

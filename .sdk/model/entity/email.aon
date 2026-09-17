@@ -1,0 +1,10 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  name: "email"
+
+
+}

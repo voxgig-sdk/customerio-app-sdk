@@ -1,0 +1,22 @@
+# BasicWorkspaceFlow
+
+main: kit: flow: BasicWorkspaceFlow:
+{
+  entity: "workspace",
+  kind: "basic",
+  name: "BasicWorkspaceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "workspace_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWorkspaceFlow"
+}

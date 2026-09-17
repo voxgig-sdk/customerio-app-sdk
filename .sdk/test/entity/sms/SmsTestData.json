@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "sms": {
+      "SMS00": {},
+      "SMS01": {},
+      "SMS02": {}
+    }
+  },
+  "new": {
+    "sms": {
+      "sms_ref01": {}
+    }
+  },
+  "requests": {}
+}

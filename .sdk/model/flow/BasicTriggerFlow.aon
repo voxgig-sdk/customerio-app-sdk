@@ -1,0 +1,9 @@
+# BasicTriggerFlow
+
+main: kit: flow: BasicTriggerFlow:
+{
+  entity: "trigger",
+  kind: "basic",
+  name: "BasicTriggerFlow",
+  "key$": "BasicTriggerFlow"
+}

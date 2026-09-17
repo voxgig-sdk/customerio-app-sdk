@@ -1,0 +1,1234 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Newsletter | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a aria-current="page" href="../api/newsletter.html">Newsletter</a><div class="nav-sections"><a class="nav-section" href="#post-v1newslettersnewsletter_idschedule">POST /v1/newsletters/{newsletter_id}/schedule</a>
+<a class="nav-section" href="#post-v1newslettersnewsletter_idsend">POST /v1/newsletters/{newsletter_id}/send</a>
+<a class="nav-section" href="#post-v1newsletters">POST /v1/newsletters</a>
+<a class="nav-section" href="#get-v1newsletters">GET /v1/newsletters</a>
+<a class="nav-section" href="#get-v1newslettersnewsletter_id">GET /v1/newsletters/{newsletter_id}</a>
+<a class="nav-section" href="#delete-v1newslettersnewsletter_id">DELETE /v1/newsletters/{newsletter_id}</a></div>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newsletter">Newsletter</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newslettersnewsletter_idschedule"><code>/v1/newsletters/{newsletter_id}/schedule</code></a></td>
+<td><code>create</code></td>
+<td>The one-time send is scheduled for sending</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newslettersnewsletter_idsend"><code>/v1/newsletters/{newsletter_id}/send</code></a></td>
+<td><code>create</code></td>
+<td>The one-time send is queued</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1newsletters"><code>/v1/newsletters</code></a></td>
+<td><code>create</code></td>
+<td>Returns the newly created one-time send</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newsletters"><code>/v1/newsletters</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of one-time send objects</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1newslettersnewsletter_id"><code>/v1/newsletters/{newsletter_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns metadata for the one-time send</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1newslettersnewsletter_id"><code>/v1/newsletters/{newsletter_id}</code></a></td>
+<td><code>remove</code></td>
+<td>Success. No content</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>content_ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was update…</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send.</td>
+</tr>
+<tr>
+<td><code>recipient_segment_ids</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>sent_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>updated</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1newslettersnewsletter_idschedule" class="operation" data-method="post"><code>POST</code> /v1/newsletters/{newsletter_id}/schedule</h3>
+<p>Operation ID: <code>scheduleNewsletter</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rate_limit_email_rate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Maximum number of messages per time period. <strong>NOTE:</strong> Though this states <code>email_rate</code>, you can use this for other message channels. Only fixed rate limits are supported, not <a href="/messaging/send/broadcasts/one-time-sends/#daily-ramp">daily ramp limits</a>.</td>
+</tr>
+<tr>
+<td><code>rate_limit_spread</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When <code>true</code>, spreads messages evenly across the time period. Otherwise, it sends as fast as possible up to the limit in each period.</td>
+</tr>
+<tr>
+<td><code>rate_limit_time_period</code></td>
+<td><code>enum: 60, 3600, 86400</code></td>
+<td>No</td>
+<td>Time period in seconds for rate limiting. Must be one of 60 (minute), 3600 (hour), or 86400 (day).</td>
+</tr>
+<tr>
+<td><code>scheduled_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>Yes</td>
+<td>Unix timestamp for the send. Use <code>0</code> to deschedule. When greater than <code>0</code>, the time must be in the future and you must send <code>timezone</code> so the UI displays the time correctly.</td>
+</tr>
+<tr>
+<td><code>timezone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td><a href="/journeys/send/timezones/example-timezones/#region-format">IANA timezone name</a> (for example, <code>America/New_York</code>). Required when <code>scheduled_at</code> is greater than <code>0</code>. Not required when descheduling (<code>scheduled_at</code> is <code>0</code>).</td>
+</tr>
+<tr>
+<td><code>tz_match_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When <code>true</code>, sends at the same local time in each recipient's timezone. If it's set to <code>true</code> and <code>rate_limit_time_period</code> is provided, then the period can't be greater than <code>3600</code> (1 hour).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-the-one-time-send-is-scheduled-for-sending" class="status" data-status="2xx">200: The one-time send is scheduled for sending</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;newsletter&quot;: {
+    &quot;content_ids&quot;: [
+      45
+    ],
+    &quot;created&quot;: 1481653919,
+    &quot;deduplicate_id&quot;: &quot;128275:1484870424&quot;,
+    &quot;id&quot;: 128275,
+    &quot;name&quot;: &quot;Weekly Product Update&quot;,
+    &quot;recipient_segment_ids&quot;: [
+      42,
+      99
+    ],
+    &quot;sent_at&quot;: null,
+    &quot;subscription_topic_id&quot;: 5,
+    &quot;type&quot;: &quot;email&quot;,
+    &quot;updated&quot;: 1481653929
+  }
+}
+</code></pre>
+<h5 id="400-the-request-is-invalid-possible-reasons-include---the-one-time-send-has-already-been-sent---the-one-time-send-doesn39t-have-a-valid-channel-set---no-recipients-have-been-configured---the-one-time-send-is-not-currently-scheduled-when-descheduling-with-scheduled_at-0" class="status" data-status="4xx">400: The request is invalid. Possible reasons include: - The one-time send has already been sent - The one-time send doesn't have a valid channel set - No recipients have been configured - The one-time send is not currently scheduled (when descheduling with <code>scheduled_at: 0</code>)</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-does-not-exist" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+<h5 id="422-validation-error-possible-reasons-include---scheduled_at-is-required---scheduled_at-must-be-in-the-future---timezone-is-required-when-scheduled_at-is-set---unknown-timezone-value---incomplete-rate-limit-both-rate_limit_email_rate-and-rate_limit_time_period-are-required-when-setting-a-rate-limit---cannot-set-rate-limit-periods-longer-than-one-hour-when-sending-in-the-recipient39s-timezone-tz_match" class="status" data-status="4xx">422: Validation error. Possible reasons include: - <code>scheduled_at</code> is required - <code>scheduled_at</code> must be in the future - <code>timezone</code> is required (when <code>scheduled_at</code> is set) - Unknown timezone value - Incomplete rate limit, both <code>rate_limit_email_rate</code> and <code>rate_limit_time_period</code> are required when setting a rate limit - Cannot set rate limit periods longer than one hour when sending in the recipient's timezone (<code>tz_match</code>)</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-v1newslettersnewsletter_idsend" class="operation" data-method="post"><code>POST</code> /v1/newsletters/{newsletter_id}/send</h3>
+<p>Operation ID: <code>sendNewsletter</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rate_limit_email_rate</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Maximum number of messages per time period. <strong>NOTE:</strong> Though this states <code>email_rate</code>, you can use this for other message channels. Only fixed rate limits are supported, not <a href="/messaging/send/broadcasts/one-time-sends/#daily-ramp">daily ramp limits</a>.</td>
+</tr>
+<tr>
+<td><code>rate_limit_spread</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When <code>true</code>, spreads messages evenly across the time period. Otherwise, it sends as fast as possible up to the limit in each period.</td>
+</tr>
+<tr>
+<td><code>rate_limit_time_period</code></td>
+<td><code>enum: 60, 3600, 86400</code></td>
+<td>No</td>
+<td>Time period in seconds for rate limiting. Must be one of 60 (minute), 3600 (hour), or 86400 (day).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-the-one-time-send-is-queued" class="status" data-status="2xx">200: The one-time send is queued</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-invalid-possible-reasons-include---the-one-time-send-has-already-been-sent---the-one-time-send-doesn39t-have-a-valid-channel-set---no-recipients-have-been-configured---segments-are-still-processing" class="status" data-status="4xx">400: The request is invalid. Possible reasons include: - The one-time send has already been sent - The one-time send doesn't have a valid channel set - No recipients have been configured - Segments are still processing</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-does-not-exist-1" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+<h5 id="422-validation-error-the-rate-limit-configuration-is-incomplete-if-you-provide-rate_limit_email_rate-you-must-also-provide-rate_limit_time_period-and-vice-versa" class="status" data-status="4xx">422: Validation error. The rate limit configuration is incomplete, if you provide <code>rate_limit_email_rate</code>, you must also provide <code>rate_limit_time_period</code> (and vice versa).</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="post-v1newsletters" class="operation" data-method="post"><code>POST</code> /v1/newsletters</h3>
+<p>Operation ID: <code>createNewsletter</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object and object or object or object or object or object or object</code>.</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-the-newly-created-one-time-send" class="status" data-status="2xx">200: Returns the newly created one-time send</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-is-invalid-for-example-the-one-time-send-has-no-valid-channel-set-no-recipients-configured-or-the-request-body-is-malformed" class="status" data-status="4xx">400: The request is invalid. For example, the one-time send has no valid channel set, no recipients configured, or the request body is malformed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="422-validation-error-the-request-body-contains-invalid-or-conflicting-values-possible-reasons-include---missing-or-invalid-subscription_topic_id-required-when-a-subscription-center-is-enabled---invalid-from_id-or-unverifiedmalformed-from-address---both-from_id-and-from-provided-use-one-or-the-other---invalid-channel-type---missing-required-content-fields-for-the-channel-type-subject-body-body_json-request_method-url---invalid-request_method-for-webhook-one-time-sends---sender-uses-a-transactional-ip-pool---recipients-include-a-temporary-segment" class="status" data-status="4xx">422: Validation error. The request body contains invalid or conflicting values. Possible reasons include: - Missing or invalid <code>subscription_topic_id</code> (required when a subscription center is enabled) - Invalid <code>from_id</code> or unverified/malformed <code>from</code> address - Both <code>from_id</code> and <code>from</code> provided (use one or the other) - Invalid channel <code>type</code> - Missing required content fields for the channel type (<code>subject</code>, <code>body</code>, <code>body_json</code>, <code>request_method</code>, <code>url</code>) - Invalid <code>request_method</code> for webhook one-time sends - Sender uses a transactional IP pool - Recipients include a temporary segment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A message describing the error.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="list">list</h2>
+<h3 id="get-v1newsletters" class="operation" data-method="get"><code>GET</code> /v1/newsletters</h3>
+<p>Operation ID: <code>listNewsletters</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |
+| <code>sort</code> | <code>query</code> | <code>enum: asc, desc</code> | No | Determine how you want to sort results, <code>asc</code> for chronological order and <code>desc</code> for reverse chronological order. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-an-array-of-one-time-send-objects" class="status" data-status="2xx">200: Returns an array of one-time send objects</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletters</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletters[].content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletters[].created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletters[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletters[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletters[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletters[].recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletters[].sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletters[].subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletters[].tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletters[].type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletters[].updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+<tr>
+<td><code>next</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates the next page of results. Add <code>?start=&amp;lt;next_value&amp;gt;</code> to the request to get the next page of results.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-v1newslettersnewsletter_id" class="operation" data-method="get"><code>GET</code> /v1/newsletters/{newsletter_id}</h3>
+<p>Operation ID: <code>getNewsletters</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-metadata-for-the-one-time-send" class="status" data-status="2xx">200: Returns metadata for the one-time send</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>newsletter</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>newsletter.content_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>A list of message variants in a one-time send, where a variant is a translation or A/B test.</td>
+</tr>
+<tr>
+<td><code>newsletter.created</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>newsletter.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>newsletter.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the one-time send. Must be 190 characters or less.</td>
+</tr>
+<tr>
+<td><code>newsletter.recipient_segment_ids</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>If the recipient conditions included segments, this returns a list of those segment ids.</td>
+</tr>
+<tr>
+<td><code>newsletter.sent_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The last time the one-time send was sent.</td>
+</tr>
+<tr>
+<td><code>newsletter.subscription_topic_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>If you enabled a <a href="/journeys/channels/subscriptions/center/">subscription center</a> on your workspace, this returns the id of the subscription preference you set.</td>
+</tr>
+<tr>
+<td><code>newsletter.tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An array of tags associated with the one-time send.</td>
+</tr>
+<tr>
+<td><code>newsletter.type</code></td>
+<td><code>enum: email, webhook, twilio, push, in_app, inbox</code></td>
+<td>No</td>
+<td>Channel type for a one-time send or one-time send content variant.</td>
+</tr>
+<tr>
+<td><code>newsletter.updated</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-one-time-send-you-requested-does-not-exist" class="status" data-status="4xx">404: The one-time send you requested does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1newslettersnewsletter_id" class="operation" data-method="delete"><code>DELETE</code> /v1/newsletters/{newsletter_id}</h3>
+<p>Operation ID: <code>deleteNewsletters</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>newsletter_id</code> | <code>path</code> | <code>integer</code> | Yes | The identifier of a one-time send. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="204-success-no-content" class="status" data-status="2xx">204: Success. No content</h5>
+<h5 id="404-the-one-time-send-does-not-exist-2" class="status" data-status="4xx">404: The one-time send does not exist</h5>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

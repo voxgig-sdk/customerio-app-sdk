@@ -1,0 +1,9 @@
+# BasicActionFlow
+
+main: kit: flow: BasicActionFlow:
+{
+  entity: "action",
+  kind: "basic",
+  name: "BasicActionFlow",
+  "key$": "BasicActionFlow"
+}

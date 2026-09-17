@@ -1,0 +1,15 @@
+{
+  "existing": {
+    "end": {
+      "END00": {},
+      "END01": {},
+      "END02": {}
+    }
+  },
+  "new": {
+    "end": {
+      "end_ref01": {}
+    }
+  },
+  "requests": {}
+}

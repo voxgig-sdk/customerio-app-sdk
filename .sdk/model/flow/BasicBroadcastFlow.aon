@@ -1,0 +1,63 @@
+# BasicBroadcastFlow
+
+main: kit: flow: BasicBroadcastFlow:
+{
+  entity: "broadcast",
+  kind: "basic",
+  name: "BasicBroadcastFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "broadcast_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "broadcast_ref01",
+        srcdatavar: "broadcast_ref01_data",
+        suffix: "_up0",
+        textfield: "state"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-broadcast_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "broadcast_ref01",
+        srcdatavar: "broadcast_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "broadcast01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-broadcast_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBroadcastFlow"
+}

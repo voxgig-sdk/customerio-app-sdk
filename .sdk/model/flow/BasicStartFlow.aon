@@ -1,0 +1,9 @@
+# BasicStartFlow
+
+main: kit: flow: BasicStartFlow:
+{
+  entity: "start",
+  kind: "basic",
+  name: "BasicStartFlow",
+  "key$": "BasicStartFlow"
+}

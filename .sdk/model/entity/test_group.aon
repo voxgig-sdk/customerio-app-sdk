@@ -1,0 +1,18 @@
+# Entity: test_group
+
+main: kit: entity: test_group: {
+
+  alias: field: {}
+
+  name: "test_group"
+  relations: {
+    ancestors: [
+      [
+        "newsletter"
+      ]
+    ]
+  }
+
+
+
+}

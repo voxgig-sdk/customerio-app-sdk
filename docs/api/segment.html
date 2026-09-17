@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Segment | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a href="../api/import.html">Import</a>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a aria-current="page" href="../api/segment.html">Segment</a><div class="nav-sections"><a class="nav-section" href="#post-v1segments">POST /v1/segments</a>
+<a class="nav-section" href="#get-v1segments">GET /v1/segments</a>
+<a class="nav-section" href="#get-v1segmentssegment_idmembership">GET /v1/segments/{segment_id}/membership</a>
+<a class="nav-section" href="#get-v1segmentssegment_id">GET /v1/segments/{segment_id}</a>
+<a class="nav-section" href="#get-v1segmentssegment_idcustomer_count">GET /v1/segments/{segment_id}/customer_count</a>
+<a class="nav-section" href="#get-v1segmentssegment_idused_by">GET /v1/segments/{segment_id}/used_by</a>
+<a class="nav-section" href="#delete-v1segmentssegment_id">DELETE /v1/segments/{segment_id}</a></div>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="segment">Segment</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1segments"><code>/v1/segments</code></a></td>
+<td><code>create</code></td>
+<td>Returns the segment ID and other information</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1segments"><code>/v1/segments</code></a></td>
+<td><code>list</code></td>
+<td>Returns an array of <code>segments</code>. Each object in the response represents an individual segment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1segmentssegment_idmembership"><code>/v1/segments/{segment_id}/membership</code></a></td>
+<td><code>load</code></td>
+<td>Returns an array of customers for a segment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1segmentssegment_id"><code>/v1/segments/{segment_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns the information about the segment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1segmentssegment_idcustomer_count"><code>/v1/segments/{segment_id}/customer_count</code></a></td>
+<td><code>load</code></td>
+<td>Returns the customer <code>count</code> for a segment</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1segmentssegment_idused_by"><code>/v1/segments/{segment_id}/used_by</code></a></td>
+<td><code>load</code></td>
+<td>Returns the IDs of items that reference the segment</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-v1segmentssegment_id"><code>/v1/segments/{segment_id}</code></a></td>
+<td><code>remove</code></td>
+<td>The segment is deleted</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was update…</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description for the segment.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+<tr>
+<td><code>progress</code></td>
+<td><code>one,integer,null</code></td>
+<td>No</td>
+<td>If Customer.io has not finished processing the segment, this indicates the percentage complete.</td>
+</tr>
+<tr>
+<td><code>segment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The segment build state: - <code>events</code>, handling event conditions for this segment - <code>build</code>, handling profile attribute conditions for this segment - <code>events_queued</code>, waiting to start handling event conditions - <code>build_queued</code>, waiting to start…</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>one,array,null</code></td>
+<td>No</td>
+<td>The tags assigned to the segment, if any.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of segment.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1segments" class="operation" data-method="post"><code>POST</code> /v1/segments</h3>
+<p>Operation ID: <code>createManSegment</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segment</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>segment.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description for the segment. This can help you understand the purpose of the segment when you encounter it in other requests or in the UI.</td>
+</tr>
+<tr>
+<td><code>segment.name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The name of the segment.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-the-segment-id-and-other-information" class="status" data-status="2xx">200: Returns the segment ID and other information</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segment</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>segment.created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>segment.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>segment.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description for the segment. This can help you understand the purpose of the segment when you encounter it in other requests or in the UI.</td>
+</tr>
+<tr>
+<td><code>segment.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+<tr>
+<td><code>segment.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+<tr>
+<td><code>segment.progress</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>If Customer.io has not finished processing the segment, this indicates the percentage complete. Otherwise, this key is null.</td>
+</tr>
+<tr>
+<td><code>segment.state</code></td>
+<td><code>enum: events, build, events_queued, build_queued, finished</code></td>
+<td>No</td>
+<td>The segment build state: - <code>events</code>, handling event conditions for this segment - <code>build</code>, handling profile attribute conditions for this segment - <code>events_queued</code>, waiting to start handling event conditions - <code>build_queued</code>, waiting to start handling profile attribute conditions - <code>finished</code>, the segment is finished building</td>
+</tr>
+<tr>
+<td><code>segment.tags</code></td>
+<td><code>array,null</code></td>
+<td>No</td>
+<td>The tags assigned to the segment, if any. Tags may help you sort through your segments.</td>
+</tr>
+<tr>
+<td><code>segment.type</code></td>
+<td><code>enum: dynamic, manual</code></td>
+<td>No</td>
+<td>The type of segment.</td>
+</tr>
+<tr>
+<td><code>segment.updated_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-the-request-was-malformed" class="status" data-status="4xx">400: The request was malformed</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="list">list</h2>
+<h3 id="get-v1segments" class="operation" data-method="get"><code>GET</code> /v1/segments</h3>
+<p>Operation ID: <code>listSegments</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-array-of-segments-each-object-in-the-response-represents-an-individual-segment" class="status" data-status="2xx">200: Returns an array of <code>segments</code>. Each object in the response represents an individual segment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>segments[].created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>segments[].deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>segments[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description for the segment. This can help you understand the purpose of the segment when you encounter it in other requests or in the UI.</td>
+</tr>
+<tr>
+<td><code>segments[].id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+<tr>
+<td><code>segments[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+<tr>
+<td><code>segments[].progress</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>If Customer.io has not finished processing the segment, this indicates the percentage complete. Otherwise, this key is null.</td>
+</tr>
+<tr>
+<td><code>segments[].state</code></td>
+<td><code>enum: events, build, events_queued, build_queued, finished</code></td>
+<td>No</td>
+<td>The segment build state: - <code>events</code>, handling event conditions for this segment - <code>build</code>, handling profile attribute conditions for this segment - <code>events_queued</code>, waiting to start handling event conditions - <code>build_queued</code>, waiting to start handling profile attribute conditions - <code>finished</code>, the segment is finished building</td>
+</tr>
+<tr>
+<td><code>segments[].tags</code></td>
+<td><code>array,null</code></td>
+<td>No</td>
+<td>The tags assigned to the segment, if any. Tags may help you sort through your segments.</td>
+</tr>
+<tr>
+<td><code>segments[].type</code></td>
+<td><code>enum: dynamic, manual</code></td>
+<td>No</td>
+<td>The type of segment.</td>
+</tr>
+<tr>
+<td><code>segments[].updated_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1segmentssegment_idmembership" class="operation" data-method="get"><code>GET</code> /v1/segments/{segment_id}/membership</h3>
+<p>Operation ID: <code>getSegmentMembership</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>segment_id</code> | <code>path</code> | <code>integer (int32)</code> | Yes | The identifier for a segment. You can find your segment's ID on its page in the dashboard, go to <em>Segments</em>, select your segment, and find the ID under <em>Usage</em>. Or you can find your segment using the <a href="/integrations/api/app/tag/segments/">App API</a>. |
+| <code>start</code> | <code>query</code> | <code>string</code> | No | The token for the page of results you want to return. Responses contain a <code>next</code> property. Use this property as the <code>start</code> value to return the next page of results. |
+| <code>limit</code> | <code>query</code> | <code>integer</code> | No | The maximum number of results you want to retrieve per page. |</p>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-returns-an-array-of-customers-for-a-segment" class="status" data-status="2xx">200: Returns an array of customers for a segment</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object or object</code>.</p>
+<h5 id="404-the-segment_id-does-not-exist" class="status" data-status="4xx">404: The <code>segment_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-2" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1segmentssegment_id" class="operation" data-method="get"><code>GET</code> /v1/segments/{segment_id}</h3>
+<p>Operation ID: <code>getSegment</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>segment_id</code> | <code>path</code> | <code>integer (int32)</code> | Yes | The identifier for a segment. You can find your segment's ID on its page in the dashboard, go to <em>Segments</em>, select your segment, and find the ID under <em>Usage</em>. Or you can find your segment using the <a href="/integrations/api/app/tag/segments/">App API</a>. |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-returns-the-information-about-the-segment" class="status" data-status="2xx">200: Returns the information about the segment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segment</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>segment.created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>segment.deduplicate_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An identifier in the format <code>id:timestamp</code> where the id is for the object you're working with (Automations, Deliveries, Exports, Identities, One-time sends, Segments, and Templates), and the timestamp is the last time the object was updated.</td>
+</tr>
+<tr>
+<td><code>segment.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A description for the segment. This can help you understand the purpose of the segment when you encounter it in other requests or in the UI.</td>
+</tr>
+<tr>
+<td><code>segment.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+<tr>
+<td><code>segment.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+<tr>
+<td><code>segment.progress</code></td>
+<td><code>integer,null</code></td>
+<td>No</td>
+<td>If Customer.io has not finished processing the segment, this indicates the percentage complete. Otherwise, this key is null.</td>
+</tr>
+<tr>
+<td><code>segment.state</code></td>
+<td><code>enum: events, build, events_queued, build_queued, finished</code></td>
+<td>No</td>
+<td>The segment build state: - <code>events</code>, handling event conditions for this segment - <code>build</code>, handling profile attribute conditions for this segment - <code>events_queued</code>, waiting to start handling event conditions - <code>build_queued</code>, waiting to start handling profile attribute conditions - <code>finished</code>, the segment is finished building</td>
+</tr>
+<tr>
+<td><code>segment.tags</code></td>
+<td><code>array,null</code></td>
+<td>No</td>
+<td>The tags assigned to the segment, if any. Tags may help you sort through your segments.</td>
+</tr>
+<tr>
+<td><code>segment.type</code></td>
+<td><code>enum: dynamic, manual</code></td>
+<td>No</td>
+<td>The type of segment.</td>
+</tr>
+<tr>
+<td><code>segment.updated_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-segment_id-does-not-exist-1" class="status" data-status="4xx">404: The <code>segment_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-3" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1segmentssegment_idcustomer_count" class="operation" data-method="get"><code>GET</code> /v1/segments/{segment_id}/customer_count</h3>
+<p>Operation ID: <code>getSegmentCount</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>segment_id</code> | <code>path</code> | <code>integer (int32)</code> | Yes | The identifier for a segment. You can find your segment's ID on its page in the dashboard, go to <em>Segments</em>, select your segment, and find the ID under <em>Usage</em>. Or you can find your segment using the <a href="/integrations/api/app/tag/segments/">App API</a>. |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-returns-the-customer-count-for-a-segment" class="status" data-status="2xx">200: Returns the customer <code>count</code> for a segment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of customers in the segment.</td>
+</tr>
+<tr>
+<td><code>segment_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-segment_id-does-not-exist-2" class="status" data-status="4xx">404: The <code>segment_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-4" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="get-v1segmentssegment_idused_by" class="operation" data-method="get"><code>GET</code> /v1/segments/{segment_id}/used_by</h3>
+<p>Operation ID: <code>getSegmentDependencies</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>segment_id</code> | <code>path</code> | <code>integer (int32)</code> | Yes | The identifier for a segment. You can find your segment's ID on its page in the dashboard, go to <em>Segments</em>, select your segment, and find the ID under <em>Usage</em>. Or you can find your segment using the <a href="/integrations/api/app/tag/segments/">App API</a>. |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-returns-the-ids-of-items-that-reference-the-segment" class="status" data-status="2xx">200: Returns the IDs of items that reference the segment</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segment_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The identifier for a segment; used to target a segment in requests.</td>
+</tr>
+<tr>
+<td><code>used_by</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>used_by.campaigns</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The automations that use this segment.</td>
+</tr>
+<tr>
+<td><code>used_by.draft_newsletters</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The one-time sends that are still in a draft state that reference this segment.</td>
+</tr>
+<tr>
+<td><code>used_by.sent_newsletters</code></td>
+<td><code>array of integer</code></td>
+<td>No</td>
+<td>The one-time sends that you've sent that use this segment.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-the-segment_id-does-not-exist-3" class="status" data-status="4xx">404: The <code>segment_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-5" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="remove">remove</h2>
+<h3 id="delete-v1segmentssegment_id" class="operation" data-method="delete"><code>DELETE</code> /v1/segments/{segment_id}</h3>
+<p>Operation ID: <code>deleteManSegment</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>segment_id</code> | <code>path</code> | <code>integer (int32)</code> | Yes | The identifier for a segment. You can find your segment's ID on its page in the dashboard, go to <em>Segments</em>, select your segment, and find the ID under <em>Usage</em>. Or you can find your segment using the <a href="/integrations/api/app/tag/segments/">App API</a>. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="204-the-segment-is-deleted" class="status" data-status="2xx">204: The segment is deleted</h5>
+<h5 id="404-the-segment_id-does-not-exist-4" class="status" data-status="4xx">404: The <code>segment_id</code> does not exist</h5>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-6" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

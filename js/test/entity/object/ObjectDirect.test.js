@@ -1,0 +1,165 @@
+
+const envlocal = __dirname + '/../../../.env.local'
+require('../../utility').loadEnvLocal(envlocal)
+
+const { test, describe, afterEach } = require('node:test')
+const assert = require('node:assert')
+
+
+const { CustomerioAppSDK } = require('../../..')
+
+const {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+} = require('../../utility')
+
+
+describe('ObjectDirect', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when CUSTOMERIO_APP_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CUSTOMERIO_APP_TEST_LIVE'))
+
+  test('direct-exists', async () => {
+    const sdk = new CustomerioAppSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
+      system: { fetch: async () => ({}) }
+    })
+    assert('function' === typeof sdk.direct)
+    assert('function' === typeof sdk.prepare)
+  })
+
+
+  test('direct-load-object', async (t) => {
+    if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
+    const setup = directSetup({ id: 'direct01' })
+    const { client, calls } = setup
+
+    const params = {}
+    if (setup.live) {
+      const listResult = await client.direct({
+        path: 'v1/objects/{id}/{object_id}/relationships',
+        method: 'GET',
+        params: {
+        id: setup.idmap['object01'],
+        object_id: setup.idmap['object01'],
+        },
+      })
+      assert(listResult.ok === true)
+      const listData = listResult.data
+      if (!Array.isArray(listData) || listData.length === 0) {
+        throw new Error('Live load blocked: discovery returned no usable entities')
+      }
+      params.id = listData[0].id
+      params.object_id = setup.idmap['object01']
+    } else {
+      params.id = 'direct01'
+      params.object_id = 'direct02'
+    }
+
+    const result = await client.direct({
+      path: 'v1/objects/{id}/{object_id}/attributes',
+      method: 'GET',
+      params,
+    })
+
+    assert(result.ok === true)
+    assert(setup.live ? result.status >= 200 && result.status < 300 : result.status === 200)
+    assert(null != result.data)
+
+    if (!setup.live) {
+      assert(result.data.id === 'direct01')
+      assert(calls.length === 1)
+      assert(calls[0].init.method === 'GET')
+      assert(calls[0].url.includes('direct01'))
+      assert(calls[0].url.includes('direct02'))
+    }
+  })
+
+  test('direct-list-object', async (t) => {
+    if (liveScenariosActive()) { t.skip('Covered by live operation scenarios'); return }
+    const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
+    const { client, calls } = setup
+
+    const params = {}
+    if (setup.live) {
+      params.id = setup.idmap['object01']
+      params.object_id = setup.idmap['object01']
+    } else {
+      params.id = 'direct01'
+      params.object_id = 'direct02'
+    }
+
+    const result = await client.direct({
+      path: 'v1/objects/{id}/{object_id}/relationships',
+      method: 'GET',
+      params,
+    })
+
+    assert(result.ok === true)
+    assert(setup.live ? result.status >= 200 && result.status < 300 : result.status === 200)
+    assert(Array.isArray(result.data))
+
+    if (!setup.live) {
+      assert(result.data.length === 2)
+      assert(calls.length === 1)
+      assert(calls[0].init.method === 'GET')
+      assert(calls[0].url.includes('direct01'))
+      assert(calls[0].url.includes('direct02'))
+    }
+  })
+
+})
+
+
+
+function liveScenariosActive() { return false && process.env.CUSTOMERIO_APP_TEST_LIVE === 'TRUE' }
+function directSetup(mockres) {
+  const calls = []
+
+  const env = envOverride({
+    'CUSTOMERIO_APP_TEST_OBJECT_ENTID': {},
+    'CUSTOMERIO_APP_TEST_LIVE': 'FALSE',
+    'CUSTOMERIO_APP_APIKEY': '',
+  })
+
+  const live = 'TRUE' === env.CUSTOMERIO_APP_TEST_LIVE
+
+  if (live) {
+    // Merged so the generated fields win: sdk-test-control.json's
+    // test.client.options adds to the live client, it does not redirect it.
+    const client = new CustomerioAppSDK(
+      Object.assign({}, liveClientOptions(), {
+      apikey: env.CUSTOMERIO_APP_APIKEY,
+      }))
+
+    let idmap = env['CUSTOMERIO_APP_TEST_OBJECT_ENTID']
+    if ('string' === typeof idmap && idmap.startsWith('{')) {
+      idmap = JSON.parse(idmap)
+    }
+
+    return { client, calls, live, idmap }
+  }
+
+  const mockFetch = async (url, init) => {
+    calls.push({ url, init })
+    return {
+      status: 200,
+      statusText: 'OK',
+      headers: {},
+      json: async () => (null != mockres ? mockres : { id: 'direct01' }),
+    }
+  }
+
+  const client = new CustomerioAppSDK({
+    base: 'http://localhost:8080',
+    system: { fetch: mockFetch },
+  })
+
+  return { client, calls, live, idmap: {} }
+}
+  

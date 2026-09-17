@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Import | Customer.io App API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Customer.io App API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/customerio-app-sdk">voxgig-sdk/customerio-app-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Customer.io App API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/action.html">Action</a>
+<a href="../api/activity.html">Activity</a>
+<a href="../api/asset.html">Asset</a>
+<a href="../api/attribute.html">Attribute</a>
+<a href="../api/automation.html">Automation</a>
+<a href="../api/broadcast.html">Broadcast</a>
+<a href="../api/campaign.html">Campaign</a>
+<a href="../api/collection.html">Collection</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/customer.html">Customer</a>
+<a href="../api/data_index.html">DataIndex</a>
+<a href="../api/delivery.html">Delivery</a>
+<a href="../api/design_studio.html">DesignStudio</a>
+<a href="../api/design_studio_email.html">DesignStudioEmail</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/end.html">End</a>
+<a href="../api/esp_suppression.html">EspSuppression</a>
+<a href="../api/export.html">Export</a>
+<a aria-current="page" href="../api/import.html">Import</a><div class="nav-sections"><a class="nav-section" href="#post-v1imports">POST /v1/imports</a>
+<a class="nav-section" href="#get-v1importsimport_id">GET /v1/imports/{import_id}</a></div>
+<a href="../api/in_app.html">InApp</a>
+<a href="../api/inbox_message.html">InboxMessage</a>
+<a href="../api/info.html">Info</a>
+<a href="../api/ip_address.html">IpAddress</a>
+<a href="../api/language.html">Language</a>
+<a href="../api/link.html">Link</a>
+<a href="../api/live_notification.html">LiveNotification</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/newsletter.html">Newsletter</a>
+<a href="../api/newsletter_metric.html">NewsletterMetric</a>
+<a href="../api/newsletter_variant.html">NewsletterVariant</a>
+<a href="../api/object.html">Object</a>
+<a href="../api/object_type.html">ObjectType</a>
+<a href="../api/opt_out.html">OptOut</a>
+<a href="../api/push.html">Push</a>
+<a href="../api/relationship.html">Relationship</a>
+<a href="../api/reporting_webhook.html">ReportingWebhook</a>
+<a href="../api/search_suppression.html">SearchSuppression</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/send_message.html">SendMessage</a>
+<a href="../api/sender_identity.html">SenderIdentity</a>
+<a href="../api/sms.html">Sms</a>
+<a href="../api/snippet.html">Snippet</a>
+<a href="../api/start.html">Start</a>
+<a href="../api/subscription_center.html">SubscriptionCenter</a>
+<a href="../api/subscription_channel.html">SubscriptionChannel</a>
+<a href="../api/subscription_topic.html">SubscriptionTopic</a>
+<a href="../api/suppression.html">Suppression</a>
+<a href="../api/test_group.html">TestGroup</a>
+<a href="../api/transactional.html">Transactional</a>
+<a href="../api/trigger.html">Trigger</a>
+<a href="../api/update.html">Update</a>
+<a href="../api/whatsapp.html">Whatsapp</a>
+<a href="../api/workspace.html">Workspace</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="import">Import</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-v1imports"><code>/v1/imports</code></a></td>
+<td><code>create</code></td>
+<td>Returns an import payload</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-v1importsimport_id"><code>/v1/imports/{import_id}</code></a></td>
+<td><code>load</code></td>
+<td>Returns an import payload</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>data_to_process</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A helpful description that can help you find and recognize your import operation.</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>If your import fails, this helps you understand why.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>This is the <code>import_id</code> you'll use if you want to <a href="/integrations/api/app/tag/imports/getImport/">lookup your import operation</a>.</td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of identifier you used to identify people in your CSV.</td>
+</tr>
+<tr>
+<td><code>import</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A friendly name for your import.</td>
+</tr>
+<tr>
+<td><code>object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;.</td>
+</tr>
+<tr>
+<td><code>people_to_process</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Returned for people and event imports, even if you imported using the field <code>data_to_process</code>.</td>
+</tr>
+<tr>
+<td><code>rows_imported</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of rows we imported from the CSV.</td>
+</tr>
+<tr>
+<td><code>rows_to_import</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of importable rows we found in the CSV.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state of the import, whether your import is being processed, fully completed (<code>imported</code>), or if it failed.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of import.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-v1imports" class="operation" data-method="post"><code>POST</code> /v1/imports</h3>
+<p>Operation ID: <code>import</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import</code></td>
+<td><code>object or object or object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-returns-an-import-payload" class="status" data-status="2xx">200: Returns an import payload</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Represents an import operation.</td>
+</tr>
+<tr>
+<td><code>import.created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>import.data_to_process</code></td>
+<td><code>enum: all, only_new, only_existing</code></td>
+<td>No</td>
+<td>Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to <code>all</code>. Event imports support only <code>all</code> and <code>only_existing</code>. Formerly called <code>people_to_process</code>.</td>
+</tr>
+<tr>
+<td><code>import.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A helpful description that can help you find and recognize your import operation.</td>
+</tr>
+<tr>
+<td><code>import.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>If your import fails, this helps you understand why.</td>
+</tr>
+<tr>
+<td><code>import.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>This is the <code>import_id</code> you'll use if you want to <a href="/integrations/api/app/tag/imports/getImport/">lookup your import operation</a>.</td>
+</tr>
+<tr>
+<td><code>import.identifier</code></td>
+<td><code>enum: id, email</code></td>
+<td>No</td>
+<td>The type of identifier you used to identify people in your CSV. Not applicable for object imports.</td>
+</tr>
+<tr>
+<td><code>import.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A friendly name for your import. This helps you identify your import.</td>
+</tr>
+<tr>
+<td><code>import.object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Only applies to object imports.</td>
+</tr>
+<tr>
+<td><code>import.people_to_process</code></td>
+<td><code>enum: all, only_new, only_existing</code></td>
+<td>No</td>
+<td>Returned for people and event imports, even if you imported using the field <code>data_to_process</code>. This field will be deprecated soon.</td>
+</tr>
+<tr>
+<td><code>import.rows_imported</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of rows we imported from the CSV.</td>
+</tr>
+<tr>
+<td><code>import.rows_to_import</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of importable rows we found in the CSV.</td>
+</tr>
+<tr>
+<td><code>import.state</code></td>
+<td><code>enum: preprocessing, preprocessed, validating, validated, importing, imported, ...</code></td>
+<td>No</td>
+<td>The state of the import, whether your import is being processed, fully completed (<code>imported</code>), or if it failed.</td>
+</tr>
+<tr>
+<td><code>import.type</code></td>
+<td><code>enum: people, event, object, relationship</code></td>
+<td>No</td>
+<td>The type of import.</td>
+</tr>
+<tr>
+<td><code>import.updated_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="load">load</h2>
+<h3 id="get-v1importsimport_id" class="operation" data-method="get"><code>GET</code> /v1/imports/{import_id}</h3>
+<p>Operation ID: <code>getImport</code>.</p>
+<p>Authentication: bearer token (<code>Bearer-Auth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>import_id</code> | <code>path</code> | <code>integer</code> | Yes | The <code>id</code> of the import you want to lookup. This value is <a href="/integrations/api/app/tag/imports/import/">returned from an import</a> that was accepted and queued for processing. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-returns-an-import-payload-1" class="status" data-status="2xx">200: Returns an import payload</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>import.created_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was created.</td>
+</tr>
+<tr>
+<td><code>import.data_to_process</code></td>
+<td><code>enum: all, only_new, only_existing</code></td>
+<td>No</td>
+<td>Controls whether your import adds and updates all rows, adds only new rows, or updates only existing rows. Defaults to <code>all</code>. Event imports support only <code>all</code> and <code>only_existing</code>. Formerly called <code>people_to_process</code>.</td>
+</tr>
+<tr>
+<td><code>import.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A helpful description that can help you find and recognize your import operation.</td>
+</tr>
+<tr>
+<td><code>import.error</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>If your import fails, this helps you understand why.</td>
+</tr>
+<tr>
+<td><code>import.error_download_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>URL to download errors for the import via <a href="/integrations/api/app/tag/exports/downloadExport/">the <em>Download an export</em> endpoint</a>. Only present when there are errors.</td>
+</tr>
+<tr>
+<td><code>import.error_export_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>ID of the export containing errors for the import, which can retrieved via <a href="/integrations/api/app/tag/exports/getExport/">the <em>Get an export</em> endpoint</a>. Only present when there are errors.</td>
+</tr>
+<tr>
+<td><code>import.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>This is the <code>import_id</code> you'll use if you want to <a href="/integrations/api/app/tag/imports/getImport/">lookup your import operation</a>.</td>
+</tr>
+<tr>
+<td><code>import.identifier</code></td>
+<td><code>enum: id, email</code></td>
+<td>No</td>
+<td>The type of identifier you used to identify people in your CSV. Not applicable for object imports.</td>
+</tr>
+<tr>
+<td><code>import.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A friendly name for your import. This helps you identify your import.</td>
+</tr>
+<tr>
+<td><code>import.object_type_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The object type an object belongs to, like &quot;Companies&quot; or &quot;Accounts&quot;. Only applies to object imports.</td>
+</tr>
+<tr>
+<td><code>import.people_to_process</code></td>
+<td><code>enum: all, only_new, only_existing</code></td>
+<td>No</td>
+<td>Returned for people and event imports, even if you imported using the field <code>data_to_process</code>. This field will be deprecated soon.</td>
+</tr>
+<tr>
+<td><code>import.rows_imported</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of rows we imported from the CSV.</td>
+</tr>
+<tr>
+<td><code>import.rows_to_import</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of importable rows we found in the CSV.</td>
+</tr>
+<tr>
+<td><code>import.state</code></td>
+<td><code>enum: preprocessing, preprocessed, validating, validated, importing, imported, ...</code></td>
+<td>No</td>
+<td>The state of the import, whether your import is being processed, fully completed (<code>imported</code>), or if it failed.</td>
+</tr>
+<tr>
+<td><code>import.type</code></td>
+<td><code>enum: people, event, object, relationship</code></td>
+<td>No</td>
+<td>The type of import.</td>
+</tr>
+<tr>
+<td><code>import.updated_at</code></td>
+<td><code>integer (unix timestamp)</code></td>
+<td>No</td>
+<td>The date time when the referenced ID was last updated.</td>
+</tr>
+<tr>
+<td><code>import.warning_download_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>URL to download warnings for the import via <a href="/integrations/api/app/tag/exports/downloadExport/">the <em>Download an export</em> endpoint</a>. Only present when there are warnings.</td>
+</tr>
+<tr>
+<td><code>import.warning_export_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>ID of the export containing warnings for the import, which can retrieved via <a href="/integrations/api/app/tag/exports/getExport/">the <em>Get an export</em> endpoint</a>. Only present when there are warnings.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-your-request-is-over-the-10-per-second-limit-retry-after-tells-you-how-many-seconds-you-must-wait-before-you-send-the-next-request-1" class="status" data-status="4xx">429: Your request is over the 10-per-second limit. <code>Retry-After</code> tells you how many seconds you must wait before you send the next request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>One entry for each reason the request failed.</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A stable identifier for the failure, on the errors that carry one. Use this rather than the text in <code>detail</code> if you need to identify the error programmatically.</td>
+</tr>
+<tr>
+<td><code>errors[].detail</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>What went wrong, in plain text. Most messages end with a support reference you can use if you need to contact support.</td>
+</tr>
+<tr>
+<td><code>errors[].meta</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Extra context (if available).</td>
+</tr>
+<tr>
+<td><code>errors[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The part of the request that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].source.pointer</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A JSON pointer to the part of the request body that the error refers to.</td>
+</tr>
+<tr>
+<td><code>errors[].status</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The HTTP status code as a string.</td>
+</tr>
+</tbody>
+</table>
+<p>Example response:</p>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;detail&quot;: &quot;rate limited to 10 requests per 1s (reference a1b2c3)&quot;,
+      &quot;status&quot;: &quot;429&quot;
+    }
+  ]
+}
+</code></pre>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

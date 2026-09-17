@@ -1,0 +1,100 @@
+# BasicReportingWebhookFlow
+
+main: kit: flow: BasicReportingWebhookFlow:
+{
+  entity: "reporting_webhook",
+  kind: "basic",
+  name: "BasicReportingWebhookFlow",
+  step: [
+    {
+      input: {
+        ref: "reporting_webhook_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "reporting_webhook_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "reporting_webhook_ref01",
+        srcdatavar: "reporting_webhook_ref01_data",
+        suffix: "_up0",
+        textfield: "endpoint"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-reporting_webhook_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "reporting_webhook_ref01",
+        srcdatavar: "reporting_webhook_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "reporting_webhook01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-reporting_webhook_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "reporting_webhook_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "reporting_webhook01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "reporting_webhook_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReportingWebhookFlow"
+}

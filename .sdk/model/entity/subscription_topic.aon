@@ -1,0 +1,10 @@
+# Entity: subscription_topic
+
+main: kit: entity: subscription_topic: {
+
+  alias: field: {}
+
+  name: "subscription_topic"
+
+
+}
